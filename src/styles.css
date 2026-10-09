@@ -48316,3 +48316,14 @@ html body .sahl-white-home .sahl-arabic-first { color: var(--emerald-ink) !impor
 html body .sahl-white-home .sahl-trust-row > span { background: var(--ivory); }
 html body .sahl-white-home .sahl-trust-row small { background: var(--emerald); color: #ffffff !important; border-radius: 999px; padding: 0 .4em; }
 html body .sahl-white-home .sahl-trust-row b { color: var(--ink); }
+
+/* Gulf Modern: closing-section rings — white + saffron outlines */
+html body .sahl-white-home .sahl-final .sahl-shell::after {
+  border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
+  box-shadow:
+    0 0 0 70px transparent,
+    0 0 0 71.5px rgba(224, 165, 38, 0.55),
+    0 0 0 140px transparent,
+    0 0 0 141.5px rgba(255, 255, 255, 0.18) !important;
+  background: none !important;
+}
