@@ -48212,7 +48212,7 @@ body:has(.chat-composer-dock) .liquid-glass-sahl.sahl-cookie-consent {
 
 /* ===== Gulf Modern — ألوان الأقسام (لا تغيير في التخطيط) ===== */
 /* العناوين الصغيرة */
-.sahl-section-head > span:first-child,
+html body .sahl-white-home .sahl-section-head > span:first-child,
 html body .sahl-white-home .sahl-final .sahl-reveal > span { color: var(--emerald-ink); }
 html body .sahl-white-home .sahl-dark .sahl-section-head > span:first-child { color: var(--saffron); }
 
@@ -48277,3 +48277,19 @@ html body .sahl-white-home .sahl-final .sahl-actions .inline-flex { background: 
 html body .sahl-white-home .sahl-final .sahl-actions .inline-flex:hover { background: #ffffff; }
 html body .sahl-white-home .sahl-final .sahl-actions .inline-flex:last-child { background: transparent; color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.7); }
 html body .sahl-white-home .sahl-final .sahl-actions .inline-flex:last-child:hover { border-color: #ffffff; }
+
+html body .sahl-white-home .sahl-versus-head > span:last-child { background: var(--emerald); color: #ffffff; }
+html body .sahl-white-home .sahl-versus-head > span:last-child img { background: var(--saffron); border-radius: 4px; }
+html body .sahl-white-home .sahl-cap-card > div > span { color: var(--emerald-ink); }
+html body .sahl-white-home .sahl-cap-card a { color: var(--emerald-ink); }
+html body .sahl-white-home .sahl-coming-ads { background: var(--saffron-tint); border-color: #f0d58f; }
+html body .sahl-white-home .sahl-coming-ads > div > span { background: var(--ink); color: var(--saffron); }
+html body .sahl-white-home .sahl-coming-ads svg { color: var(--emerald-ink); }
+html body .sahl-white-home .sahl-pricing h2 em { color: var(--emerald-ink); }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) :is(.sahl-price strong, li span:last-child) { color: var(--ink); }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) :is(.sahl-home-plan-head p, .sahl-price span) { color: var(--muted-text); }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) { box-shadow: 0 18px 40px -30px rgba(14, 42, 43, 0.25); }
+html body .sahl-white-home .sahl-home-plan.is-featured { box-shadow: 0 30px 60px -30px rgba(14, 42, 43, 0.45); }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) .sahl-home-plan-cta { background: var(--ink); color: var(--ivory); border-color: var(--ink); }
+html body .sahl-white-home .sahl-home-billing small { color: var(--cta-hover); }
+html body .sahl-white-home .sahl-home-billing button.is-active small { color: var(--saffron); }
