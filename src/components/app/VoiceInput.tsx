@@ -213,7 +213,7 @@ export function VoiceInput({
         <button type="button" onClick={cancel} aria-label="إلغاء التسجيل" title="إلغاء" className="grid size-7 place-items-center rounded-md text-muted-foreground hover:bg-background hover:text-foreground">
           <X className="size-4" />
         </button>
-        <button type="button" onClick={stop} aria-label="إنهاء التسجيل وتحويله لنص" title="تم" className="grid size-7 place-items-center rounded-md bg-primary text-primary-foreground hover:opacity-90">
+        <button type="button" onClick={stop} aria-label="إنهاء التسجيل وتحويله لنص" title="تم" className="grid size-7 place-items-center rounded-md bg-cta text-white hover:bg-cta-hover">
           <Check className="size-4" />
         </button>
       </div>

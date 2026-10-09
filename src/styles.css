@@ -48197,3 +48197,15 @@ body:has(.chat-composer-dock) .liquid-glass-sahl.sahl-cookie-consent {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
+.sahl-actions [data-slot="button"],
+.sahl-actions .inline-flex { background: var(--cta); color: #ffffff; }
+.sahl-actions [data-slot="button"]:hover,
+.sahl-actions .inline-flex:hover { background: var(--cta-hover); }
+.sahl-actions [data-slot="button"]:last-child,
+.sahl-actions .inline-flex:last-child { background: transparent; color: var(--ink); border: 1px solid #c9c0ac; }
+.sahl-actions [data-slot="button"]:last-child:hover,
+.sahl-actions .inline-flex:last-child:hover { background: transparent; border-color: var(--ink); }
+.sahl-hero-wash { display: none; }
+/* الزعفران لا يُستخدم كنص على الخلفيات الفاتحة؛ يبقى مسموحاً داخل الأقسام الداكنة. */
+.text-amber, .text-gold { color: var(--emerald-ink); }
+:is(.bg-ink, .surface-ink, .bg-sidebar-primary) :is(.text-amber, .text-gold) { color: var(--saffron); }
