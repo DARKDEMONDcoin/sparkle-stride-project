@@ -48341,3 +48341,6 @@ button.bg-primary:disabled { opacity: 0.55; cursor: not-allowed; }
 /* Switch "on" track stays brand emerald (it is a control state, not a button) */
 button[role="switch"].bg-primary, button[role="switch"][data-state="checked"] { background-color: var(--emerald) !important; }
 button[role="checkbox"].bg-primary, button[role="checkbox"][data-state="checked"] { background-color: var(--emerald) !important; }
+
+/* Gulf Modern: auth glow blob — saffron wash instead of old orange */
+html body .sauth-glow-blob.is-four { background: color-mix(in oklab, var(--saffron) 55%, transparent) !important; }
