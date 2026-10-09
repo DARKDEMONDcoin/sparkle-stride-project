@@ -48293,3 +48293,16 @@ html body .sahl-white-home .sahl-home-plan.is-featured { box-shadow: 0 30px 60px
 html body .sahl-white-home .sahl-home-plan:not(.is-featured) .sahl-home-plan-cta { background: var(--ink); color: var(--ivory); border-color: var(--ink); }
 html body .sahl-white-home .sahl-home-billing small { color: var(--cta-hover); }
 html body .sahl-white-home .sahl-home-billing button.is-active small { color: var(--saffron); }
+/* أولوية نهائية لبطاقات الأسعار ورأس عمود زياد (قواعد زجاجية قديمة أقوى) */
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) { background: var(--surface) !important; border: 1px solid var(--line) !important; color: var(--ink) !important; opacity: 1; }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured)::before,
+html body .sahl-white-home .sahl-home-plan:not(.is-featured)::after { background: none !important; border-color: transparent !important; }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) :is(.sahl-price strong, li > span:last-child, h3) { color: var(--ink) !important; -webkit-text-fill-color: var(--ink); opacity: 1 !important; }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) li { opacity: 1 !important; }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) .sahl-home-perk-icon { color: var(--emerald) !important; background: var(--emerald-tint) !important; border-color: transparent !important; }
+html body .sahl-white-home .sahl-home-plan.is-featured { border-color: var(--ink) !important; }
+html body .sahl-white-home .sahl-home-plan.is-featured .sahl-home-perk-icon { color: var(--saffron) !important; border-color: color-mix(in oklab, var(--saffron) 40%, transparent) !important; background: transparent !important; }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) .sahl-home-plan-cta { background: var(--ink) !important; color: var(--ivory) !important; border-color: var(--ink) !important; }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) .sahl-home-plan-cta:hover { background: var(--ink-2) !important; }
+html body .sahl-white-home .sahl-versus-head > span:last-child { background: var(--emerald) !important; color: #ffffff !important; }
+html body .sahl-white-home .sahl-versus-row > span:last-child { background: color-mix(in oklab, var(--emerald) 10%, transparent) !important; }
