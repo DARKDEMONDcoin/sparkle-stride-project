@@ -48209,3 +48209,110 @@ body:has(.chat-composer-dock) .liquid-glass-sahl.sahl-cookie-consent {
 /* الزعفران لا يُستخدم كنص على الخلفيات الفاتحة؛ يبقى مسموحاً داخل الأقسام الداكنة. */
 .text-amber, .text-gold { color: var(--emerald-ink); }
 :is(.bg-ink, .surface-ink, .bg-sidebar-primary) :is(.text-amber, .text-gold) { color: var(--saffron); }
+
+/* ===== Gulf Modern — ألوان الأقسام (لا تغيير في التخطيط) ===== */
+/* العناوين الصغيرة */
+html body .sahl-white-home .sahl-section-head > span:first-child,
+html body .sahl-white-home .sahl-final .sahl-reveal > span { color: var(--emerald-ink); }
+html body .sahl-white-home .sahl-dark .sahl-section-head > span:first-child { color: var(--saffron); }
+
+/* العرض التوضيحي الداكن */
+html body .sahl-white-home .sahl-sample { background-color: var(--ink); }
+html body .sahl-white-home .sahl-sample-tabs { border-color: var(--line-dark); }
+html body .sahl-white-home .sahl-sample-tabs button { color: var(--on-dark-muted); background: transparent; }
+html body .sahl-white-home .sahl-sample-tabs button.is-active { background: var(--ivory); color: var(--ink); }
+html body .sahl-white-home .sahl-sample-showcase { background: #fbf8f1; }
+html body .sahl-white-home .sahl-sample-ask { background: var(--emerald); color: #ffffff; }
+html body .sahl-white-home .sahl-sample-ask p, html body .sahl-white-home .sahl-sample-ask small { color: #ffffff; }
+html body .sahl-white-home .sahl-sample-pending { background: var(--saffron-tint); color: var(--ink); }
+html body .sahl-white-home .sahl-sample-quality { background: var(--emerald-tint); color: var(--emerald-ink); }
+html body .sahl-white-home .sahl-sample-actions button:first-child { background: var(--ink); color: var(--ivory); }
+html body .sahl-white-home .sahl-sample-media { background: linear-gradient(135deg, var(--emerald), #0e4f4a, var(--ink)); }
+
+/* بطاقات الفريق */
+html body .sahl-white-home .sahl-cap-card { background: var(--surface); border: 1px solid var(--line); transition: transform .25s var(--ease-enter), box-shadow .25s; }
+html body .sahl-white-home .sahl-cap-card:hover { transform: translateY(-3px); box-shadow: 0 22px 40px -28px rgba(14, 42, 43, 0.35); }
+
+/* جدول المقارنة */
+html body .sahl-white-home .sahl-versus-head .is-sahl, html body .sahl-white-home .sahl-versus-head span.is-sahl { background: var(--emerald); color: #ffffff; }
+html body .sahl-white-home .sahl-versus-row .is-sahl svg { color: var(--emerald); }
+html body .sahl-white-home .sahl-versus-row .is-plain { color: var(--on-dark-muted); }
+html body .sahl-white-home .sahl-hire-card.is-ziad { border-color: var(--emerald); background: #f2f8f6; box-shadow: none; }
+html body .sahl-white-home .sahl-hire-card.is-ziad svg { color: var(--emerald); }
+
+/* الأسعار */
+html body .sahl-white-home .sahl-pricing { background: var(--ivory-2); color: var(--ink); }
+html body .sahl-white-home .sahl-pricing .sahl-section-head > span:first-child { color: var(--emerald-ink); }
+html body .sahl-white-home .sahl-pricing h2, html body .sahl-white-home .sahl-pricing h3, html body .sahl-white-home .sahl-pricing .sahl-price { color: var(--ink); }
+html body .sahl-white-home .sahl-pricing p { color: var(--muted-text); }
+html body .sahl-white-home .sahl-pricing p a { color: var(--emerald-ink); }
+html body .sahl-white-home .sahl-home-plan { background: var(--surface); border: 1px solid var(--line); color: var(--ink); backdrop-filter: none; }
+html body .sahl-white-home .sahl-home-plan .sahl-home-perk-icon { color: var(--emerald); }
+html body .sahl-white-home .sahl-home-plan.is-featured { background: var(--ink); border-color: var(--ink); color: var(--ivory); }
+html body .sahl-white-home .sahl-home-plan.is-featured :is(h3, html body .sahl-white-home .sahl-price, html body .sahl-white-home b, html body .sahl-white-home strong) { color: var(--ivory); }
+html body .sahl-white-home .sahl-home-plan.is-featured :is(p, html body .sahl-white-home small, html body .sahl-white-home li, html body .sahl-white-home span) { color: var(--on-dark-muted); }
+html body .sahl-white-home .sahl-home-plan.is-featured .sahl-home-perk-icon { color: var(--saffron); }
+html body .sahl-white-home .sahl-plan-tag { background: var(--saffron) !important; color: var(--ink) !important; border-color: var(--saffron) !important; }
+html body .sahl-white-home .sahl-home-plan-cta { background: var(--ink); color: var(--ivory); border-color: var(--ink); }
+html body .sahl-white-home .sahl-home-plan-cta:hover { background: var(--ink-2); color: #ffffff; }
+html body .sahl-white-home .sahl-home-plan.is-featured .sahl-home-plan-cta { background: var(--cta); color: #ffffff; border-color: var(--cta); }
+html body .sahl-white-home .sahl-home-plan.is-featured .sahl-home-plan-cta:hover { background: var(--cta-hover); }
+html body .sahl-white-home .sahl-home-billing { background: var(--surface); border-color: var(--line); }
+html body .sahl-white-home .sahl-home-billing button { color: var(--ink); }
+html body .sahl-white-home .sahl-home-billing button.is-active { background: var(--ink); color: var(--ivory); }
+
+/* الأسئلة الشائعة */
+html body .sahl-white-home .sahl-faq { background: var(--surface); }
+html body .sahl-white-home .sahl-faq [data-slot="accordion-item"] { border-color: var(--line); }
+html body .sahl-white-home .sahl-faq [data-slot="accordion-item"][data-state="open"] { border-color: var(--emerald); background: #f7fbfa; }
+
+/* الدعوة الختامية */
+html body .sahl-white-home .sahl-final { background: var(--emerald); color: #ffffff; }
+html body .sahl-white-home .sahl-final::before { border-color: rgba(255, 255, 255, 0.18) !important; background: none !important; }
+html body .sahl-white-home .sahl-final::after { border-color: rgba(224, 165, 38, 0.55) !important; background: none !important; }
+html body .sahl-white-home .sahl-final h2 { color: #ffffff; }
+html body .sahl-white-home .sahl-final p { color: #d6eee9; }
+html body .sahl-white-home .sahl-final .sahl-reveal > span { color: var(--saffron); }
+html body .sahl-white-home .sahl-final .sahl-actions .inline-flex { background: var(--ivory); color: var(--ink); border: 0; }
+html body .sahl-white-home .sahl-final .sahl-actions .inline-flex:hover { background: #ffffff; }
+html body .sahl-white-home .sahl-final .sahl-actions .inline-flex:last-child { background: transparent; color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.7); }
+html body .sahl-white-home .sahl-final .sahl-actions .inline-flex:last-child:hover { border-color: #ffffff; }
+
+html body .sahl-white-home .sahl-versus-head > span:last-child { background: var(--emerald); color: #ffffff; }
+html body .sahl-white-home .sahl-versus-head > span:last-child img { background: var(--saffron); border-radius: 4px; }
+html body .sahl-white-home .sahl-cap-card > div > span { color: var(--emerald-ink); }
+html body .sahl-white-home .sahl-cap-card a { color: var(--emerald-ink); }
+html body .sahl-white-home .sahl-coming-ads { background: var(--saffron-tint); border-color: #f0d58f; }
+html body .sahl-white-home .sahl-coming-ads > div > span { background: var(--ink); color: var(--saffron); }
+html body .sahl-white-home .sahl-coming-ads svg { color: var(--emerald-ink); }
+html body .sahl-white-home .sahl-pricing h2 em { color: var(--emerald-ink); }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) :is(.sahl-price strong, li span:last-child) { color: var(--ink); }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) :is(.sahl-home-plan-head p, .sahl-price span) { color: var(--muted-text); }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) { box-shadow: 0 18px 40px -30px rgba(14, 42, 43, 0.25); }
+html body .sahl-white-home .sahl-home-plan.is-featured { box-shadow: 0 30px 60px -30px rgba(14, 42, 43, 0.45); }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) .sahl-home-plan-cta { background: var(--ink); color: var(--ivory); border-color: var(--ink); }
+html body .sahl-white-home .sahl-home-billing small { color: var(--cta-hover); }
+html body .sahl-white-home .sahl-home-billing button.is-active small { color: var(--saffron); }
+/* أولوية نهائية لبطاقات الأسعار ورأس عمود زياد (قواعد زجاجية قديمة أقوى) */
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) { background: var(--surface) !important; border: 1px solid var(--line) !important; color: var(--ink) !important; opacity: 1; }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured)::before,
+html body .sahl-white-home .sahl-home-plan:not(.is-featured)::after { background: none !important; border-color: transparent !important; }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) :is(.sahl-price strong, li > span:last-child, h3) { color: var(--ink) !important; -webkit-text-fill-color: var(--ink); opacity: 1 !important; }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) li { opacity: 1 !important; }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) .sahl-home-perk-icon { color: var(--emerald) !important; background: var(--emerald-tint) !important; border-color: transparent !important; }
+html body .sahl-white-home .sahl-home-plan.is-featured { border-color: var(--ink) !important; }
+html body .sahl-white-home .sahl-home-plan.is-featured .sahl-home-perk-icon { color: var(--saffron) !important; border-color: color-mix(in oklab, var(--saffron) 40%, transparent) !important; background: transparent !important; }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) .sahl-home-plan-cta { background: var(--ink) !important; color: var(--ivory) !important; border-color: var(--ink) !important; }
+html body .sahl-white-home .sahl-home-plan:not(.is-featured) .sahl-home-plan-cta:hover { background: var(--ink-2) !important; }
+html body .sahl-white-home .sahl-versus-head > span:last-child { background: var(--emerald) !important; color: #ffffff !important; }
+html body .sahl-white-home .sahl-versus-row > span:last-child { background: color-mix(in oklab, var(--emerald) 10%, transparent) !important; }
+html body .sahl-shot { background: #fbf8f1; }
+html body .sahl-shot-user, html body .sahl-shot-user p { background: var(--emerald) !important; color: #ffffff !important; }
+html body .sahl-white-home .sahl-versus-beam { background: linear-gradient(115deg, transparent 38%, color-mix(in oklab, var(--emerald) 14%, transparent) 50%, transparent 62%) !important; }
+html body .sahl-shot-publish-actions button:first-child, html body .sahl-shot-publish-actions a:first-child { background: var(--ink) !important; color: var(--ivory) !important; }
+html body .sahl-shot-media { background: linear-gradient(135deg, var(--emerald), #0e4f4a, var(--ink)); }
+html body .sahl-white-home .sahl-trust { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+html body .sahl-white-home .sahl-arabic-first { color: var(--emerald-ink) !important; background: var(--emerald-tint) !important; border-color: transparent !important; }
+html body .sahl-white-home .sahl-trust-row > span { background: var(--ivory); }
+html body .sahl-white-home .sahl-trust-row small { background: var(--emerald); color: #ffffff !important; border-radius: 999px; padding: 0 .4em; }
+html body .sahl-white-home .sahl-trust-row b { color: var(--ink); }
