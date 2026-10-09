@@ -381,7 +381,7 @@ export function MetaDirect({
                 <video
                   src={videoUrl}
                   controls
-                  className="aspect-square w-full bg-black object-cover"
+                  className="aspect-square w-full bg-ink object-cover"
                 />
               ) : imageUrl ? (
                 <img

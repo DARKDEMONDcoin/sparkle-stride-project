@@ -48175,3 +48175,10 @@ body:has(.chat-composer-dock) .liquid-glass-sahl.sahl-cookie-consent {
   .ziad-referral-step { padding: 1.25rem; }
 }
 @media (prefers-reduced-motion: reduce) { .ziad-partner-card { transition: none; transform: none; } }
+
+/* ---------- Gulf Modern: قواعد التباين والتركيز ---------- */
+.text-jade { color: var(--emerald-ink); }
+.text-coral { color: var(--cta-hover); }
+.text-sky { color: var(--emerald-ink); }
+::selection { background: var(--emerald-tint); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }

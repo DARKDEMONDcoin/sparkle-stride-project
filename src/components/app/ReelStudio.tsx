@@ -192,7 +192,7 @@ export function ReelStudio({ workspaceId, images, aspect, onAttach, attached }: 
             src={preview.url}
             controls
             playsInline
-            className="max-h-72 w-full rounded-xl border border-border bg-black object-contain"
+            className="max-h-72 w-full rounded-xl border border-border bg-ink object-contain"
           />
           <div className="flex flex-wrap items-center gap-2">
             <a

@@ -147,9 +147,9 @@ function Blob({ quality, reduced }: { quality: Quality; reduced: boolean }) {
       uPointer: { value: new THREE.Vector3(0, 0, 1) },
       uPointerForce: { value: 0 },
       uAberration: { value: quality === "high" ? 0.045 : 0.0 },
-      uBase: { value: new THREE.Color("#C1663A") },
-      uGold: { value: new THREE.Color("#C9922A") },
-      uCream: { value: new THREE.Color("#F3E4CD") },
+      uBase: { value: new THREE.Color("#137C6F") },
+      uGold: { value: new THREE.Color("#E0A526") },
+      uCream: { value: new THREE.Color("#F7F2E8") },
     }),
     [quality],
   );
@@ -213,7 +213,7 @@ function Droplets({ reduced }: { reduced: boolean }) {
         to.set(2.4, 0.6, 0);
       }
       const geo = new THREE.SphereGeometry(0.075, 12, 12);
-      const mat = new THREE.MeshBasicMaterial({ color: "#F4D590", transparent: true, opacity: 1 });
+      const mat = new THREE.MeshBasicMaterial({ color: "#FBEFD0", transparent: true, opacity: 1 });
       const m = new THREE.Mesh(geo, mat);
       const from = new THREE.Vector3((Math.random() - 0.5) * 1.6, (Math.random() - 0.5) * 1.6, 1.2);
       m.position.copy(from);

@@ -1315,7 +1315,7 @@ export function PublishPanel({
 
         {bestTimes ? (
           <p
-            className={`mt-2 text-[11px] ${bestTimes.source === "baseline" ? "font-semibold text-amber-600" : "text-muted-foreground"}`}
+            className={`mt-2 text-[11px] ${bestTimes.source === "baseline" ? "font-semibold text-cta-hover" : "text-muted-foreground"}`}
           >
             {bestTimes.note}
           </p>
