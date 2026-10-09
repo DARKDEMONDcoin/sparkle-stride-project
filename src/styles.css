@@ -48319,13 +48319,13 @@ html body .sahl-white-home .sahl-trust-row b { color: var(--ink); }
 
 /* Gulf Modern: closing-section rings — white + saffron outlines */
 html body .sahl-white-home .sahl-final .sahl-shell::after {
-  border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
-  box-shadow:
-    0 0 0 70px transparent,
-    0 0 0 71.5px rgba(224, 165, 38, 0.55),
-    0 0 0 140px transparent,
-    0 0 0 141.5px rgba(255, 255, 255, 0.18) !important;
-  background: none !important;
+  width: 610px !important; height: 610px !important;
+  margin-right: -140px; margin-top: 0;
+  border: 0 !important; box-shadow: none !important;
+  background: radial-gradient(circle closest-side,
+    transparent 53.6%, rgba(255,255,255,0.18) 53.8%, rgba(255,255,255,0.18) 54.3%, transparent 54.5%,
+    transparent 76.6%, rgba(224,165,38,0.55) 76.8%, rgba(224,165,38,0.55) 77.3%, transparent 77.5%,
+    transparent 99.3%, rgba(255,255,255,0.18) 99.5%, rgba(255,255,255,0.18) 100%, transparent 100%) !important;
 }
 
 /* Gulf Modern: no emerald-filled buttons anywhere — clickable bg-primary uses CTA */
