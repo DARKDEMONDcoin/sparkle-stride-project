@@ -48327,3 +48327,17 @@ html body .sahl-white-home .sahl-final .sahl-shell::after {
     0 0 0 141.5px rgba(255, 255, 255, 0.18) !important;
   background: none !important;
 }
+
+/* Gulf Modern: no emerald-filled buttons anywhere — clickable bg-primary uses CTA */
+button.bg-primary, a.bg-primary, [role="button"].bg-primary,
+.toast button[data-button].group-\[\.toast\]\:bg-primary {
+  background-color: var(--cta) !important;
+  color: #ffffff !important;
+}
+button.bg-primary:hover:not(:disabled), a.bg-primary:hover, [role="button"].bg-primary:hover {
+  background-color: var(--cta-hover) !important;
+}
+button.bg-primary:disabled { opacity: 0.55; cursor: not-allowed; }
+/* Switch "on" track stays brand emerald (it is a control state, not a button) */
+button[role="switch"].bg-primary, button[role="switch"][data-state="checked"] { background-color: var(--emerald) !important; }
+button[role="checkbox"].bg-primary, button[role="checkbox"][data-state="checked"] { background-color: var(--emerald) !important; }
