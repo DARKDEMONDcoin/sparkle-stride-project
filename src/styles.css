@@ -48271,7 +48271,7 @@ html body .sahl-white-home .sahl-final { background: var(--emerald); color: #fff
 html body .sahl-white-home .sahl-final::before { border-color: rgba(255, 255, 255, 0.18) !important; background: none !important; }
 html body .sahl-white-home .sahl-final::after { border-color: rgba(224, 165, 38, 0.55) !important; background: none !important; }
 html body .sahl-white-home .sahl-final h2 { color: #ffffff; }
-html body .sahl-white-home .sahl-final p { color: #d6eee9; }
+html body .sahl-white-home .sahl-final p { color: #eef7f5; }
 html body .sahl-white-home .sahl-final .sahl-reveal > span { color: var(--saffron); }
 html body .sahl-white-home .sahl-final .sahl-actions .inline-flex { background: var(--ivory); color: var(--ink); border: 0; }
 html body .sahl-white-home .sahl-final .sahl-actions .inline-flex:hover { background: #ffffff; }
