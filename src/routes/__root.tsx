@@ -13,14 +13,14 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 
 /** لون واجهة المتصفح الرسمي لزياد — المصدر الوحيد لهذا اللون في المشروع. */
-export const BROWSER_THEME = "#9B741E";
+export const BROWSER_THEME = "#137C6F";
 /**
  * أزرار التنقل السفلية الثلاثة في هواتف أندرويد: بلا خلفية ظاهرة.
  * شريط أزرار النظام يأخذ لونه من theme-color، وكثير من المتصفحات تتجاهل
  * قناة الشفافية فتظهره أسود معتم؛ لذلك نستخدم أبيض يطابق خلفية الصفحة
  * فيندمج الشريط معها تماماً ويظهر شفافاً، مع رموز داكنة يختارها النظام.
  */
-export const BROWSER_NAV_THEME = "#FFFFFF";
+export const BROWSER_NAV_THEME = "#F7F2E8";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { RegionProvider } from "@/hooks/use-region";
 import { Button } from "@/components/ui/button";

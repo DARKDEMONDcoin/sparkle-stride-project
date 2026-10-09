@@ -40,7 +40,7 @@ export const useCases: UseCase[] = [
     short: "من صفحة منتج صامتة إلى طلبات يومية",
     icon: ShoppingBag,
     tint: "var(--jade)",
-    tintSoft: "oklch(0.66 0.13 168 / 0.14)",
+    tintSoft: "color-mix(in oklab, var(--emerald) 14%, transparent)",
     title: "متجرك يحتاج تسويقاً يومياً، لا حملة كل موسم",
     lead: "الفريق يكتب وصف كل منتج، يصوّر له إعلاناً بصرياً، ينشره في وقت الذروة، ويردّ على «كم السعر؟» قبل أن يبرد اهتمام العميل.",
     pains: [
@@ -122,7 +122,7 @@ export const useCases: UseCase[] = [
     short: "طاولات ممتلئة بمحتوى يومي يشتهّي",
     icon: UtensilsCrossed,
     tint: "var(--amber)",
-    tintSoft: "oklch(0.79 0.15 70 / 0.16)",
+    tintSoft: "color-mix(in oklab, var(--saffron) 18%, transparent)",
     title: "أفضل إعلان لمطعمك هو صورة نُشرت في وقتها",
     lead: "الفريق يبني تقويم محتوى الأسبوع حول أطباقك وعروضك، ينشر قبل موعد الغداء والعشاء، ويردّ على الحجوزات والشكاوى قبل أن تتحوّل إلى تقييم سلبي.",
     pains: [
@@ -194,7 +194,7 @@ export const useCases: UseCase[] = [
     short: "ثقة تُبنى بمحتوى توعوي ومواعيد لا تضيع",
     icon: Stethoscope,
     tint: "var(--primary)",
-    tintSoft: "oklch(0.62 0.16 258 / 0.14)",
+    tintSoft: "var(--emerald-tint)",
     title: "المريض يبحث أولاً، ثم يحجز عند من طمأنه",
     lead: "محتوى توعوي بلغة مفهومة، رد منضبط على استفسارات المواعيد والأسعار، ومتابعة من سأل ولم يحجز — بحدود مهنية واضحة.",
     pains: [
@@ -266,7 +266,7 @@ export const useCases: UseCase[] = [
     short: "كل وحدة تُعرض كما تستحق، وكل مهتم يُتابَع",
     icon: Building2,
     tint: "var(--coral)",
-    tintSoft: "oklch(0.68 0.17 25 / 0.14)",
+    tintSoft: "var(--coral-tint)",
     title: "المشتري الجاد يضيع حين يتأخر الرد ساعة",
     lead: "عرض احترافي لكل وحدة، متابعة منظمة للمهتمين، وتقرير يخبرك أي مشروع يستحق ميزانية الإعلان القادمة.",
     pains: [
@@ -334,7 +334,7 @@ export const useCases: UseCase[] = [
     short: "تسجيلات أكثر لكل دفعة تفتحها",
     icon: GraduationCap,
     tint: "var(--jade)",
-    tintSoft: "oklch(0.66 0.13 168 / 0.14)",
+    tintSoft: "color-mix(in oklab, var(--emerald) 14%, transparent)",
     title: "الدورة الجيدة لا تكفي — تحتاج من يشرحها كل يوم",
     lead: "محتوى يبني ثقة الطالب قبل الدفع، متابعة للمسجّلين والمترددين، وتذكير قبل بدء كل دفعة.",
     pains: [
@@ -394,7 +394,7 @@ export const useCases: UseCase[] = [
     short: "حضور مهني يجلب عملاء بلا مطاردة",
     icon: Briefcase,
     tint: "var(--primary)",
-    tintSoft: "oklch(0.62 0.16 258 / 0.14)",
+    tintSoft: "var(--emerald-tint)",
     title: "خبرتك تستحق أن تظهر كل يوم، لا حين تحتاج عملاً",
     lead: "حضور منتظم على لينكدإن والبحث، عروض أسعار سريعة، ومتابعة مرتبة لكل من طلب سعراً.",
     pains: [

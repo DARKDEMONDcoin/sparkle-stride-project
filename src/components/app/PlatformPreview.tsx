@@ -126,7 +126,7 @@ function Caption({
 
 function Media({ post, ratio }: { post: PreviewPost; ratio: string }) {
   if (post.video_url)
-    return <video src={post.video_url} controls muted playsInline className={cn("w-full bg-black object-cover", ratio)} />;
+    return <video src={post.video_url} controls muted playsInline className={cn("w-full bg-ink object-cover", ratio)} />;
   if (post.image_url) return <img src={post.image_url} alt="" className={cn("w-full object-cover", ratio)} />;
   return null;
 }

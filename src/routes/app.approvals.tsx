@@ -300,7 +300,7 @@ function ApprovalsPage() {
                     return (
                       <span
                         title="درجة مراجعة الجودة الداخلية قبل التسليم"
-                        className={`rounded-full px-2.5 py-0.5 font-bold ${good ? "bg-jade/15 text-jade-deep" : "bg-amber-500/15 text-amber-700"}`}
+                        className={`rounded-full px-2.5 py-0.5 font-bold ${good ? "bg-jade/15 text-jade-deep" : "bg-saffron/15 text-cta-hover"}`}
                       >
                         جودة {score}/100
                       </span>

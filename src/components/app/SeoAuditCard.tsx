@@ -21,8 +21,8 @@ const statusUi = {
   pass: { icon: CheckCircle2, cls: "text-jade", bg: "bg-jade/10", label: "ممتاز" },
   warn: {
     icon: AlertTriangle,
-    cls: "text-amber-600",
-    bg: "bg-amber-500/10",
+    cls: "text-cta-hover",
+    bg: "bg-saffron/10",
     label: "يحتاج تحسينًا",
   },
   fail: { icon: XCircle, cls: "text-coral", bg: "bg-coral/10", label: "مشكلة" },
@@ -30,7 +30,7 @@ const statusUi = {
 
 function Ring({ value, label }: { value: number | null; label: string }) {
   const v = value ?? 0;
-  const color = v >= 90 ? "var(--color-jade)" : v >= 50 ? "#d97706" : "var(--color-coral)";
+  const color = v >= 90 ? "var(--color-jade)" : v >= 50 ? "var(--saffron)" : "var(--color-coral)";
   return (
     <div className="flex flex-col items-center gap-1">
       <div
@@ -161,7 +161,7 @@ export function SeoAuditCard({ defaultUrl = "" }: { defaultUrl?: string }) {
 
           <p className="text-sm">
             <span className="font-black text-coral">{fails.length} مشكلة</span> ·{" "}
-            <span className="font-black text-amber-600">{warns.length} تحسين</span> ·{" "}
+            <span className="font-black text-cta-hover">{warns.length} تحسين</span> ·{" "}
             <span className="font-black text-jade">{passes.length} ممتاز</span>
             <span className="text-muted-foreground">
               {" "}
