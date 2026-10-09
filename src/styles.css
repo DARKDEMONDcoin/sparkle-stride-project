@@ -48206,3 +48206,6 @@ body:has(.chat-composer-dock) .liquid-glass-sahl.sahl-cookie-consent {
 .sahl-actions [data-slot="button"]:last-child:hover,
 .sahl-actions .inline-flex:last-child:hover { background: transparent; border-color: var(--ink); }
 .sahl-hero-wash { display: none; }
+/* الزعفران لا يُستخدم كنص على الخلفيات الفاتحة؛ يبقى مسموحاً داخل الأقسام الداكنة. */
+.text-amber, .text-gold { color: var(--emerald-ink); }
+:is(.bg-ink, .surface-ink, .bg-sidebar-primary) :is(.text-amber, .text-gold) { color: var(--saffron); }
