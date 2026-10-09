@@ -1315,7 +1315,7 @@
 }
 .mono-page .nav-floating-control {
   border-color: var(--mono-line);
-  background: color-mix(in oklab, #ffffff 88%, transparent);
+  background: rgba(247, 242, 232, 0.88);
   color: var(--mono-black);
   box-shadow: 0 8px 25px -20px var(--mono-black);
   backdrop-filter: blur(16px);
@@ -16829,7 +16829,7 @@ section:has(> .integration-grid-wave) {
 .sahl-site-page,
 .sahl-app-theme,
 .sahl-onboarding-theme {
-  --home-bg: oklch(1 0 0);
+  --home-bg: var(--ivory);
   --home-ink: var(--ink);
   --home-copy: var(--muted-text);
   --home-muted: var(--ivory);
@@ -18116,7 +18116,7 @@ section:has(> .integration-grid-wave) {
 
 /* Sahl white homepage rebuild — isolated from legacy homepage systems */
 .sahl-white-home {
-  --home-bg: oklch(1 0 0);
+  --home-bg: var(--ivory);
   --home-ink: var(--ink);
   --home-copy: var(--muted-text);
   --home-muted: var(--ivory);
@@ -18220,7 +18220,7 @@ section:has(> .integration-grid-wave) {
     box-shadow 0.25s ease;
 }
 .sahl-white-nav.is-scrolled {
-  background: color-mix(in oklab, #ffffff 88%, transparent);
+  background: rgba(247, 242, 232, 0.88);
   box-shadow: 0 1px 0 color-mix(in oklab, var(--ink) 9%, transparent);
   backdrop-filter: blur(18px) saturate(145%);
 }
@@ -21191,7 +21191,7 @@ section:has(> .integration-grid-wave) {
 
 /* قائمة الجوال في الهيدر: تُعرَّف ألوانها على الهيدر نفسه لأن متغيرات الصفحة محصورة في .sahl-white-home */
 .sahl-white-nav {
-  --home-bg: oklch(1 0 0);
+  --home-bg: var(--ivory);
   --home-ink: var(--ink);
   --home-copy: var(--muted-text);
   --home-muted: var(--ivory);
@@ -22801,7 +22801,7 @@ html {
 }
 .mono-page .nav-floating-control {
   border-color: var(--mono-line);
-  background: color-mix(in oklab, #ffffff 88%, transparent);
+  background: rgba(247, 242, 232, 0.88);
   color: var(--mono-black);
   box-shadow: 0 8px 25px -20px var(--mono-black);
   backdrop-filter: blur(16px);
@@ -38068,7 +38068,7 @@ section:has(> .integration-grid-wave) {
 .sahl-site-page,
 .sahl-app-theme,
 .sahl-onboarding-theme {
-  --home-bg: oklch(1 0 0);
+  --home-bg: var(--ivory);
   --home-ink: var(--ink);
   --home-copy: var(--muted-text);
   --home-muted: var(--ivory);
@@ -39354,7 +39354,7 @@ section:has(> .integration-grid-wave) {
 
 /* Sahl white homepage rebuild — isolated from legacy homepage systems */
 .sahl-white-home {
-  --home-bg: oklch(1 0 0);
+  --home-bg: var(--ivory);
   --home-ink: var(--ink);
   --home-copy: var(--muted-text);
   --home-muted: var(--ivory);
@@ -39457,7 +39457,7 @@ section:has(> .integration-grid-wave) {
     box-shadow 0.25s ease;
 }
 .sahl-white-nav.is-scrolled {
-  background: color-mix(in oklab, #ffffff 88%, transparent);
+  background: rgba(247, 242, 232, 0.88);
   box-shadow: 0 1px 0 color-mix(in oklab, var(--ink) 9%, transparent);
   backdrop-filter: blur(18px) saturate(145%);
 }
@@ -42369,7 +42369,7 @@ section:has(> .integration-grid-wave) {
 
 /* قائمة الجوال في الهيدر: تُعرَّف ألوانها على الهيدر نفسه لأن متغيرات الصفحة محصورة في .sahl-white-home */
 .sahl-white-nav {
-  --home-bg: oklch(1 0 0);
+  --home-bg: var(--ivory);
   --home-ink: var(--ink);
   --home-copy: var(--muted-text);
   --home-muted: var(--ivory);
@@ -45308,7 +45308,7 @@ html {
 /* ===== ضبط نهائي للهاتف: قائمة كاملة بلا تمرير وجدول مقارنة متماسك ===== */
 /* القائمة تُعرض عبر portal خارج الهيدر، لذا تُعرَّف ألوانها عليها مباشرة */
 .sahl-white-mobile {
-  --home-bg: oklch(1 0 0);
+  --home-bg: var(--ivory);
   --home-ink: var(--ink);
   --home-copy: var(--muted-text);
   --home-muted: var(--ivory);
@@ -48182,3 +48182,18 @@ body:has(.chat-composer-dock) .liquid-glass-sahl.sahl-cookie-consent {
 .text-sky { color: var(--emerald-ink); }
 ::selection { background: var(--emerald-tint); color: var(--ink); }
 :focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+
+/* Gulf Modern — تفاصيل الأقسام */
+.sahl-white-nav.is-scrolled { border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); }
+.sahl-white-nav-actions > a:hover { color: var(--emerald-ink); }
+.sahl-white-nav-actions [data-slot="button"],
+.sahl-white-nav-actions .inline-flex { background: var(--cta); color: #ffffff; }
+.sahl-white-nav-actions [data-slot="button"]:hover,
+.sahl-white-nav-actions .inline-flex:hover { background: var(--cta-hover); }
+.sahl-hero { background-color: var(--ivory); background-image: var(--wash-emerald), var(--wash-saffron); }
+.sahl-hero h1 em {
+  color: var(--emerald-ink);
+  background-image: linear-gradient(transparent 64%, rgba(224, 165, 38, 0.5) 64%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
