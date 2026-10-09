@@ -245,7 +245,7 @@ export const team: TeamMember[] = [
     role: "مسؤولة المحتوى والسيو",
     title: "تجعل جوجل — والذكاء الاصطناعي — يذكرك أنت",
     icon: PenTool,
-    tint: "var(--coral)",
+    tint: "var(--cta)",
     tintSoft: "var(--coral-tint)",
     tagline: "منظومة سيو عربية كاملة: من الكلمة إلى النشر إلى القياس",
     summary:
