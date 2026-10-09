@@ -48205,3 +48205,4 @@ body:has(.chat-composer-dock) .liquid-glass-sahl.sahl-cookie-consent {
 .sahl-actions .inline-flex:last-child { background: transparent; color: var(--ink); border: 1px solid #c9c0ac; }
 .sahl-actions [data-slot="button"]:last-child:hover,
 .sahl-actions .inline-flex:last-child:hover { background: transparent; border-color: var(--ink); }
+.sahl-hero-wash { display: none; }
