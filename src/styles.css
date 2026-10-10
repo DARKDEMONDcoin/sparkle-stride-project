@@ -48373,11 +48373,8 @@ html body .ambient-cloud-c { background: color-mix(in oklab, var(--saffron) 68%,
 
 /* Gulf Modern — dashboard contrast fixes (WCAG AA): muted text uses --muted-text, small brand text uses emerald-ink */
 html body .app-command-center { --command-muted: var(--muted-text); --command-dim: var(--muted-text); }
-html body .app-command-center .app-metric.is-urgent { --command-muted: var(--on-dark-muted); --command-dim: var(--on-dark-muted); }
-html body .app-metric:not(.is-urgent) .app-metric-label,
-html body .app-metric:not(.is-urgent) .app-metric-note { opacity: 1; color: var(--muted-text); }
-html body .app-metric.is-urgent .app-metric-label,
-html body .app-metric.is-urgent .app-metric-note { opacity: 1; color: var(--on-dark-muted); }
+html body .app-metric .app-metric-label,
+html body .app-metric .app-metric-note { opacity: 1; color: var(--muted-text); }
 html body .text-foreground\/55:not(:is(.bg-ink, .surface-ink, .bg-foreground, .bg-sidebar-primary) *),
 html body .text-foreground\/60:not(:is(.bg-ink, .surface-ink, .bg-foreground, .bg-sidebar-primary) *) { color: var(--muted-text); }
 html body :is(time, span, p, a, strong, b).text-primary:not(:is(.bg-ink, .surface-ink, .bg-foreground, .bg-primary, .bg-cta, .bg-sidebar-primary) *) { color: var(--emerald-ink); }
