@@ -53,7 +53,7 @@ export function CookieConsent() {
         نستخدم ملفات تعريف الارتباط لتحسين تجربتك. <Link to="/privacy">سياسة الخصوصية</Link>
       </p>
       <div className="sahl-cookie-actions">
-        <Button size="sm" onClick={() => choose("accepted")}>
+        <Button size="sm" className="bg-ink text-ivory hover:bg-ink-2" onClick={() => choose("accepted")}>
           موافق
         </Button>
         <Button size="sm" variant="ghost" onClick={() => choose("declined")}>
