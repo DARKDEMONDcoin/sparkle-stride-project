@@ -48578,3 +48578,20 @@ html body .sahl-white-home :is(.sahl-home-plan, .sahl-proof-grid article, .sahl-
 @media (max-width: 1080px) {
   .sahl-device-frame.is-hero.sahl-device-drop { transform: none; animation-name: ziad-hero-in-flat; }
 }
+
+/* Phone mockups on small screens: keep a true portrait screen */
+@media (max-width: 720px) {
+  .sahl-device-frame.is-responsive-device .sahl-device-screen {
+    aspect-ratio: 390 / 844;
+    height: auto;
+    max-height: none;
+  }
+  .sahl-device-frame.is-responsive-device {
+    width: min(72vw, 280px);
+    margin-inline: auto;
+    padding-bottom: 0;
+  }
+  .sahl-device-frame.is-responsive-device .sahl-device-lid {
+    min-height: 0;
+  }
+}
