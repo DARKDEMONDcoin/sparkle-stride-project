@@ -48381,3 +48381,7 @@ html body :is(time, span, p, a, strong, b).text-primary:not(:is(.bg-ink, .surfac
 html body .bg-sky\/15.text-sky,
 html body .bg-jade\/12.text-jade-deep { color: var(--ink); }
 html body .bg-destructive\/10.text-destructive { color: color-mix(in oklab, var(--destructive) 62%, var(--ink)); }
+
+/* Gulf Modern — unified keyboard focus ring: 2px emerald (saffron on ink bands), 2px offset */
+html body :focus-visible { outline: 2px solid var(--emerald) !important; outline-offset: 2px; }
+html body :is(.bg-ink, .surface-ink, .bg-foreground, .bg-sidebar-primary, footer.sahl-footer) :focus-visible { outline-color: var(--saffron) !important; }
