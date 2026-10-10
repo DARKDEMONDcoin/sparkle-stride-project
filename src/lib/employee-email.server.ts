@@ -84,13 +84,14 @@ export async function verifySvix(raw: string, headers: Headers, secret: string):
   const age = Math.abs(Date.now() / 1000 - Number(ts));
   if (!Number.isFinite(age) || age > 5 * 60) return false;
   const keyBytes = Uint8Array.from(atob(secret.replace(/^whsec_/, "")), (c) => c.charCodeAt(0));
+  const bytesView = new Uint8Array(keyBytes);
   const key = await crypto.subtle.importKey("raw", keyBytes, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
   const mac = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(`${id}.${ts}.${raw}`));
   const expected = btoa(String.fromCharCode(...new Uint8Array(mac)));
   const { secretsMatch } = await import("./timing-safe");
   return sigHeader
     .split(" ")
-    .map((p) => p.split(",")[1] ?? "")
+    .map((part) => part.split(",")[1] ?? "")
     .some((sig) => secretsMatch(sig, expected));
 }
 
@@ -209,7 +210,7 @@ export async function handleInboundEmail(event: ReceivedEvent): Promise<EmailRes
   const domain = await emailDomain();
   const employeeId = resolveEmployee([...(d.to ?? []), ...(d.cc ?? [])], domain);
   if (!employeeId) return { ok: true, skipped: "unknown-recipient" };
-  const who = EMPLOYEE_IDENTITY[employeeId];
+  const who = EMPLOYEE_IDENTITY[employeeId]!;
   const fromAddr = bareAddress(d.from);
   if (fromAddr.endsWith(`@${domain}`)) return { ok: true, skipped: "own-domain" };
 
