@@ -9,16 +9,13 @@ import {
   CheckCircle2,
   ChevronDown,
   Code2,
-  Instagram,
   Loader2,
   LockKeyhole,
   Megaphone,
-  MessageCircle,
   MessageSquareText,
   SearchCheck,
   Send,
   ShieldCheck,
-  ShoppingBag,
   Sparkles,
   Workflow,
   X,
@@ -489,54 +486,6 @@ function ProductFrame({
         <i />
       </div>
     </figure>
-  );
-}
-
-function ToolConnections() {
-  return (
-    <div
-      className="sahl-tool-connections"
-      aria-label="إنستجرام وواتساب وجوجل وفيسبوك وشوبيفاي متصلة بزياد"
-    >
-      <svg className="sahl-tool-wires" viewBox="0 0 560 136" aria-hidden="true">
-        <path id="sahl-tool-wire-1" d="M74 28 C164 28 194 68 280 68" />
-        <path id="sahl-tool-wire-2" d="M74 68 C166 68 200 68 280 68" />
-        <path id="sahl-tool-wire-3" d="M74 108 C164 108 194 68 280 68" />
-        <path id="sahl-tool-wire-4" d="M486 42 C394 42 368 68 280 68" />
-        <path id="sahl-tool-wire-5" d="M486 94 C394 94 368 68 280 68" />
-        <g className="sahl-tool-pulses">
-          <use href="#sahl-tool-wire-1" />
-          <use href="#sahl-tool-wire-2" />
-          <use href="#sahl-tool-wire-3" />
-          <use href="#sahl-tool-wire-4" />
-          <use href="#sahl-tool-wire-5" />
-        </g>
-      </svg>
-      <div className="sahl-tool-icon is-instagram" title="إنستجرام">
-        <Instagram />
-        <span>إنستجرام</span>
-      </div>
-      <div className="sahl-tool-icon is-whatsapp" title="واتساب">
-        <MessageCircle />
-        <span>واتساب</span>
-      </div>
-      <div className="sahl-tool-icon is-google" title="جوجل">
-        <b>G</b>
-        <span>جوجل</span>
-      </div>
-      <div className="sahl-tool-icon is-facebook" title="فيسبوك">
-        <b>f</b>
-        <span>فيسبوك</span>
-      </div>
-      <div className="sahl-tool-icon is-shopify" title="شوبيفاي">
-        <ShoppingBag />
-        <span>شوبيفاي</span>
-      </div>
-      <div className="sahl-tool-core">
-        <LogoMark size={34} />
-        <span>زياد</span>
-      </div>
-    </div>
   );
 }
 

@@ -27,7 +27,7 @@ const cols: { t: string; l: { label: string; to: string }[] }[] = [
     t: "الشركة",
     l: [
       { label: "من نحن", to: "/about" },
-      { label: "قصص النجاح", to: "/stories" },
+      { label: "قصص العملاء", to: "/stories" },
       { label: "المدونة", to: "/blog" },
       { label: "الأسئلة الشائعة", to: "/faq" },
       { label: "تواصل معنا", to: "/contact" },
@@ -40,7 +40,7 @@ const cols: { t: string; l: { label: string; to: string }[] }[] = [
       { label: "الأمان", to: "/security" },
       { label: "سياسة الخصوصية", to: "/privacy" },
       { label: "شروط الاستخدام", to: "/terms" },
-      { label: "ملفات الارتباط", to: "/cookies" },
+      { label: "ملفات تعريف الارتباط", to: "/cookies" },
       { label: "الاستخدام المقبول", to: "/acceptable-use" },
       { label: "معالجة البيانات (DPA)", to: "/dpa" },
       { label: "المعالِجون الفرعيون", to: "/subprocessors" },
@@ -63,8 +63,8 @@ export function SiteFooter() {
                 <span className="font-display text-xl font-extrabold">زياد</span>
               </Link>
               <p className="mt-4 max-w-xs leading-relaxed text-muted-foreground">
-                فريق موظفين بالذكاء الاصطناعي، يعمل بالعربية على مدار الساعة لأصحاب المشاريع — ينشر،
-                يصمّم، يردّ، ويبيع نيابة عنك.
+                فريق موظفين بالذكاء الاصطناعي يعمل بالعربية لأصحاب المشاريع — يكتب ويصمّم ويردّ
+                ويبيع نيابةً عنك، وأنت تعتمد كل خطوة.
               </p>
               <Link to="/welcome" className="site-footer-link mt-4 inline-flex font-black text-primary">
                 ابدأ تجربتك المجانية
