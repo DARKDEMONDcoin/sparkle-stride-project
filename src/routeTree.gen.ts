@@ -85,6 +85,7 @@ import { Route as AppChatIndexRouteImport } from './routes/app.chat.index'
 import { Route as AppChatIdRouteImport } from './routes/app.chat.$id'
 import { Route as AppGuidelinesIdRouteImport } from './routes/app.guidelines.$id'
 import { Route as ApiPublicMetaCallbackRouteImport } from './routes/api/public/meta.callback'
+import { Route as ApiPublicResendWebhookRouteImport } from './routes/api/public/resend.webhook'
 import { Route as ApiPublicTelegramWebhookRouteImport } from './routes/api/public/telegram.webhook'
 import { Route as ApiPublicWhatsappWebhookRouteImport } from './routes/api/public/whatsapp.webhook'
 
@@ -472,6 +473,11 @@ const ApiPublicMetaCallbackRoute = ApiPublicMetaCallbackRouteImport.update({
   path: '/api/public/meta/callback',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicResendWebhookRoute = ApiPublicResendWebhookRouteImport.update({
+  id: '/api/public/resend/webhook',
+  path: '/api/public/resend/webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicTelegramWebhookRoute =
   ApiPublicTelegramWebhookRouteImport.update({
     id: '/api/public/telegram/webhook',
@@ -562,6 +568,7 @@ export interface FileRoutesByFullPath {
   '/app/guidelines/$id': typeof AppGuidelinesIdRoute
   '/app/chat/': typeof AppChatIndexRoute
   '/api/public/meta/callback': typeof ApiPublicMetaCallbackRoute
+  '/api/public/resend/webhook': typeof ApiPublicResendWebhookRoute
   '/api/public/telegram/webhook': typeof ApiPublicTelegramWebhookRoute
   '/api/public/whatsapp/webhook': typeof ApiPublicWhatsappWebhookRoute
 }
@@ -640,6 +647,7 @@ export interface FileRoutesByTo {
   '/app/guidelines/$id': typeof AppGuidelinesIdRoute
   '/app/chat': typeof AppChatIndexRoute
   '/api/public/meta/callback': typeof ApiPublicMetaCallbackRoute
+  '/api/public/resend/webhook': typeof ApiPublicResendWebhookRoute
   '/api/public/telegram/webhook': typeof ApiPublicTelegramWebhookRoute
   '/api/public/whatsapp/webhook': typeof ApiPublicWhatsappWebhookRoute
 }
@@ -721,6 +729,7 @@ export interface FileRoutesById {
   '/app/guidelines/$id': typeof AppGuidelinesIdRoute
   '/app/chat/': typeof AppChatIndexRoute
   '/api/public/meta/callback': typeof ApiPublicMetaCallbackRoute
+  '/api/public/resend/webhook': typeof ApiPublicResendWebhookRoute
   '/api/public/telegram/webhook': typeof ApiPublicTelegramWebhookRoute
   '/api/public/whatsapp/webhook': typeof ApiPublicWhatsappWebhookRoute
 }
@@ -803,6 +812,7 @@ export interface FileRouteTypes {
     | '/app/guidelines/$id'
     | '/app/chat/'
     | '/api/public/meta/callback'
+    | '/api/public/resend/webhook'
     | '/api/public/telegram/webhook'
     | '/api/public/whatsapp/webhook'
   fileRoutesByTo: FileRoutesByTo
@@ -881,6 +891,7 @@ export interface FileRouteTypes {
     | '/app/guidelines/$id'
     | '/app/chat'
     | '/api/public/meta/callback'
+    | '/api/public/resend/webhook'
     | '/api/public/telegram/webhook'
     | '/api/public/whatsapp/webhook'
   id:
@@ -961,6 +972,7 @@ export interface FileRouteTypes {
     | '/app/guidelines/$id'
     | '/app/chat/'
     | '/api/public/meta/callback'
+    | '/api/public/resend/webhook'
     | '/api/public/telegram/webhook'
     | '/api/public/whatsapp/webhook'
   fileRoutesById: FileRoutesById
@@ -1014,6 +1026,7 @@ export interface RootRouteChildren {
   ApiPublicTelegramNotifyRoute: typeof ApiPublicTelegramNotifyRoute
   ApiPublicTrackRoute: typeof ApiPublicTrackRoute
   ApiPublicMetaCallbackRoute: typeof ApiPublicMetaCallbackRoute
+  ApiPublicResendWebhookRoute: typeof ApiPublicResendWebhookRoute
   ApiPublicTelegramWebhookRoute: typeof ApiPublicTelegramWebhookRoute
   ApiPublicWhatsappWebhookRoute: typeof ApiPublicWhatsappWebhookRoute
 }
@@ -1552,6 +1565,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicMetaCallbackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/resend/webhook': {
+      id: '/api/public/resend/webhook'
+      path: '/api/public/resend/webhook'
+      fullPath: '/api/public/resend/webhook'
+      preLoaderRoute: typeof ApiPublicResendWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/telegram/webhook': {
       id: '/api/public/telegram/webhook'
       path: '/api/public/telegram/webhook'
@@ -1691,6 +1711,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicTelegramNotifyRoute: ApiPublicTelegramNotifyRoute,
   ApiPublicTrackRoute: ApiPublicTrackRoute,
   ApiPublicMetaCallbackRoute: ApiPublicMetaCallbackRoute,
+  ApiPublicResendWebhookRoute: ApiPublicResendWebhookRoute,
   ApiPublicTelegramWebhookRoute: ApiPublicTelegramWebhookRoute,
   ApiPublicWhatsappWebhookRoute: ApiPublicWhatsappWebhookRoute,
 }
