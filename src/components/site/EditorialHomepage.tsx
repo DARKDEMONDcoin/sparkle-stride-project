@@ -40,12 +40,12 @@ import ecommerceSector from "@/assets/sectors/ecommerce.jpg";
 import restaurantsSector from "@/assets/sectors/restaurants.jpg";
 import clinicsSector from "@/assets/sectors/clinics.jpg";
 import realestateSector from "@/assets/sectors/realestate.jpg";
-const sonnyDesktopAsset = { url: "/chat-captures/sonny-desktop.webp" };
-const sonnyMobileAsset = { url: "/chat-captures/sonny-mobile.webp" };
-const evaDesktopAsset = { url: "/chat-captures/eva-desktop.webp" };
-const evaMobileAsset = { url: "/chat-captures/eva-mobile.webp" };
-const samDesktopAsset = { url: "/chat-captures/sam-desktop.webp" };
-const samMobileAsset = { url: "/chat-captures/sam-mobile.webp" };
+const sirajDesktopAsset = { url: "/chat-captures/siraj-desktop.webp" };
+const sirajMobileAsset = { url: "/chat-captures/siraj-mobile.webp" };
+const amalDesktopAsset = { url: "/chat-captures/amal-desktop.webp" };
+const amalMobileAsset = { url: "/chat-captures/amal-mobile.webp" };
+const salemDesktopAsset = { url: "/chat-captures/salem-desktop.webp" };
+const salemMobileAsset = { url: "/chat-captures/salem-mobile.webp" };
 const nourDesktopAsset = { url: "/chat-captures/nour-desktop.webp" };
 const nourMobileAsset = { url: "/chat-captures/nour-mobile.webp" };
 const danaDesktopAsset = { url: "/chat-captures/dana-desktop.webp" };
@@ -72,8 +72,8 @@ const capabilities = [
     kicker: "سراج · مدير السوشيال ميديا والإعلانات",
     title: "من طلب واحد إلى حملة جاهزة للاعتماد.",
     body: "يبني خطة 30 يومًا، يكتب كل نسخة، ينسّق التصميم والنشر، ثم يعيد أفضل الأفكار إلى التقويم.",
-    image: sonnyDesktopAsset.url,
-    mobileImage: sonnyMobileAsset.url,
+    image: sirajDesktopAsset.url,
+    mobileImage: sirajMobileAsset.url,
     frame: true,
     tone: "terracotta",
     span: "wide",
@@ -83,8 +83,8 @@ const capabilities = [
     kicker: "أمل · المساعدة التنفيذية",
     title: "ساعتك القادمة واضحة قبل أن تبدأ.",
     body: "تفرز البريد، ترتب الاجتماعات، وتضع القرارات المعلّقة في ملخص صباحي واحد.",
-    image: evaDesktopAsset.url,
-    mobileImage: evaMobileAsset.url,
+    image: amalDesktopAsset.url,
+    mobileImage: amalMobileAsset.url,
     frame: false,
     tone: "gold",
     span: "standard",
@@ -94,8 +94,8 @@ const capabilities = [
     kicker: "سالم · مدير المبيعات",
     title: "لكل فرصة رسالة وخطوة تالية.",
     body: "يبحث عن العميل المناسب، يخصص التواصل، ويسلمك الفرص الجاهزة للمكالمة.",
-    image: samDesktopAsset.url,
-    mobileImage: samMobileAsset.url,
+    image: salemDesktopAsset.url,
+    mobileImage: salemMobileAsset.url,
     frame: false,
     tone: "teal",
     span: "standard",
@@ -667,8 +667,8 @@ export function EditorialHomepage() {
           <div className="sahl-hero-product">
             <span className="sahl-hero-wash" aria-hidden="true" />
             <ProductFrame
-              src={sonnyDesktopAsset.url}
-              mobileSrc={sonnyMobileAsset.url}
+              src={sirajDesktopAsset.url}
+              mobileSrc={sirajMobileAsset.url}
 
 
               alt="مساحة عمل زياد: محادثة سراج داخل المنصة"
