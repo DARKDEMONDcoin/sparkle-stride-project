@@ -48503,10 +48503,10 @@ html body .sahl-white-home :is(.sahl-home-plan, .sahl-proof-grid article, .sahl-
 .ziad-integrations-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; list-style: none; padding: 0; margin: 0; width: 100%; }
 .ziad-integrations-tile { --brand-color: var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem; min-height: 112px; padding: 1rem; border: 1px solid var(--line); border-radius: 24px; background: var(--surface); transition: transform .2s ease, box-shadow .2s ease; }
 .ziad-integrations-tile:hover, .ziad-integrations-tile:focus-visible { transform: translateY(-3px); box-shadow: 0 18px 30px -22px color-mix(in oklab, var(--ink) 40%, transparent); }
-.ziad-integrations-tile svg { width: 2rem; height: 2rem; color: var(--brand-color); filter: grayscale(1); opacity: .7; transition: filter .2s ease, opacity .2s ease; }
-.ziad-integrations-tile:hover svg, .ziad-integrations-tile:focus-visible svg { filter: none; opacity: 1; }
-.ziad-integrations-wordmark { display: grid; place-items: center; height: 2rem; font-size: 1.25rem; color: var(--brand-color); filter: grayscale(1); opacity: .7; transition: filter .2s ease, opacity .2s ease; }
-.ziad-integrations-tile:hover .ziad-integrations-wordmark, .ziad-integrations-tile:focus-visible .ziad-integrations-wordmark { filter: none; opacity: 1; }
+.ziad-integrations-tile svg { width: 2rem; height: 2rem; color: var(--ink-muted, var(--ink)); opacity: .85; transition: color .2s ease, opacity .2s ease, filter .2s ease; }
+.ziad-integrations-tile:hover svg, .ziad-integrations-tile:focus-visible svg { color: var(--brand-color); opacity: 1; filter: drop-shadow(0 0 .5px var(--ink)); }
+.ziad-integrations-wordmark { display: grid; place-items: center; height: 2rem; font-size: 1.25rem; color: var(--ink-muted, var(--ink)); opacity: .85; transition: color .2s ease, opacity .2s ease; }
+.ziad-integrations-tile:hover .ziad-integrations-wordmark, .ziad-integrations-tile:focus-visible .ziad-integrations-wordmark { color: var(--brand-color); opacity: 1; }
 .ziad-integrations-tile span { font-size: .9375rem; font-weight: 500; color: var(--ink); }
 @media (max-width: 900px) { .ziad-integrations-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 520px) { .ziad-integrations-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -48544,3 +48544,6 @@ html body .sahl-white-home :is(.sahl-home-plan, .sahl-proof-grid article, .sahl-
 .sahl-reveal { transition-duration: .4s !important; }
 
 .ziad-pricing-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 24px; margin-bottom: 32px; }
+.ziad-versus thead th > * { display: inline-block; vertical-align: middle; margin-inline-end: .5rem; }
+.ziad-versus thead th:nth-child(1) { width: 22%; }
+.ziad-versus thead th:nth-child(2) { width: 34%; }
