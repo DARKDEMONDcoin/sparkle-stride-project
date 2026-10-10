@@ -48397,8 +48397,9 @@ html body .sahl-white-home .sahl-section-head h2 em { font-weight: 500; font-sty
 html body .sahl-white-home .sahl-dark .sahl-section-head h2 em { color: var(--on-dark-muted); }
 html body .sahl-white-home .sahl-section-head p { line-height: 1.8; }
 html body .sahl-white-home .sahl-section-head { margin-bottom: clamp(40px, 5vw, 64px); }
-html body .sahl-white-home .sahl-hero h1 { font-size: clamp(2.5rem, 4.8vw, 4.5rem); line-height: 1.3; font-weight: 700; max-width: 14ch; }
-html body .sahl-white-home .sahl-hero h1 em { display: inline-block; }
+html body .sahl-white-home .sahl-hero h1 { font-size: clamp(2.5rem, 4.4vw, 4rem); line-height: 1.3; font-weight: 700; }
+html body .sahl-white-home .sahl-hero h1 em { display: inline; }
+@media (min-width: 768px) { html body .sahl-white-home .sahl-hero h1 em { white-space: nowrap; } }
 html body .sahl-white-home .sahl-hero .sahl-hero-sub,
 html body .sahl-white-home .sahl-hero-copy > p { line-height: 1.8; font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); }
 
@@ -48431,10 +48432,12 @@ html body .sahl-white-home .sahl-trust-row b { font-size: .95rem; line-height: 1
 }
 
 /* Team bento: one featured card (2x2) and five equal cards */
-html body .sahl-white-home .sahl-cap-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+html body .sahl-white-home .sahl-cap-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+html body .sahl-white-home .sahl-cap-card { grid-column: span 2; }
+html body .sahl-white-home .sahl-cap-card:nth-child(n+5) { grid-column: span 3; }
 html body .sahl-white-home .sahl-cap-card { border-radius: 24px; display: flex; flex-direction: column; transition: transform .25s ease, box-shadow .25s ease; }
 html body .sahl-white-home .sahl-cap-card:hover { transform: translateY(-4px); box-shadow: 0 24px 40px -24px color-mix(in oklab, var(--ink) 40%, transparent); }
-html body .sahl-white-home .sahl-cap-card.is-wide { grid-column: span 2; grid-row: span 2; min-height: 0; display: flex; }
+html body .sahl-white-home .sahl-cap-card.is-wide { grid-column: 1 / -1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: center; }
 html body .sahl-white-home .sahl-cap-card > div { padding: clamp(20px, 2.4vw, 28px); display: flex; flex-direction: column; gap: .75rem; flex: 1; }
 html body .sahl-white-home .sahl-cap-card h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); line-height: 1.4; margin: 0; }
 html body .sahl-white-home .sahl-cap-card p { margin: 0; line-height: 1.8; font-size: 1rem; }
@@ -48450,9 +48453,14 @@ html body .sahl-white-home .sahl-device-screen, html body .sahl-white-home .sahl
 html body .sahl-white-home .sahl-cap-card .sahl-product-frame img { width: 100%; height: 100%; object-fit: cover; }
 @media (max-width: 1024px) {
   html body .sahl-white-home .sahl-cap-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  html body .sahl-white-home .sahl-cap-card.is-wide { grid-column: 1 / -1; grid-row: auto; }
+  html body .sahl-white-home .sahl-cap-card, html body .sahl-white-home .sahl-cap-card:nth-child(n+5) { grid-column: span 1; }
+  html body .sahl-white-home .sahl-cap-card.is-wide { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr); }
+  html body .sahl-white-home .sahl-cap-card:last-child { grid-column: 1 / -1; }
 }
-@media (max-width: 640px) { html body .sahl-white-home .sahl-cap-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 640px) {
+  html body .sahl-white-home .sahl-cap-grid { grid-template-columns: minmax(0, 1fr); }
+  html body .sahl-white-home .sahl-cap-card:last-child { grid-column: auto; }
+}
 
 /* Plan-flow timeline */
 .ziad-timeline { list-style: none; margin: 0 0 40px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; position: relative; counter-reset: none; }
