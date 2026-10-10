@@ -48361,3 +48361,6 @@ html body .sahl-page-ribbon {
 html body .sahl-page-cta-ribbon {
   background: linear-gradient(140deg, var(--emerald-tint), color-mix(in oklab, var(--emerald) 38%, var(--emerald-tint))) !important;
 }
+
+/* Gulf Modern — eyebrows on light use emerald-ink */
+html body .sahl-site-page .sahl-page-eyebrow { color: var(--emerald-ink) !important; }
