@@ -121,7 +121,7 @@ export const useCases: UseCase[] = [
     name: "المطاعم والكافيهات",
     short: "طاولات ممتلئة بمحتوى يومي يشتهّي",
     icon: UtensilsCrossed,
-    tint: "var(--amber)",
+    tint: "var(--ink)",
     tintSoft: "color-mix(in oklab, var(--saffron) 18%, transparent)",
     title: "أفضل إعلان لمطعمك هو صورة نُشرت في وقتها",
     lead: "الفريق يبني تقويم محتوى الأسبوع حول أطباقك وعروضك، ينشر قبل موعد الغداء والعشاء، ويردّ على الحجوزات والشكاوى قبل أن تتحوّل إلى تقييم سلبي.",
