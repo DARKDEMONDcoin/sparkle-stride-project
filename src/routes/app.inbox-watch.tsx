@@ -67,7 +67,7 @@ function Row({ item, workspaceId }: { item: InboxItem; workspaceId: string }) {
           <button
             onClick={() => draft.mutate()}
             disabled={!reply.trim() || draft.isPending || draft.isSuccess}
-            className="inline-flex items-center gap-1 rounded-xl bg-primary px-3 py-1.5 text-sm text-primary-foreground disabled:opacity-60"
+            className="inline-flex items-center gap-1 rounded-xl bg-cta hover:bg-cta-hover px-3 py-1.5 text-sm text-white disabled:opacity-60"
           >
             {draft.isPending ? <Loader2 className="size-4 animate-spin" /> : <Check className="size-4" />}
             {draft.isSuccess ? "حُفظت مسودة في Gmail" : "احفظ الرد مسودة في Gmail"}
@@ -99,7 +99,7 @@ function InboxWatchPage() {
           <button
             onClick={() => run.mutate()}
             disabled={!workspace || run.isPending}
-            className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-xl bg-cta hover:bg-cta-hover px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
           >
             {run.isPending ? <Loader2 className="size-4 animate-spin" /> : <MailWarning className="size-4" />}
             {run.isPending ? "أمَل تقرأ بريدك…" : "افحص البريد الآن"}

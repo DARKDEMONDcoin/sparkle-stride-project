@@ -87,7 +87,7 @@ function TeamTasksPage() {
           <button
             onClick={() => start.mutate()}
             disabled={!workspace || goal.trim().length < 8 || start.isPending}
-            className="mt-3 inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
+            className="mt-3 inline-flex items-center gap-2 rounded-xl bg-cta hover:bg-cta-hover px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
           >
             {start.isPending ? <Loader2 className="size-4 animate-spin" /> : <Users className="size-4" />}
             {start.isPending ? "الفريق يعمل الآن… قد يستغرق دقيقة" : "ابدأ المهمة"}
@@ -143,7 +143,7 @@ function TeamTasksPage() {
                             <button
                               disabled={revise.isPending || editing.text.trim().length < 10}
                               onClick={() => revise.mutate({ stepId: s.id, output: editing.text })}
-                              className="inline-flex items-center gap-1 rounded-lg bg-primary px-3 py-1.5 text-xs text-primary-foreground disabled:opacity-50"
+                              className="inline-flex items-center gap-1 rounded-lg bg-cta hover:bg-cta-hover px-3 py-1.5 text-xs text-white disabled:opacity-50"
                             >
                               {revise.isPending ? <Loader2 className="size-3 animate-spin" /> : null}
                               {revise.isPending ? "الفريق يعيد البناء…" : "احفظ وأكمل الفريق من هنا"}
@@ -172,7 +172,7 @@ function TeamTasksPage() {
                 <div className="flex gap-2">
                   <button
                     onClick={() => decision.mutate({ id: t.id, decision: "approved" })}
-                    className="inline-flex items-center gap-1 rounded-xl bg-primary px-3 py-1.5 text-sm text-primary-foreground"
+                    className="inline-flex items-center gap-1 rounded-xl bg-cta hover:bg-cta-hover px-3 py-1.5 text-sm text-white"
                   >
                     <Check className="size-4" /> اعتمد
                   </button>
