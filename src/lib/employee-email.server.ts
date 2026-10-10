@@ -60,7 +60,7 @@ export async function emailDomain(): Promise<string> {
 
 export function bareAddress(value: string): string {
   const m = value.match(/<([^>]+)>/);
-  return (m ? m[1] : value).trim().toLowerCase();
+  return (m?.[1] ?? value).trim().toLowerCase();
 }
 
 /** يحدد الموظف من عناوين المستلمين التي تنتمي لنطاقنا. */
@@ -84,7 +84,6 @@ export async function verifySvix(raw: string, headers: Headers, secret: string):
   const age = Math.abs(Date.now() / 1000 - Number(ts));
   if (!Number.isFinite(age) || age > 5 * 60) return false;
   const keyBytes = Uint8Array.from(atob(secret.replace(/^whsec_/, "")), (c) => c.charCodeAt(0));
-  const bytesView = new Uint8Array(keyBytes);
   const key = await crypto.subtle.importKey("raw", keyBytes, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
   const mac = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(`${id}.${ts}.${raw}`));
   const expected = btoa(String.fromCharCode(...new Uint8Array(mac)));
@@ -177,14 +176,14 @@ export function markdownToEmailHtml(md: string, footer: string): string {
     .map((b) => {
       const lines = b.split("\n");
       if (lines.every((l) => /^\s*([-*•]|\d+[.)])\s+/.test(l))) {
-        const ordered = /^\s*\d+[.)]/.test(lines[0]);
+        const ordered = /^\s*\d+[.)]/.test(lines[0] ?? "");
         const tag = ordered ? "ol" : "ul";
         return `<${tag} style="margin:0 0 16px;padding-inline-start:24px">${lines
           .map((l) => `<li>${inline(l.replace(/^\s*([-*•]|\d+[.)])\s+/, ""))}</li>`)
           .join("")}</${tag}>`;
       }
       const h = b.match(/^#{1,4}\s+(.+)$/);
-      if (h) return `<h3 style="margin:0 0 12px;font-size:18px">${inline(h[1])}</h3>`;
+      if (h) return `<h3 style="margin:0 0 12px;font-size:18px">${inline(h[1] ?? "")}</h3>`;
       return `<p style="margin:0 0 16px">${lines.map(inline).join("<br />")}</p>`;
     })
     .join("");
