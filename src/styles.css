@@ -48370,3 +48370,17 @@ html body .sahl-smoke i:nth-child(1),
 html body .sahl-smoke i:nth-child(3) { background: color-mix(in oklab, var(--saffron) 60%, transparent); }
 html body .sahl-smoke i:nth-child(2) { background: color-mix(in oklab, var(--emerald) 40%, transparent); }
 html body .ambient-cloud-c { background: color-mix(in oklab, var(--saffron) 68%, transparent); }
+
+/* Gulf Modern — dashboard contrast fixes (WCAG AA): muted text uses --muted-text, small brand text uses emerald-ink */
+html body .app-command-center { --command-muted: var(--muted-text); --command-dim: var(--muted-text); }
+html body .app-command-center .app-metric.is-urgent { --command-muted: var(--on-dark-muted); --command-dim: var(--on-dark-muted); }
+html body .app-metric:not(.is-urgent) .app-metric-label,
+html body .app-metric:not(.is-urgent) .app-metric-note { opacity: 1; color: var(--muted-text); }
+html body .app-metric.is-urgent .app-metric-label,
+html body .app-metric.is-urgent .app-metric-note { opacity: 1; color: var(--on-dark-muted); }
+html body .text-foreground\/55:not(:is(.bg-ink, .surface-ink, .bg-foreground, .bg-sidebar-primary) *),
+html body .text-foreground\/60:not(:is(.bg-ink, .surface-ink, .bg-foreground, .bg-sidebar-primary) *) { color: var(--muted-text); }
+html body :is(time, span, p, a, strong, b).text-primary:not(:is(.bg-ink, .surface-ink, .bg-foreground, .bg-primary, .bg-cta, .bg-sidebar-primary) *) { color: var(--emerald-ink); }
+html body .bg-sky\/15.text-sky,
+html body .bg-jade\/12.text-jade-deep { color: var(--ink); }
+html body .bg-destructive\/10.text-destructive { color: color-mix(in oklab, var(--destructive) 62%, var(--ink)); }
