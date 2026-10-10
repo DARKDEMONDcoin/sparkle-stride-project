@@ -265,7 +265,7 @@ export const useCases: UseCase[] = [
     name: "العقار والمقاولات",
     short: "كل وحدة تُعرض كما تستحق، وكل مهتم يُتابَع",
     icon: Building2,
-    tint: "var(--coral)",
+    tint: "var(--coral-tint-ink)",
     tintSoft: "var(--coral-tint)",
     title: "المشتري الجاد يضيع حين يتأخر الرد ساعة",
     lead: "عرض احترافي لكل وحدة، متابعة منظمة للمهتمين، وتقرير يخبرك أي مشروع يستحق ميزانية الإعلان القادمة.",

@@ -123,7 +123,7 @@ function TrustPage() {
             <button
               key={k}
               onClick={() => setTab(k)}
-              className={cn("rounded-xl px-3 py-1.5 text-sm", tab === k ? "bg-primary text-primary-foreground" : "border border-border")}
+              className={cn("rounded-xl px-3 py-1.5 text-sm", tab === k ? "bg-foreground text-background" : "border border-border")}
             >
               {l}
             </button>
