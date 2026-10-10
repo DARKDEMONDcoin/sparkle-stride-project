@@ -132,6 +132,7 @@ function PricingPage() {
               </div>
             ) : (
               <>
+                <CurrencySelect value={currency} onChange={setCurrency} />
                 <div className="sahl-upgrade-billing" role="radiogroup" aria-label="دورة الفوترة">
                   <Button
                     type="button"
