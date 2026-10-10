@@ -1208,6 +1208,44 @@ export type Database = {
           },
         ]
       }
+      inbound_emails: {
+        Row: {
+          created_at: string
+          email_id: string
+          employee_id: string
+          sender: string
+          status: string
+          subject: string | null
+          workspace_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email_id: string
+          employee_id: string
+          sender: string
+          status?: string
+          subject?: string | null
+          workspace_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email_id?: string
+          employee_id?: string
+          sender?: string
+          status?: string
+          subject?: string | null
+          workspace_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inbound_emails_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       inbox_alerts: {
         Row: {
           created_at: string
@@ -2927,6 +2965,14 @@ export type Database = {
       verify_cron_token: {
         Args: { _name: string; _token: string }
         Returns: boolean
+      }
+      workspace_for_email: {
+        Args: { _email: string }
+        Returns: {
+          full_name: string
+          user_id: string
+          workspace_id: string
+        }[]
       }
     }
     Enums: {
