@@ -54,12 +54,12 @@ export function DiwanHero() {
           <span>وخلّي فريقك يشتغل</span>
         </h1>
         <p className="diwan-lead">
-          زياد يمنحك مجلساً من ستة موظفين بالذكاء الاصطناعي: ينشرون، يصمّمون، يردّون على عملائك،
+          زياد يمنحك مجلسًا من ستة موظفين بالذكاء الاصطناعي: ينشرون، يصمّمون، يردّون على عملائك،
           ويتابعون مبيعاتك بالعربية وبلهجتك — وأنت تجلس في الصدر وتقرّر فقط.
         </p>
         <div className="diwan-actions">
           <Link to="/welcome" className="diwan-cta">
-            استقبل فريقك مجاناً
+            استقبل فريقك مجانًا
             <ArrowLeft className="size-4" aria-hidden="true" />
           </Link>
           <Link to="/app" className="diwan-ghost">
@@ -128,7 +128,7 @@ export function DiwanHero() {
         </div>
         <div>
           <strong>+120</strong>
-          <small>مهمة شهرياً لكل موظف</small>
+          <small>مهمة شهريًا لكل موظف</small>
         </div>
         <div>
           <strong>دقائق</strong>

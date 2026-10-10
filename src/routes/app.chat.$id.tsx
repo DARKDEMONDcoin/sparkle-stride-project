@@ -63,7 +63,7 @@ import { ChatAttachments, splitMessageMedia, splitUserBody } from "@/components/
 import { PostCards } from "@/components/app/PostCards";
 import { extractMessages, QuickSend, wantsQuickSend } from "@/components/app/QuickSend";
 
-/** رد يطلب اختياراً قبل التنفيذ: لا أزرار نشر أو إرسال تحته. */
+/** رد يطلب اختيارًا قبل التنفيذ: لا أزرار نشر أو إرسال تحته. */
 const isChoiceQuestion = (body: string) => /قل الرقم فقط|اكتب\s*«?نفّ?ذ»?/u.test(body) && body.length < 1400;
 import { OutputActions } from "@/components/app/OutputActions";
 import { SaveChatOutputs } from "@/components/app/SaveChatOutputs";
@@ -189,9 +189,9 @@ function MessageActions({
 }
 
 /**
- * يقرّر إن كان رد الموظف منشوراً قابلاً للنشر (لا سؤالاً ولا شرحاً قصيراً).
+ * يقرّر إن كان رد الموظف منشورًا قابلًا للنشر (لا سؤالًا ولا شرحًا قصيرًا).
  * يُطبَّق على كل الموظفين بالتساوي: المنشور القصير (تغريدة/كابشن/ستوري) مقبول
- * عندما يطلبه المستخدم صراحةً، والنص الطويل بلا هاشتاق يبقى مقبولاً كمنشور.
+ * عندما يطلبه المستخدم صراحةً، والنص الطويل بلا هاشتاق يبقى مقبولًا كمنشور.
  */
 function looksPostable(body: string, request?: string | null): boolean {
   const text = body.trim();
@@ -235,8 +235,8 @@ function friendlyChatError(e: unknown, fallback: string): string {
   if (!m) return fallback;
   if (/(429|rate.?limit|overloaded|503|502|UNAVAILABLE|quota)/i.test(m))
     return "عليه ضغط لحظي من كثرة الطلبات. اضغط «أعد المحاولة» بعد ثوانٍ قليلة.";
-  if (/(timed out|aborted|الوقت المتاح)/i.test(m)) return "الرد أخذ وقتاً أطول من المعتاد. اضغط «أعد المحاولة».";
-  if (/(Failed to fetch|NetworkError|network)/i.test(m)) return "انقطع الاتصال بالإنترنت لحظياً. تأكد من الشبكة ثم اضغط «أعد المحاولة».";
+  if (/(timed out|aborted|الوقت المتاح)/i.test(m)) return "الرد أخذ وقتًا أطول من المعتاد. اضغط «أعد المحاولة».";
+  if (/(Failed to fetch|NetworkError|network)/i.test(m)) return "انقطع الاتصال بالإنترنت لحظيًا. تأكد من الشبكة ثم اضغط «أعد المحاولة».";
   if (/[{}"]|[A-Za-z]{12,}/.test(m) && !/[\u0600-\u06FF]{3,}.*$/.test(m.replace(/\(.*\)/g, ""))) return fallback;
   return m.replace(/\s*\((?:[^()]*[A-Za-z{}][^()]*)\)\s*/g, " ").trim() || fallback;
 }
@@ -459,7 +459,7 @@ const WORK_TOOLS: WorkTool[] = [
   {
     id: "inbox-watch",
     title: "بريد أمَل",
-    description: "اعثر على الرسائل المهمة وجهّز رداً تراجعه قبل الإرسال.",
+    description: "اعثر على الرسائل المهمة وجهّز ردًا تراجعه قبل الإرسال.",
     to: "/app/inbox-watch",
     icon: MailWarning,
     employeeOnly: "eva",
@@ -584,7 +584,7 @@ const EMPLOYEE_COPY: Record<string, { prompts: string[]; greetings: string[] }> 
   eva: {
     prompts: [
       "أنقذيني من زحمة اليوم: ما الرسائل التي تحتاج ردي الآن؟…",
-      "جهّزي رداً يحافظ على عميل غاضب، ودعيني أراجعه قبل الإرسال…",
+      "جهّزي ردًا يحافظ على عميل غاضب، ودعيني أراجعه قبل الإرسال…",
       "ابحثي عن موعد يجمع الفريق والعميل دون تعطيل يومنا…",
       "استخرجي من بريدي القرارات التي لا تحتمل التأجيل…",
     ],
@@ -597,7 +597,7 @@ const EMPLOYEE_COPY: Record<string, { prompts: string[]; greetings: string[] }> 
   },
   sam: {
     prompts: [
-      "ابحث عن شركات تحتاج حلّنا فعلاً، مع سبب واضح لكل ترشيح…",
+      "ابحث عن شركات تحتاج حلّنا فعلًا، مع سبب واضح لكل ترشيح…",
       "اكتب رسالة لهذا العميل تُظهر أنك فهمت مشكلته لا أنك تبيع له…",
       "من بين الفرص المفتوحة، من يستحق مكالمة اليوم ولماذا؟…",
       "حلّل أين تتوقف صفقاتنا واقترح خطوة تنقذها…",
@@ -611,8 +611,8 @@ const EMPLOYEE_COPY: Record<string, { prompts: string[]; greetings: string[] }> 
   },
   nour: {
     prompts: [
-      "اكتشفي سؤالاً يطرحه عملاؤنا ولا يجيب عنه منافسونا جيداً…",
-      "اكتبي دليلاً يجعل الزائر يثق بخبرتنا، لا عنواناً مكرراً…",
+      "اكتشفي سؤالًا يطرحه عملاؤنا ولا يجيب عنه منافسونا جيدًا…",
+      "اكتبي دليلًا يجعل الزائر يثق بخبرتنا، لا عنوانًا مكررًا…",
       "لماذا لا تظهر صفحتي لعملاء يبحثون عن خدمتي؟…",
       "ابني خريطة محتوى تقود الزائر من أول سؤال إلى قرار الشراء…",
     ],
@@ -625,7 +625,7 @@ const EMPLOYEE_COPY: Record<string, { prompts: string[]; greetings: string[] }> 
   },
   dana: {
     prompts: [
-      "اصنعي هوية تجعل مشروعي معروفاً من أول نظرة…",
+      "اصنعي هوية تجعل مشروعي معروفًا من أول نظرة…",
       "حوّلي عرض الافتتاح إلى فكرة إعلان تتوقف عندها العين…",
       "صوّري فكرة حملة واحدة تناسب المنشور والستوري والإعلان…",
       "راجعي هذا التصميم: ماذا أغيّر حتى يفهم العميل العرض في ثانيتين؟…",
@@ -728,12 +728,12 @@ function ChatView({
   const [liveText, setLiveText] = useState("");
   const sendStartedRef = useRef(0);
   const [liveSteps, setLiveSteps] = useState<string[]>([]);
-  /** توقيت وصول كل خطوة فعلياً من الخادم — لعرض المدة الحقيقية لكل مرحلة. */
+  /** توقيت وصول كل خطوة فعليًا من الخادم — لعرض المدة الحقيقية لكل مرحلة. */
   const [liveStepTimes, setLiveStepTimes] = useState<number[]>([]);
   const [liveMode, setLiveMode] = useState<"quick" | "work" | null>(null);
   const [browser, setBrowser] = useState<BrowserEvent | null>(null);
   const [savedTask, setSavedTask] = useState<string | null>(null);
-  /** طلب ربط سياقي: يظهر فقط عندما تحتاج المهمة الحالية حساباً غير مربوط. */
+  /** طلب ربط سياقي: يظهر فقط عندما تحتاج المهمة الحالية حسابًا غير مربوط. */
   const [needsConnection, setNeedsConnection] = useState<{
     provider: string;
     reason: string;
@@ -767,7 +767,7 @@ function ChatView({
   const [imageMode, setImageMode] = useState<ImageMode>("auto");
   const [imagePrompt, setImagePrompt] = useState("");
   const [aspect, setAspect] = useState<Aspect>("square");
-  /** طول المنشور: اختياري تماماً — الافتراضي «تلقائي» يترك القرار للموظف. */
+  /** طول المنشور: اختياري تمامًا — الافتراضي «تلقائي» يترك القرار للموظف. */
   const [postLength, setPostLength] = useState<"auto" | "short" | "medium" | "long">("auto");
 
   useEffect(() => {
@@ -930,8 +930,8 @@ function ChatView({
       };
 
       // البثّ الحقيقي: مراحل التنفيذ الفعلية ثم نص الرد وهو يُكتب.
-      // الأسئلة والدردشة لا تبثّ شيئاً — تصل كاملة مرة واحدة.
-      // لا نعيد الطلب إن كان التنفيذ قد بدأ فعلاً — كي لا تتكرر الرسالة مرتين.
+      // الأسئلة والدردشة لا تبثّ شيئًا — تصل كاملة مرة واحدة.
+      // لا نعيد الطلب إن كان التنفيذ قد بدأ فعلًا — كي لا تتكرر الرسالة مرتين.
       let started = false;
       // خطوة فورية لحظة الإرسال مبنية على نص الرسالة نفسها — قبل أي رد من الخادم.
       setLiveSteps([]);
@@ -1061,7 +1061,7 @@ function ChatView({
     });
   }, [messages]);
 
-  // نحدّث شاشة البث مرة واحدة لكل إطار بدلاً من إعادة رسم المحادثة مع كل جزء صغير.
+  // نحدّث شاشة البث مرة واحدة لكل إطار بدلًا من إعادة رسم المحادثة مع كل جزء صغير.
   const streamBufferRef = useRef("");
   const streamFrameRef = useRef<number | null>(null);
   const flushStream = () => {
@@ -1082,7 +1082,7 @@ function ChatView({
     [],
   );
 
-  // المستخدم حرّ في التقليب أثناء كتابة الموظف: لا ننزل معه إلا إذا كان أصلاً عند الأسفل.
+  // المستخدم حرّ في التقليب أثناء كتابة الموظف: لا ننزل معه إلا إذا كان أصلًا عند الأسفل.
   useEffect(() => {
     if (!stickToBottom) return;
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -1536,9 +1536,9 @@ function ChatView({
                           const req = isUser ? splitUserBody(m.body).text || m.body : priorRequest;
                           const handoff = detectHandoff(req, id);
                           if (!handoff) return null;
-                          // الطلب حُوِّل تلقائياً ونُفّذ داخل نفس المحادثة: لا حاجة لزر التوجّه.
-                          if (!isUser && m.body.includes("تولّى طلبك تلقائياً")) return null;
-                          if (isUser && arr[idx + 1]?.body?.includes("تولّى طلبك تلقائياً")) return null;
+                          // الطلب حُوِّل تلقائيًا ونُفّذ داخل نفس المحادثة: لا حاجة لزر التوجّه.
+                          if (!isUser && m.body.includes("تولّى طلبك تلقائيًا")) return null;
+                          if (isUser && arr[idx + 1]?.body?.includes("تولّى طلبك تلقائيًا")) return null;
                           // تظهر مرة واحدة: مع رسالة المستخدم مباشرة إن كانت آخر رسالة،
                           // أو تحت رد الموظف بعدها.
                           const nextIsAssistant = arr[idx + 1] && arr[idx + 1]!.role !== "user";
@@ -1743,7 +1743,7 @@ function ChatView({
               <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-sky/30 bg-sky/10 px-4 py-3 text-sm font-semibold animate-pop-in">
                 <AppIcon name={needsConnection.provider} className="size-6 shrink-0" />
                 <span className="min-w-0 flex-1">
-                  لتنفيذ هذه المهمة فعلياً يحتاج {member.name} ربط{" "}
+                  لتنفيذ هذه المهمة فعليًا يحتاج {member.name} ربط{" "}
                   <b>{appLabel(needsConnection.provider)}</b>
                   {needsConnection.reason ? ` — ${needsConnection.reason}` : ""}. دقيقة واحدة عبر
                   OAuth الرسمي.
@@ -1757,7 +1757,7 @@ function ChatView({
                   onClick={() => setNeedsConnection(null)}
                   className="text-xs text-muted-foreground hover:text-foreground"
                 >
-                  لاحقاً
+                  لاحقًا
                 </button>
               </div>
             ) : null}

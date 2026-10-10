@@ -11,7 +11,7 @@ export const Route = createFileRoute("/contact")({
       { title: "تواصل معنا | نرد خلال ساعات عمل قليلة — زياد" },
       {
         name: "description",
-        content: "اسأل عن الباقات، اطلب عرضاً للمؤسسات، أو احصل على دعم تقني بالعربية.",
+        content: "اسأل عن الباقات، اطلب عرضًا للمؤسسات، أو احصل على دعم تقني بالعربية.",
       },
       { property: "og:title", content: "تواصل مع فريق زياد" },
       { property: "og:description", content: "مبيعات، دعم، وشراكات — بالعربية." },
@@ -24,12 +24,12 @@ export const Route = createFileRoute("/contact")({
 
 const channels = [
   { icon: Mail, t: "البريد", d: "hello@sahl.ai", s: "رد خلال يوم عمل واحد" },
-  { icon: MessageSquare, t: "الدردشة", d: "من داخل لوحة التحكم", s: "رد خلال ٣ ساعات" },
+  { icon: MessageSquare, t: "الدردشة", d: "من داخل لوحة التحكم", s: "رد خلال 3 ساعات" },
   {
     icon: Phone,
     t: "المؤسسات",
-    d: "راسلنا على hello@sahl.ai لحجز مكالمة ٣٠ دقيقة",
-    s: "لفرق ١٠+ مستخدمين",
+    d: "راسلنا على hello@sahl.ai لحجز مكالمة 30 دقيقة",
+    s: "لفرق 10+ مستخدمين",
   },
   { icon: Mail, t: "بلاغات الأمان", d: "security@sahl.ai", s: "للإبلاغ عن الثغرات" },
 ];

@@ -293,7 +293,7 @@ export function Nav({ variant = "over" }: { variant?: "over" | "solid" }) {
                     <span className="sahl-worker-avatar"><Portrait memberId={member.id} name={member.name} /></span>
                     <span><b>{member.name}</b><small>{member.role}</small></span><span>←</span>
                   </Link>)}
-                  <Link to="/employees" onClick={() => setMobileOpen(false)}>تعرّف على الفريق كاملاً<span>←</span></Link>
+                  <Link to="/employees" onClick={() => setMobileOpen(false)}>تعرّف على الفريق كاملًا<span>←</span></Link>
                 </div>}
               </section>
               {groups.map((group,index) => <section key={group.label}>

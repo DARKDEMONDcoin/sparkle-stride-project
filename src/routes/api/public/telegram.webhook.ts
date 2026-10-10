@@ -60,7 +60,7 @@ async function ensureBotSetup(botToken: string, requestUrl: string, shared: bool
   }
 }
 /**
- * يحجز رقم التحديث ذرّياً في قاعدة البيانات: ينجح مرة واحدة فقط لكل تحديث،
+ * يحجز رقم التحديث ذرّيًا في قاعدة البيانات: ينجح مرة واحدة فقط لكل تحديث،
  * حتى لو أعاد تيليجرام الإرسال بعد دقيقة أو وصل لنسخة خادم مختلفة.
  */
 async function claimUpdate(
@@ -139,7 +139,7 @@ export const Route = createFileRoute("/api/public/telegram/webhook")({
         // مرة لكل بوت: نفعّل استقبال الأزرار ونسجّل قائمة الأوامر.
         void ensureBotSetup(botToken, request.url, shared);
 
-        // ── المستخدم حظر البوت أو فك الحظر: نوقف/نرجّع التنبيهات فوراً ──
+        // ── المستخدم حظر البوت أو فك الحظر: نوقف/نرجّع التنبيهات فورًا ──
         const mcm = update.my_chat_member;
         if (mcm?.chat?.type === "private" && typeof mcm.chat.id === "number") {
           const st = mcm.new_chat_member?.status;
@@ -170,7 +170,7 @@ export const Route = createFileRoute("/api/public/telegram/webhook")({
             return Response.json({ ok: true });
           }
           let answered = false;
-          // لو التنفيذ طوّل، نوقف دوران الزر فوراً ونكمّل الشغل.
+          // لو التنفيذ طوّل، نوقف دوران الزر فورًا ونكمّل الشغل.
           const slow = setTimeout(() => {
             answered = true;
             void answer("⏳ شغّال عليها…");
@@ -269,7 +269,7 @@ export const Route = createFileRoute("/api/public/telegram/webhook")({
             await telegramReply(
               botToken,
               chatId,
-              "🎙️ الرسائل الصوتية والصور والملفات بتشتغل بعد ربط حسابك. اضغط /start لربط حسابك من هنا في ثوانٍ، أو اكتب طلبك نصاً الآن.",
+              "🎙️ الرسائل الصوتية والصور والملفات بتشتغل بعد ربط حسابك. اضغط /start لربط حسابك من هنا في ثوانٍ، أو اكتب طلبك نصًا الآن.",
             );
             return Response.json({ ok: true });
           }
@@ -293,7 +293,7 @@ export const Route = createFileRoute("/api/public/telegram/webhook")({
           }
         }
 
-        // تيليجرام يعيد الإرسال عند أي رد غير ناجح — نرد دائماً بنجاح بعد المعالجة.
+        // تيليجرام يعيد الإرسال عند أي رد غير ناجح — نرد دائمًا بنجاح بعد المعالجة.
         return Response.json({ ok: true });
       },
     },

@@ -44,10 +44,10 @@ export const Route = createFileRoute("/api/transcribe")({
         }
         const file = form.get("file");
         if (!(file instanceof File) || file.size < 800) {
-          return Response.json({ error: "التسجيل قصير جداً — اتكلم شوية أطول." }, { status: 400 });
+          return Response.json({ error: "التسجيل قصير جدًا — اتكلم شوية أطول." }, { status: 400 });
         }
         if (file.size > MAX_BYTES) {
-          return Response.json({ error: "التسجيل طويل جداً — قسّمه لأجزاء أقصر." }, { status: 413 });
+          return Response.json({ error: "التسجيل طويل جدًا — قسّمه لأجزاء أقصر." }, { status: 413 });
         }
 
         const { getSecret } = await import("@/lib/secrets.server");
@@ -63,7 +63,7 @@ export const Route = createFileRoute("/api/transcribe")({
           let bin = "";
           for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
           const b64 = btoa(bin);
-          // Gemini لا يعلن دعم webm/mp4 صراحة: نجرب النوع الأصلي ثم بديلاً متوافقاً.
+          // Gemini لا يعلن دعم webm/mp4 صراحة: نجرب النوع الأصلي ثم بديلًا متوافقًا.
           const types = Array.from(new Set([mime, mime.includes("webm") ? "audio/ogg" : mime.includes("mp4") ? "audio/aac" : mime]));
           for (const t of types) {
             const r = await geminiOnce(b64, t);
@@ -77,7 +77,7 @@ export const Route = createFileRoute("/api/transcribe")({
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               contents: [{ parts: [
-                { text: "اكتب نص هذا التسجيل حرفياً بلغته ولهجته كما قيل، بلا أي تعليق أو مقدمة." },
+                { text: "اكتب نص هذا التسجيل حرفيًا بلغته ولهجته كما قيل، بلا أي تعليق أو مقدمة." },
                 { inline_data: { mime_type: mimeType, data: b64 } },
               ] }],
             }),

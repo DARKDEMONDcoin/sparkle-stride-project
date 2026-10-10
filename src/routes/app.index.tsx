@@ -59,7 +59,7 @@ function timeAgo(iso: string) {
 
 type SavedWelcome = { purpose?: string | undefined; industry?: string | undefined; plan?: WelcomeDraftData["plan"] | undefined };
 
-/** خطة البداية المحفوظة من /welcome: نفس المهام الثلاث، تفتح محادثة الموظف بالنص جاهزاً دون إرسال. */
+/** خطة البداية المحفوظة من /welcome: نفس المهام الثلاث، تفتح محادثة الموظف بالنص جاهزًا دون إرسال. */
 function StarterPlan({ industry, actions }: { industry?: string | undefined; actions: StarterAction[] }) {
   const items = actions
     .map((a) => ({ ...a, id: employeeIdFromName(a.employee) }))
@@ -160,7 +160,7 @@ function FirstRun({ workspace }: { workspace: { id: string; industry?: string; w
           اطلب أي عمل من فريقك
         </h2>
         <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-soft">
-          اكتب طلبك بالعربية كما تكلّم موظفاً — واختر من يبدأ. لا يُنشر شيء قبل موافقتك.
+          اكتب طلبك بالعربية كما تكلّم موظفًا — واختر من يبدأ. لا يُنشر شيء قبل موافقتك.
         </p>
 
 
@@ -257,7 +257,7 @@ function RequestBox() {
           onChange={(e) => setWho(e.target.value)}
           className="h-10 rounded-xl border border-border bg-background px-3 text-sm"
         >
-          <option value="auto">الأنسب تلقائياً{text.trim() ? ` (${getMember(target)?.name ?? ""})` : ""}</option>
+          <option value="auto">الأنسب تلقائيًا{text.trim() ? ` (${getMember(target)?.name ?? ""})` : ""}</option>
           {team.map((m) => <option key={m.id} value={m.id}>{m.name} · {m.role}</option>)}
         </select>
         <Button type="submit" disabled={!text.trim()} className="ms-auto">أرسل للموظف <ArrowLeft className="size-4" /></Button>
@@ -359,8 +359,8 @@ function AppHome() {
   const { data: integrations } = useIntegrations(workspace?.id);
 
   const list = tasks ?? [];
-  // الطابور الحيّ فقط: ما مضى عليه شهر بلا قرار صار أرشيفاً، وإبقاؤه في
-  // العدّاد كان يخنق الشاشة برقم لا يعبّر عن قرار معلّق فعلاً.
+  // الطابور الحيّ فقط: ما مضى عليه شهر بلا قرار صار أرشيفًا، وإبقاؤه في
+  // العدّاد كان يخنق الشاشة برقم لا يعبّر عن قرار معلّق فعلًا.
   const review = splitReview(list.filter((t) => t.status === "review")).live;
   const running = list.filter((t) => t.status === "running");
   const done = list.filter((t) => t.status === "done");
@@ -368,7 +368,7 @@ function AppHome() {
   const broken = (integrations ?? []).filter((i) => i.status === "error");
   const started = list.length > 0;
 
-  // أرقام صفرية لا تُعرض: لوحة نظيفة تعرض ما حدث فعلاً فقط.
+  // أرقام صفرية لا تُعرض: لوحة نظيفة تعرض ما حدث فعلًا فقط.
   const kpis = [
     { k: "مهام منجزة", n: done.length, d: "منذ انطلاق مساحتك", icon: CheckCircle2 },
     { k: "قيد التنفيذ", n: running.length, d: "فريقك يعمل الآن", icon: Clock3 },
@@ -381,7 +381,7 @@ function AppHome() {
     : "فريقك جاهز — ابدأ بطلب واحد.";
 
   return (
-    <AppShell title={`أهلاً ${profile?.full_name ?? ""}`} lead={workspace?.name ? `${workspace.name} · ${lead}` : lead}>
+    <AppShell title={`أهلًا ${profile?.full_name ?? ""}`} lead={workspace?.name ? `${workspace.name} · ${lead}` : lead}>
       {broken.length ? (
         <div className="app-system-alert">
           <span className="app-system-alert-label">تنبيه</span>

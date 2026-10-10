@@ -87,7 +87,7 @@ export const Route = createFileRoute("/api/public/pipedream-webhook")({
           return new Response("ok");
         }
 
-        // `healthy` لدى الوسيط يتأخر؛ الحساب معطّل فعلاً فقط عند dead أو حدث خطأ صريح.
+        // `healthy` لدى الوسيط يتأخر؛ الحساب معطّل فعلًا فقط عند dead أو حدث خطأ صريح.
         const healthy = payload.account?.dead !== true && !kind.includes("ERROR");
         const { error: upsertError } = await supabaseAdmin.from("pipedream_accounts").upsert(
           {

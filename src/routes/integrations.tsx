@@ -44,7 +44,7 @@ const groups: { t: string; d: string; items: Item[] }[] = [
       { key: "threads", note: "نشر نصي متزامن مع إنستجرام", status: "beta" },
       {
         key: "tiktok",
-        note: "مسودات جاهزة للنشر يدوياً — سياسة المنصة تمنع النشر الآلي",
+        note: "مسودات جاهزة للنشر يدويًا — سياسة المنصة تمنع النشر الآلي",
         status: "beta",
       },
     ],
@@ -62,7 +62,7 @@ const groups: { t: string; d: string; items: Item[] }[] = [
   },
   {
     t: "الردّ على العملاء",
-    d: "صندوق موحّد يردّ بنبرتك ويصعّد لك ما يحتاج قراراً.",
+    d: "صندوق موحّد يردّ بنبرتك ويصعّد لك ما يحتاج قرارًا.",
     items: [
       { key: "whatsapp", note: "ردود على استفسارات العملاء وتصعيد الجاد منها", status: "beta" },
       { key: "gmail", note: "فرز البريد وصياغة الردود ومتابعة المعلّق", status: "live" },
@@ -85,7 +85,7 @@ const groups: { t: string; d: string; items: Item[] }[] = [
   },
   {
     t: "التنظيم والفريق",
-    d: "يبقى العمل حيث يعمل فريقك البشري أصلاً.",
+    d: "يبقى العمل حيث يعمل فريقك البشري أصلًا.",
     items: [
       { key: "notion", note: "حفظ الخطط والتقارير في مساحتك", status: "live" },
       { key: "sheets", note: "تصدير المهام والنتائج إلى جدول", status: "live" },
@@ -102,7 +102,7 @@ const groups: { t: string; d: string; items: Item[] }[] = [
 const statusLabel: Record<Item["status"], { t: string; c: string }> = {
   live: { t: "متاح", c: "bg-jade/15 text-jade-deep" },
   beta: { t: "تجريبي", c: "bg-amber/20 text-ink" },
-  soon: { t: "قريباً", c: "bg-secondary text-muted-foreground" },
+  soon: { t: "قريبًا", c: "bg-secondary text-muted-foreground" },
 };
 
 function IntegrationsPage() {
@@ -131,7 +131,7 @@ function IntegrationsPage() {
   return (
     <PageShell>
       <PageHero
-        eyebrow={`${total} تكاملاً وأكثر`}
+        eyebrow={`${total} تكاملًا وأكثر`}
         title={
           <>
             اربط حساباتك مرة واحدة،
@@ -146,7 +146,7 @@ function IntegrationsPage() {
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="ابحث عن أداة… مثلاً إنستجرام"
+            placeholder="ابحث عن أداة… مثلًا إنستجرام"
             aria-label="ابحث عن تكامل"
             className="w-full bg-transparent text-white outline-none placeholder:text-white/60"
           />
@@ -160,12 +160,12 @@ function IntegrationsPage() {
             {
               i: ShieldCheck,
               t: "صلاحيات محدودة",
-              d: "نطلب أقل صلاحية تكفي المهمة، وتستطيع فصل أي حساب فوراً.",
+              d: "نطلب أقل صلاحية تكفي المهمة، وتستطيع فصل أي حساب فورًا.",
             },
             {
               i: Info,
               t: "لا نشر بلا ربط",
-              d: "إن لم يكن الحساب مربوطاً فلن يدّعي أي موظف أنه نشر — يظهر لك خطأ صريح.",
+              d: "إن لم يكن الحساب مربوطًا فلن يدّعي أي موظف أنه نشر — يظهر لك خطأ صريح.",
             },
           ].map((c, i) => (
             <Reveal key={c.t} delay={i * 60}>
@@ -224,7 +224,7 @@ function IntegrationsPage() {
           ))}
           {filtered.length === 0 ? (
             <p className="py-10 text-center text-muted-foreground">
-              لا نتيجة لبحثك. جرّب اسماً آخر، أو اطلب الأداة منّا وسنضيفها.
+              لا نتيجة لبحثك. جرّب اسمًا آخر، أو اطلب الأداة منّا وسنضيفها.
             </p>
           ) : null}
         </div>
@@ -236,14 +236,14 @@ function IntegrationsPage() {
             <h2 className="font-display text-2xl font-black">أداتك غير موجودة؟</h2>
             <p className="mt-3 leading-relaxed text-muted-foreground">
               نضيف تكاملات جديدة بحسب طلبات العملاء. أرسل لنا اسم الأداة وسنخبرك بموعد إتاحتها —
-              وغالباً نستطيع ربطها لك خلال أيام.
+              وغالبًا نستطيع ربطها لك خلال أيام.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Link
                 to="/contact"
                 className="rounded-full bg-foreground px-7 py-3.5 font-bold text-background"
               >
-                اطلب تكاملاً
+                اطلب تكاملًا
               </Link>
               <Link
                 to="/use-cases"

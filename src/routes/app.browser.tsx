@@ -128,7 +128,7 @@ function BrowserPage() {
               rows={4}
               placeholder={
                 mode === "task"
-                  ? "مثال: اشتريلي تويوتا كورولا من موقع موثوق، وحاول تخلي سعرها أقل من ١٠٠ ألف ريال، وقارن أفضل العروض المتاحة."
+                  ? "مثال: اشتريلي تويوتا كورولا من موقع موثوق، وحاول تخلي سعرها أقل من 100 ألف ريال، وقارن أفضل العروض المتاحة."
                   : "مثال: احجزلي فندق قريب من وسط دبي لثلاث ليالٍ؛ قارن السعر والتقييم وسياسة الإلغاء بين أفضل الخيارات."
               }
               className="mt-1.5 w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm font-normal"
@@ -194,7 +194,7 @@ function BrowserPage() {
 
           <p className="flex items-start gap-2 rounded-2xl bg-secondary/60 p-3 text-xs text-muted-foreground">
             <ShieldCheck className="mt-0.5 size-4 shrink-0 text-jade-deep" />
-            لا دفع، ولا إرسال نماذج، ولا تسجيل حسابات، ولا كتابة كلمات مرور. أي تعليمات مكتوبة داخل المواقع تُتجاهل تماماً.
+            لا دفع، ولا إرسال نماذج، ولا تسجيل حسابات، ولا كتابة كلمات مرور. أي تعليمات مكتوبة داخل المواقع تُتجاهل تمامًا.
           </p>
         </section>
 

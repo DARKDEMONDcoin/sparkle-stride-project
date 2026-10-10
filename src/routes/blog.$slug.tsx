@@ -79,7 +79,7 @@ function PostPage() {
           <div className="rounded-3xl border border-border bg-secondary/50 p-8">
             <h2 className="font-display text-xl font-black">طبّق ما قرأته اليوم</h2>
             <p className="mt-2 leading-relaxed text-ink-soft">
-              شغّل موظفاً رقمياً واحداً على حسابك، وقارن نتائج أسبوعين.
+              شغّل موظفًا رقميًا واحدًا على حسابك، وقارن نتائج أسبوعين.
             </p>
             <Link
               to="/contact"
@@ -92,7 +92,7 @@ function PostPage() {
       </article>
 
       <section className="mx-auto max-w-6xl px-5 pb-16">
-        <h2 className="font-display text-2xl font-black">اقرأ أيضاً</h2>
+        <h2 className="font-display text-2xl font-black">اقرأ أيضًا</h2>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
           {others.map((p) => (
             <Link

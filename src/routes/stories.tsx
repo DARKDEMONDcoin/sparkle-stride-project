@@ -30,7 +30,7 @@ function StoriesPage() {
     <PageShell>
       <PageHero
         eyebrow="قصص النجاح"
-        title="نتائج تُقاس، لا وعوداً تُقال"
+        title="نتائج تُقاس، لا وعودًا تُقال"
         lead="ثلاث حالات من قطاعات مختلفة، مع الأرقام قبل التشغيل وبعده."
       />
 
@@ -106,7 +106,7 @@ function StoriesPage() {
         ))}
       </section>
 
-      <CtaBand title="قصتك القادمة" lead="ابدأ اليوم، وشاركنا أرقامك بعد ٦٠ يوماً." />
+      <CtaBand title="قصتك القادمة" lead="ابدأ اليوم، وشاركنا أرقامك بعد 60 يومًا." />
     </PageShell>
   );
 }

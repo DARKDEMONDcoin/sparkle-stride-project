@@ -5,7 +5,7 @@ import { gscSnapshotFor } from "@/lib/gsc.functions";
 /**
  * حلقة القياس الأسبوعية لنور: تقرأ بيانات Search Console الحقيقية لكل مساحة عمل
  * موصولة، وتحوّلها إلى مهام تحسين ملموسة (فرص ترتيب، ضعف CTR، صفحات متراجعة).
- * تُستدعى تلقائياً كل اثنين عبر pg_cron، ومحمية بترويسة x-cron-secret
+ * تُستدعى تلقائيًا كل اثنين عبر pg_cron، ومحمية بترويسة x-cron-secret
  * (إما LOVABLE_CRON_SECRET أو الرمز الداخلي المخزَّن في private.cron_tokens).
  */
 export const Route = createFileRoute("/api/public/nour-weekly")({
@@ -82,7 +82,7 @@ export const Route = createFileRoute("/api/public/nour-weekly")({
                 workspace_id: workspaceId,
                 employee_id: "nour",
                 title: `فرصة ترتيب: «${q.key}» في المركز ${q.position.toFixed(1)}`,
-                detail: `${fmt(q.impressions)} انطباع و${fmt(q.clicks)} نقرة خلال 28 يوماً على ${snap.site}. الإجراء: توسيع المحتوى المستهدف لهذه العبارة، إضافة قسم أسئلة، وربط داخلي من صفحات ذات صلة.`,
+                detail: `${fmt(q.impressions)} انطباع و${fmt(q.clicks)} نقرة خلال 28 يومًا على ${snap.site}. الإجراء: توسيع المحتوى المستهدف لهذه العبارة، إضافة قسم أسئلة، وربط داخلي من صفحات ذات صلة.`,
                 channel: "search-console",
                 kind: "تحسين",
                 status: "review",

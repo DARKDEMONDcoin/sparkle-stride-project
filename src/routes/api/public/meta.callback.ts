@@ -76,14 +76,14 @@ export const Route = createFileRoute("/api/public/meta/callback")({
             expiresAt = longLived.expiresAt;
           } catch (tokenError) {
             // نجاح كود OAuth يكفي لإكمال الربط. لا نفشل الرحلة كلها إذا رفضت
-            // ميتا فقط ترقية التوكن إلى طويل المدى؛ يمكن إعادة الربط لاحقاً.
+            // ميتا فقط ترقية التوكن إلى طويل المدى؛ يمكن إعادة الربط لاحقًا.
             console.warn(
               "[meta] long-lived token exchange failed; using short-lived token",
               tokenError instanceof Error ? tokenError.message : tokenError,
             );
           }
 
-          // مسار قناة واتساب: نكتشف الحساب والرقم تلقائياً بلا أي إدخال من المستخدم.
+          // مسار قناة واتساب: نكتشف الحساب والرقم تلقائيًا بلا أي إدخال من المستخدم.
           if (verified.kind === "whatsapp") {
             const phones = await meta.discoverWabaPhones(config, token);
             if (!phones.length)

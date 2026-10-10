@@ -105,7 +105,7 @@ const sourceMeta: Record<string, { label: string; cls: string; title: string }> 
   "search-console": {
     label: "Search Console",
     cls: "bg-jade/12 text-jade-deep",
-    title: "متوسط الترتيب الفعلي من بيانات جوجل لموقعك خلال 28 يوماً",
+    title: "متوسط الترتيب الفعلي من بيانات جوجل لموقعك خلال 28 يومًا",
   },
   google: {
     label: "جوجل",
@@ -265,7 +265,7 @@ function RankingsPage() {
       ) : rows.length === 0 ? (
         <p className="mt-6 rounded-2xl border border-dashed border-border p-6 text-sm text-muted-foreground">
           أضف كلماتك المهمة ونطاق موقعك والسوق، ثم اضغط «حدّث الترتيب الآن» — نور تلتقط ترتيبك من
-          جوجل نفسها (أو Search Console إن كان مربوطاً) وتحفظ لك السجل يوماً بيوم مع أسماء المنافسين
+          جوجل نفسها (أو Search Console إن كان مربوطًا) وتحفظ لك السجل يومًا بيوم مع أسماء المنافسين
           الذين يسبقونك.
         </p>
       ) : (

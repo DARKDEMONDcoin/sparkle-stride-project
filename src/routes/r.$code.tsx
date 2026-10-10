@@ -41,9 +41,9 @@ function ReferralLanding() {
       </header>
       <div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
         <div className="grid gap-4 sm:grid-cols-3">
-          {[{ icon: Users, title: "فريق متكامل", text: "اختصاصات واضحة تعمل معاً" }, { icon: Check, title: "أنت صاحب القرار", text: "لا نشر أو إرسال دون موافقتك" }, { icon: ShieldCheck, title: "مساحتك محفوظة", text: "عملك منفصل ومحمي" }].map((item) => <div key={item.title} className="border-t border-border pt-4"><item.icon className="size-5 text-jade" /><h2 className="mt-3 text-sm font-black">{item.title}</h2><p className="mt-1 text-xs leading-6 text-muted-foreground">{item.text}</p></div>)}
+          {[{ icon: Users, title: "فريق متكامل", text: "اختصاصات واضحة تعمل معًا" }, { icon: Check, title: "أنت صاحب القرار", text: "لا نشر أو إرسال دون موافقتك" }, { icon: ShieldCheck, title: "مساحتك محفوظة", text: "عملك منفصل ومحمي" }].map((item) => <div key={item.title} className="border-t border-border pt-4"><item.icon className="size-5 text-jade" /><h2 className="mt-3 text-sm font-black">{item.title}</h2><p className="mt-1 text-xs leading-6 text-muted-foreground">{item.text}</p></div>)}
         </div>
-        <div className="space-y-3"><Button asChild size="lg" className="h-12 w-full rounded-md px-7 font-black"><Link to="/auth" search={{ mode: "signup", ref: validCode || undefined }}>ابدأ مجاناً <ArrowLeft /></Link></Button><Link to="/referral-terms" className="block text-center text-xs font-bold text-muted-foreground hover:text-primary">شروط برنامج الإحالة</Link></div>
+        <div className="space-y-3"><Button asChild size="lg" className="h-12 w-full rounded-md px-7 font-black"><Link to="/auth" search={{ mode: "signup", ref: validCode || undefined }}>ابدأ مجانًا <ArrowLeft /></Link></Button><Link to="/referral-terms" className="block text-center text-xs font-bold text-muted-foreground hover:text-primary">شروط برنامج الإحالة</Link></div>
       </div>
     </section>
   </main>;

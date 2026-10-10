@@ -97,7 +97,7 @@ function UseCasePage() {
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <h2 className="font-display text-2xl font-black md:text-3xl">
-              وهذا ما ينفّذه الفريق بدلاً عنك
+              وهذا ما ينفّذه الفريق بدلًا عنك
             </h2>
             <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
               كل بند أدناه مهمة فعلية تُنفَّذ وتظهر في لوحتك، لا وعد عام.
@@ -160,7 +160,7 @@ function UseCasePage() {
                 ))}
               </div>
               <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
-                الأرقام أعلاه تصف سعة التشغيل التي يوفّرها الفريق، وليست ضماناً لنتائج مبيعات —
+                الأرقام أعلاه تصف سعة التشغيل التي يوفّرها الفريق، وليست ضمانًا لنتائج مبيعات —
                 النتيجة تعتمد على منتجك وسوقك.
               </p>
             </div>

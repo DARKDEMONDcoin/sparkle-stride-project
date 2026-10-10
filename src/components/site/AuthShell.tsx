@@ -6,7 +6,7 @@ import { Sparkles, ShieldCheck, Clock4, Languages } from "lucide-react";
 const proofs = [
   { icon: Languages, t: "عربية أصيلة بكل اللهجات" },
   { icon: ShieldCheck, t: "موافقتك قبل أي إجراء حسّاس" },
-  { icon: Clock4, t: "أول منشور خلال ١١ دقيقة" },
+  { icon: Clock4, t: "أول منشور خلال 11 دقيقة" },
 ];
 
 export function AuthShell({
@@ -67,7 +67,7 @@ export function AuthShell({
           </div>
 
           <p className="text-sm text-white/70">
-            «وفّرت ساعتين يومياً من أول أسبوع» — نُهى العُمري، أتيليه نُهى
+            «وفّرت ساعتين يوميًا من أول أسبوع» — نُهى العُمري، أتيليه نُهى
           </p>
         </div>
       </div>

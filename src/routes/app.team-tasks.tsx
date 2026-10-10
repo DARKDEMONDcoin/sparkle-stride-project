@@ -16,9 +16,9 @@ export const Route = createFileRoute("/app/team-tasks")({
   head: () => ({
     meta: [
       { title: "مهام الفريق المشتركة | زياد" },
-      { name: "description", content: "هدف واحد ينفّذه عدة موظفين معاً، ثم تعتمد التسليم النهائي بضغطة." },
+      { name: "description", content: "هدف واحد ينفّذه عدة موظفين معًا، ثم تعتمد التسليم النهائي بضغطة." },
       { property: "og:title", content: "مهام الفريق المشتركة | زياد" },
-      { property: "og:description", content: "هدف واحد ينفّذه عدة موظفين معاً، ثم تعتمد التسليم النهائي بضغطة." },
+      { property: "og:description", content: "هدف واحد ينفّذه عدة موظفين معًا، ثم تعتمد التسليم النهائي بضغطة." },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -81,7 +81,7 @@ function TeamTasksPage() {
             value={goal}
             onChange={(e) => setGoal(e.target.value)}
             rows={3}
-            placeholder="مثال: هنفتح كافيه في الرياض؛ حلّلوا المنافسين، اختاروا فكرة تميّزنا، واكتبوا حملة افتتاح وتصوّروا إعلاناً أراجعه قبل النشر."
+            placeholder="مثال: هنفتح كافيه في الرياض؛ حلّلوا المنافسين، اختاروا فكرة تميّزنا، واكتبوا حملة افتتاح وتصوّروا إعلانًا أراجعه قبل النشر."
             className="w-full rounded-xl border border-border bg-background p-3 text-sm"
           />
           <button

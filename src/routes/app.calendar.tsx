@@ -79,19 +79,19 @@ const LENSES: Record<
     view: "content",
     title: "تقويم منشورات سِراج",
     lead: "منشورات السوشيال: أفكار، مسودات للمراجعة، مجدول ومنشور — اسحب لتعيد الجدولة.",
-    empty: "اطلب من سِراج خطة محتوى وستظهر منشوراتها هنا يوماً بيوم.",
+    empty: "اطلب من سِراج خطة محتوى وستظهر منشوراتها هنا يومًا بيوم.",
   },
   dana: {
     view: "content",
     title: "تقويم تصاميم دانة",
-    lead: "كل منشور يحمل صورة أو تصميماً أو فيديو، بموعد نشره ومعاينته — أياً كان من كتب نصه.",
-    empty: "اطلب من دانة تصميماً لمنشور قادم وسيظهر هنا.",
+    lead: "كل منشور يحمل صورة أو تصميمًا أو فيديو، بموعد نشره ومعاينته — أيًا كان من كتب نصه.",
+    empty: "اطلب من دانة تصميمًا لمنشور قادم وسيظهر هنا.",
   },
   nour: {
     view: "content",
     title: "التقويم التحريري لنور",
     lead: "مقالات المدونة وتشغيلات السيو المتكررة — اسحب أي مقال لتحديد موعد نشره.",
-    empty: "اطلب من نور مقالاً وحدد له موعداً بالسحب إلى أي يوم.",
+    empty: "اطلب من نور مقالًا وحدد له موعدًا بالسحب إلى أي يوم.",
   },
   eva: {
     view: "meetings",
@@ -103,7 +103,7 @@ const LENSES: Record<
   sam: {
     view: "meetings",
     title: "أجندة مبيعات سالم",
-    lead: "اجتماعات العملاء والعروض، مواعيد المتابعة البيعية، ورسائل العملاء التي تنتظر رداً.",
+    lead: "اجتماعات العملاء والعروض، مواعيد المتابعة البيعية، ورسائل العملاء التي تنتظر ردًا.",
     empty: "لا متابعات هذا الشهر — اطلب من سالم خطة متابعة لعملائك بمواعيد.",
     kinds: ["meeting", "cadence", "task"],
   },
@@ -111,7 +111,7 @@ const LENSES: Record<
     view: "meetings",
     title: "تقويم تقارير آدم",
     lead: "التقارير المسلّمة، مواعيد التقارير الدورية القادمة، ومواعيد قراءات الأداء في المشاريع.",
-    empty: "اطلب من آدم تقريراً أسبوعياً وسيظهر موعده القادم هنا.",
+    empty: "اطلب من آدم تقريرًا أسبوعيًا وسيظهر موعده القادم هنا.",
     kinds: ["cadence", "task"],
   },
 };
@@ -119,26 +119,26 @@ const LENSES: Record<
 /** إرشاد اللوحة الجانبية حسب صاحب التقويم. */
 const SIDE_GUIDE: Record<"sonny" | "dana" | "nour", { lead: string; steps: [typeof Check, string, string][] }> = {
   sonny: {
-    lead: "اختر منشوراً من التقويم لمعاينته بالصورة، تعديله، اعتماده أو نشره فوراً. أو اطلب مني خطة جديدة بمحور معيّن.",
+    lead: "اختر منشورًا من التقويم لمعاينته بالصورة، تعديله، اعتماده أو نشره فورًا. أو اطلب مني خطة جديدة بمحور معيّن.",
     steps: [
       [Lightbulb, "فكرة → أكتبها وأصمّم صورتها على هوية علامتك.", "text-amber"],
-      [Check, "جاهز → تراجعه وتعتمده، فيُنشر في موعده تلقائياً.", "text-sky"],
+      [Check, "جاهز → تراجعه وتعتمده، فيُنشر في موعده تلقائيًا.", "text-sky"],
       [TrendingUp, "أتعلّم من أداء منشوراتك وأقترح تعديلات على الخطة لتعتمدها.", "text-jade"],
     ],
   },
   dana: {
-    lead: "هنا كل منشور يحمل تصميماً أو صورة أو فيديو. افتح أي عنصر لتعاين التصميم كما سيظهر على المنصة، أو اطلب نسخة بديلة.",
+    lead: "هنا كل منشور يحمل تصميمًا أو صورة أو فيديو. افتح أي عنصر لتعاين التصميم كما سيظهر على المنصة، أو اطلب نسخة بديلة.",
     steps: [
       [ImageIcon, "معاينة بحجم كل منصة قبل النشر.", "text-sky"],
       [Pencil, "عدّل النص أو أعد توليد الصورة من نافذة المنشور.", "text-amber"],
-      [Sparkles, "اطلب مني في المحادثة هوية أو قالباً لسلسلة كاملة.", "text-jade"],
+      [Sparkles, "اطلب مني في المحادثة هوية أو قالبًا لسلسلة كاملة.", "text-jade"],
     ],
   },
   nour: {
-    lead: "مقالاتي ومخرجات السيو بمواعيد نشرها. افتح أي مقال لقراءته كاملاً، واسحبه إلى يوم لتحديد موعد نشره.",
+    lead: "مقالاتي ومخرجات السيو بمواعيد نشرها. افتح أي مقال لقراءته كاملًا، واسحبه إلى يوم لتحديد موعد نشره.",
     steps: [
       [Pencil, "قيد الكتابة → مراجعتك → معتمد → بموعد نشر.", "text-amber"],
-      [Eye, "اقرأ المقال كاملاً وانسخه أو اطلب تعديلاً.", "text-sky"],
+      [Eye, "اقرأ المقال كاملًا وانسخه أو اطلب تعديلًا.", "text-sky"],
       [CalendarDays, "المقالات بلا موعد تظهر في الشريط العلوي حتى تحدّدها.", "text-jade"],
     ],
   },
@@ -277,7 +277,7 @@ function CalendarPage() {
         : member === "nour"
           ? []
           : member === "dana"
-            ? // المنشورات تُحفظ باسم سِراج دائماً؛ عمل دانة = كل منشور بصورة أو فيديو.
+            ? // المنشورات تُحفظ باسم سِراج دائمًا؛ عمل دانة = كل منشور بصورة أو فيديو.
               allPosts.filter((p) => !!p.image_url || !!videoOf(p))
             : allPosts.filter((p) => p.employee_id === member),
     [allPosts, member],
@@ -372,10 +372,10 @@ function CalendarPage() {
     const next = new Date(day.getFullYear(), day.getMonth(), day.getDate(), old.getHours(), old.getMinutes());
     if (dayKey(next) === dayKey(old)) return;
     if (next.getTime() < Date.now() - 60_000) {
-      setError("لا يمكن نقل منشور إلى وقت مضى — اختر اليوم أو يوماً قادماً.");
+      setError("لا يمكن نقل منشور إلى وقت مضى — اختر اليوم أو يومًا قادمًا.");
       return;
     }
-    // تحديث متفائل حتى يتحرك الكرت فوراً، ثم يُثبَّت من الخادم.
+    // تحديث متفائل حتى يتحرك الكرت فورًا، ثم يُثبَّت من الخادم.
     qc.setQueryData<Post[]>(["social-posts", workspace.id], (cur) =>
       (cur ?? []).map((p) => (p.id === id ? { ...p, scheduled_at: next.toISOString() } : p)),
     );
@@ -384,12 +384,12 @@ function CalendarPage() {
     );
   };
 
-  /** سحب مقال نور إلى يوم = موعد نشر مخطط (الساعة ١٠ صباحاً). */
+  /** سحب مقال نور إلى يوم = موعد نشر مخطط (الساعة 10 صباحًا). */
   const moveArticle = async (taskId: string, day: Date) => {
     if (!workspace) return;
     const date = new Date(day.getFullYear(), day.getMonth(), day.getDate(), 10, 0);
     setError(null);
-    // تحديث متفائل: يتحرك المقال فوراً ثم يُثبَّت من الخادم.
+    // تحديث متفائل: يتحرك المقال فورًا ثم يُثبَّت من الخادم.
     qc.setQueryData<{ items: AgendaItem[] }>(["team-agenda", workspace.id, agendaRange.from], (cur) =>
       cur
         ? { ...cur, items: cur.items.map((i) => (i.taskId === taskId ? { ...i, start: date.toISOString() } : i)) }
@@ -415,7 +415,7 @@ function CalendarPage() {
       await act(f.id, () => update({ data: { workspaceId: workspace.id, id: f.id, action: "approve" } }));
     }
     if (skipped.size)
-      setError(`لم نُعد محاولة منشورات ${[...skipped].join("، ")} لأن الحساب غير مربوط — اربطه أولاً.`);
+      setError(`لم نُعد محاولة منشورات ${[...skipped].join("، ")} لأن الحساب غير مربوط — اربطه أولًا.`);
   };
 
   const approveAll = async () => {
@@ -432,7 +432,7 @@ function CalendarPage() {
       );
     }
     if (skipped.size)
-      setError(`لم نعتمد منشورات ${[...skipped].join("، ")} لأن الحساب غير مربوط — اربطه أولاً.`);
+      setError(`لم نعتمد منشورات ${[...skipped].join("، ")} لأن الحساب غير مربوط — اربطه أولًا.`);
   };
 
   const weekCount = grid.length / 7;
@@ -530,7 +530,7 @@ function CalendarPage() {
         <section className="mb-4 rounded-3xl border border-jade/30 bg-jade/6 p-5">
           <p className="flex items-center gap-2 text-sm font-black">
             <TrendingUp className="size-4 text-jade-deep" /> ما تعلّمه سِراج من{" "}
-            {learnMutation.data.analyzed} منشوراً
+            {learnMutation.data.analyzed} منشورًا
             <span className="rounded-full bg-secondary px-2 py-0.5 text-[0.68rem] font-bold text-muted-foreground">
               {learnMutation.data.source === "live"
                 ? "من حساباتك المربوطة"
@@ -543,7 +543,7 @@ function CalendarPage() {
             {learnMutation.data.summary}
           </p>
           <p className="mt-2 text-xs text-muted-foreground">
-            حُفظ في «عقل العلامة» وسيُطبَّق تلقائياً في كل منشور قادم.
+            حُفظ في «عقل العلامة» وسيُطبَّق تلقائيًا في كل منشور قادم.
           </p>
         </section>
       ) : null}
@@ -696,7 +696,7 @@ function CalendarPage() {
           <button
             onClick={() => void retryFailed()}
             disabled={Boolean(busy)}
-            title="يعيد جدولة المنشورات الفاشلة بعد ٥ دقائق على الحسابات المربوطة"
+            title="يعيد جدولة المنشورات الفاشلة بعد 5 دقائق على الحسابات المربوطة"
             className="inline-flex items-center gap-1.5 rounded-full bg-destructive/10 px-3 py-1.5 font-bold text-destructive disabled:opacity-50"
           >
             <RefreshCw className="size-3.5" /> أعد محاولة {failed.length} فاشل
@@ -930,7 +930,7 @@ function CalendarPage() {
               </span>
               <p className="mt-3 font-black">تقويمك فارغ</p>
               <p className="mt-1 text-sm text-ink-soft">
-                {member === "nour" ? "اطلب من نور مقالاً وحدد موعده ليظهر هنا." : member === "dana" ? "اطلب من دانة تصميماً وحدد موعد نشره ليظهر هنا." : "اضغط «خطّط لي المحتوى» وسيجهّز سِراج أسبوعاً أو شهراً كاملاً بالنصوص والصور خلال دقائق."}
+                {member === "nour" ? "اطلب من نور مقالًا وحدد موعده ليظهر هنا." : member === "dana" ? "اطلب من دانة تصميمًا وحدد موعد نشره ليظهر هنا." : "اضغط «خطّط لي المحتوى» وسيجهّز سِراج أسبوعًا أو شهرًا كاملًا بالنصوص والصور خلال دقائق."}
               </p>
             </div>
           ) : null}
@@ -1177,7 +1177,7 @@ function CalendarPage() {
             </label>
 
             <p className="mt-3 text-xs text-muted-foreground">
-              سيُنشأ {Math.min(days * perDay, 45)} منشوراً. الكتابة والتصميم يأخذان نحو 20 ثانية
+              سيُنشأ {Math.min(days * perDay, 45)} منشورًا. الكتابة والتصميم يأخذان نحو 20 ثانية
               للمنشور — يمكنك متابعة التقدّم هنا.
             </p>
             <div className="mt-5 flex justify-end gap-2">
@@ -1253,7 +1253,7 @@ function CalendarPage() {
   );
 }
 
-/** حالة المقالات + المقالات بلا موعد نشر (تظهر في يوم كتابتها مؤقتاً حتى تُسحب لموعد). */
+/** حالة المقالات + المقالات بلا موعد نشر (تظهر في يوم كتابتها مؤقتًا حتى تُسحب لموعد). */
 function NourEditorialBar({ articles, onOpen }: { articles: AgendaItem[]; onOpen: (i: AgendaItem) => void }) {
   const unplanned = articles.filter((a) => !a.planned && a.status !== "done");
   const count = (st: string[]) => articles.filter((a) => st.includes(a.status ?? "")).length;
@@ -1602,7 +1602,7 @@ function PostPanel(props: {
               <Btn
                 primary={post.status === "scheduled"}
                 onClick={() => {
-                  if (window.confirm("سيُنشر هذا المنشور فوراً على المنصة. متأكد؟")) props.onPublish();
+                  if (window.confirm("سيُنشر هذا المنشور فورًا على المنصة. متأكد؟")) props.onPublish();
                 }}
                 busy={props.busy}
                 icon={Send}
@@ -1622,7 +1622,7 @@ function PostPanel(props: {
             ) : null}
             <Btn
               onClick={() => {
-                if (window.confirm("حذف هذا المنشور نهائياً؟")) props.onDelete();
+                if (window.confirm("حذف هذا المنشور نهائيًا؟")) props.onDelete();
               }}
               icon={Trash2}
               className="col-span-2 text-coral"

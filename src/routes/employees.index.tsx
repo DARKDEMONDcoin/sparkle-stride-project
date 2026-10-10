@@ -101,7 +101,7 @@ function EmployeesPage() {
         </div>
       </section>
 
-      <CtaBand title="وظّف من تحتاجه فقط" lead="فعّل موظفاً واحداً اليوم، وأضف البقية حين تكبر." />
+      <CtaBand title="وظّف من تحتاجه فقط" lead="فعّل موظفًا واحدًا اليوم، وأضف البقية حين تكبر." />
     </PageShell>
   );
 }

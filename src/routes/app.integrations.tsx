@@ -44,7 +44,7 @@ export const Route = createFileRoute("/app/integrations")({
   component: IntegrationsPage,
 });
 
-/** المنصات المربوطة ربطاً مباشراً من داخل المنصة (بدون وسيط). */
+/** المنصات المربوطة ربطًا مباشرًا من داخل المنصة (بدون وسيط). */
 const realProviders = new Set(["wordpress", "indexnow", "shopify", "webflow", "ghost"]);
 
 /** فيسبوك وإنستجرام لهما لوحة ربط مباشرة مستقلة لكل منهما. */
@@ -254,7 +254,7 @@ function IntegrationsPage() {
     }
   };
 
-  // جاء المستخدم من زر «اربط X» داخل المحادثة: نفتح ربط نفس المنصة فوراً.
+  // جاء المستخدم من زر «اربط X» داخل المحادثة: نفتح ربط نفس المنصة فورًا.
   useEffect(() => {
     if (!autoConnect || !workspace || isLoading) return;
     const row = (integrations ?? []).find((i) => i.provider === autoConnect);
@@ -267,7 +267,7 @@ function IntegrationsPage() {
   return (
     <AppShell
       title="التكاملات"
-      lead={`${connected} حساباً مرتبطاً · حساب واحد لكل منصة داخل مساحة العمل`}
+      lead={`${connected} حسابًا مرتبطًا · حساب واحد لكل منصة داخل مساحة العمل`}
     >
       {wpOpen && workspace ? (
         <WordPressConnect workspaceId={workspace.id} onClose={() => setWpOpen(false)} />
@@ -329,7 +329,7 @@ function IntegrationsPage() {
           <ShieldCheck className="size-5 shrink-0 text-coral" />
           <p className="flex-1 text-sm font-semibold">
             أنت تتصفح في وضع التجربة بدون تسجيل، ومساحة التجربة مشتركة بين الزوار — سجّل دخولك
-            بحسابك أولاً ليُحفظ الربط في مساحتك أنت.
+            بحسابك أولًا ليُحفظ الربط في مساحتك أنت.
           </p>
           <a
             href="/auth"
@@ -363,7 +363,7 @@ function IntegrationsPage() {
         <div className="mb-6 flex flex-wrap items-center gap-3 rounded-2xl border border-coral/30 bg-coral/8 p-4">
           <RefreshCw className="size-5 shrink-0 text-coral" />
           <p className="flex-1 text-sm font-semibold">
-            {broken.length} حسابات تحتاج إعادة ربط — المهام المرتبطة بها متوقفة مؤقتاً.
+            {broken.length} حسابات تحتاج إعادة ربط — المهام المرتبطة بها متوقفة مؤقتًا.
           </p>
         </div>
       ) : null}
@@ -471,7 +471,7 @@ function IntegrationsPage() {
             isPipedreamProvider(detailRow.provider) &&
             pdEnv === "development" ? (
               <p className="mt-4 rounded-2xl bg-amber/10 px-4 py-3 text-sm font-semibold">
-                الوسيط يعمل بوضع التجريب حالياً — حوّله إلى الوضع الإنتاجي ليربط عملاؤك حساباتهم.
+                الوسيط يعمل بوضع التجريب حاليًا — حوّله إلى الوضع الإنتاجي ليربط عملاؤك حساباتهم.
               </p>
             ) : null}
 
@@ -518,7 +518,7 @@ function IntegrationsPage() {
       <div className="mt-6 flex items-start gap-3 rounded-3xl border border-border bg-secondary/50 p-6">
         <ShieldCheck className="size-5 shrink-0 text-jade-deep" />
         <p className="text-sm leading-relaxed text-ink-soft">
-          الربط يتم عبر OAuth الرسمي لكل منصة — لا نطلب كلمات مرورك أبداً، ويمكنك فصل أي حساب بضغطة
+          الربط يتم عبر OAuth الرسمي لكل منصة — لا نطلب كلمات مرورك أبدًا، ويمكنك فصل أي حساب بضغطة
           واحدة.
         </p>
       </div>

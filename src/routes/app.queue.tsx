@@ -83,7 +83,7 @@ function QueuePage() {
   return (
     <AppShell
       title="طابور النشر"
-      lead={upcoming ? `${upcoming} منشوراً بانتظار موعده` : "لا منشورات مجدولة حالياً"}
+      lead={upcoming ? `${upcoming} منشورًا بانتظار موعده` : "لا منشورات مجدولة حاليًا"}
       actions={
         <Link
           to="/app/calendar"
@@ -110,13 +110,13 @@ function QueuePage() {
           </span>
           <h2 className="mt-5 font-display text-2xl font-black">الطابور فاضي</h2>
           <p className="mt-2 text-ink-soft">
-            اعتمد منشوراً من صفحة الموافقات واختر «جدولة» ليظهر هنا وينشر في موعده تلقائياً.
+            اعتمد منشورًا من صفحة الموافقات واختر «جدولة» ليظهر هنا وينشر في موعده تلقائيًا.
           </p>
           <Link
             to="/app/calendar"
             className="mt-5 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-bold text-background"
           >
-            <CalendarDays className="size-4" /> خطط أسبوعاً كاملاً مع سِراج
+            <CalendarDays className="size-4" /> خطط أسبوعًا كاملًا مع سِراج
           </Link>
         </div>
       ) : (
