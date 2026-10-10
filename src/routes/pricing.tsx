@@ -11,9 +11,9 @@ import { PageShell, CtaBand } from "@/components/site/PageShell";
 import { PricingBeyondHero } from "@/components/site/PricingBeyondHero";
 
 import { Reveal } from "@/components/Reveal";
-import { plans, priceOf, currencyOf, yearlyDiscount } from "@/data/pricing";
-import { useRegion } from "@/hooks/use-region";
-import { RegionPicker } from "@/components/site/Portrait";
+import { plans, priceOf, currencySymbol, yearlyDiscount, type PriceResult } from "@/data/pricing";
+import { usePricingCurrency } from "@/hooks/use-pricing-currency";
+import { CurrencySelect } from "@/components/site/CurrencySelect";
 import { Button } from "@/components/ui/button";
 import { LogoMark } from "@/components/site/LogoMark";
 
@@ -24,12 +24,12 @@ export const Route = createFileRoute("/pricing")({
       {
         name: "description",
         content:
-          "ثلاث باقات واضحة بدون رسوم خفية: البداية، النمو، والمؤسسات. جرّب 14 يوماً مجاناً وألغِ في أي وقت.",
+          "ثلاث باقات واضحة بدون رسوم خفية: البداية، النمو، والمؤسسات. جرّب 14 يومًا مجانًا وألغِ في أي وقت.",
       },
       { property: "og:title", content: "أسعار زياد" },
       {
         property: "og:description",
-        content: "ابدأ بـ 149 ريالاً شهرياً لموظف رقمي كامل يعمل 24/7 بالعربية.",
+        content: "ابدأ بموظف رقمي واحد يعمل بالعربية، وجرّب 14 يومًا مجانًا دون بطاقة بنكية.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -51,9 +51,14 @@ const matrix: { f: string; v: (boolean | string)[] }[] = [
   { f: "مدير حساب مخصص", v: [false, false, true] },
 ];
 
+function priceText(price: PriceResult, symbol: string): string {
+  if (price.kind === "amount") return `${price.text} ${symbol}`;
+  return price.kind === "soon" ? "قريبًا" : "حسب الطلب";
+}
+
 function PricingPage() {
-  const { country } = useRegion();
-  const cur = currencyOf(country);
+  const { currency, setCurrency } = usePricingCurrency();
+  const symbol = currencySymbol(currency);
   const [mobilePlan, setMobilePlan] = useState<(typeof plans)[number]["id"]>("growth");
   const [yearly, setYearly] = useState(true);
   const selected = plans.find((plan) => plan.id === mobilePlan);
@@ -101,7 +106,7 @@ function PricingPage() {
                 <h2>باقة {selected.name}</h2>
                 <p>{selected.tag}</p>
               </div>
-              {selected.highlight ? <span>الأكثر اختياراً</span> : null}
+              {selected.highlight ? <span>الأكثر اختيارًا</span> : null}
             </div>
 
             <div className="sahl-upgrade-perks">
@@ -120,7 +125,7 @@ function PricingPage() {
               </ul>
             </div>
 
-            {selected.monthly === null ? (
+            {selected.custom ? (
               <div className="sahl-upgrade-custom-offer">
                 <strong>عرض مخصص حسب احتياجك</strong>
                 <span>حل مرن حسب حجم فريقك وفروعك</span>
@@ -138,7 +143,7 @@ function PricingPage() {
                   >
                     <span className="sahl-upgrade-radio" aria-hidden="true"><i /></span>
                     <span className="sahl-upgrade-cycle">شهري</span>
-                    <strong>{`${priceOf(selected, false, country)} ${cur.label}`}</strong>
+                    <strong>{priceText(priceOf(selected, false, currency), symbol)}</strong>
                   </Button>
                   <Button
                     type="button"
@@ -150,14 +155,14 @@ function PricingPage() {
                   >
                     <span className="sahl-upgrade-radio" aria-hidden="true"><i /></span>
                     <span className="sahl-upgrade-cycle">سنوي <small>وفّر {yearlyDiscount * 100}%</small></span>
-                    <strong>{`${priceOf(selected, true, country)} ${cur.label}`}</strong>
+                    <strong>{priceText(priceOf(selected, true, currency), symbol)}</strong>
                   </Button>
                 </div>
 
                 <p className="sahl-upgrade-note">
                   {yearly
-                    ? `${priceOf(selected, true, country)} ${cur.label} شهرياً، تُدفع سنوياً بعد التجربة المجانية.`
-                    : `${priceOf(selected, false, country)} ${cur.label} شهرياً بعد ١٤ يوماً مجاناً.`}
+                    ? `${priceText(priceOf(selected, true, currency), symbol)} شهريًا، تُدفع سنويًا بعد التجربة المجانية.`
+                    : `${priceText(priceOf(selected, false, currency), symbol)} شهريًا بعد 14 يومًا مجانًا.`}
                 </p>
               </>
             )}
@@ -191,8 +196,8 @@ function PricingPage() {
 
         <section className="mx-auto max-w-6xl px-5 py-14">
           <div className="mb-8 flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
-            <span>العملة حسب بلدك:</span>
-            <RegionPicker />
+            <span>عملة العرض:</span>
+            <CurrencySelect value={currency} onChange={setCurrency} />
           </div>
           <div className="pricing-desktop-grid grid grid-cols-3 gap-6">
             {plans.map((p, i) => (
@@ -201,7 +206,7 @@ function PricingPage() {
                   className={`pricing-desktop-card ${p.highlight ? "is-featured" : ""}`}
                 >
                   {p.highlight ? (
-                    <span className="pricing-desktop-badge">الأكثر اختياراً</span>
+                    <span className="pricing-desktop-badge">الأكثر اختيارًا</span>
                   ) : null}
 
                   <header className="pricing-desktop-card-head">
@@ -209,10 +214,17 @@ function PricingPage() {
                     <p>{p.desc}</p>
                   </header>
 
-                  <div className={`pricing-desktop-price ${p.monthly === null ? "is-custom" : ""}`}>
-                    <strong>{priceOf(p, false, country)}</strong>
-                    {p.monthly !== null ? <span>{cur.label} / شهرياً</span> : null}
-                  </div>
+                  {(() => {
+                    const price = priceOf(p, false, currency);
+                    return (
+                      <div className={`pricing-desktop-price ${price.kind === "amount" ? "" : "is-custom"}`}>
+                        <strong>
+                          {price.kind === "amount" ? price.text : price.kind === "soon" ? "قريبًا" : "حسب الطلب"}
+                        </strong>
+                        {price.kind === "amount" ? <span>{symbol} / شهريًا</span> : null}
+                      </div>
+                    );
+                  })()}
 
                   <div className="pricing-desktop-divider" aria-hidden="true" />
 
@@ -287,7 +299,7 @@ function PricingPage() {
           </p>
         </section>
 
-        <CtaBand title="جرّب قبل أن تدفع" lead="١٤ يوماً كاملة بكل مزايا باقة النمو، بدون بطاقة." />
+        <CtaBand title="جرّب قبل أن تدفع" lead="14 يومًا كاملة بكل مزايا باقة النمو، بدون بطاقة." />
       </div>
     </PageShell>
   );
