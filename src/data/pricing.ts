@@ -2,11 +2,18 @@
  * مصدر واحد لحقيقة الأسعار — تستخدمه صفحة /pricing وقسم الأسعار في الصفحة الرئيسية
  * حتى لا تختلف الأرقام أو أسماء الباقات بين مكانين.
  */
+import {
+  PRICES,
+  YEARLY_DISCOUNT,
+  CURRENCY_OPTIONS,
+  type CurrencyCode,
+} from "@/data/pricing.config";
+
 export type Plan = {
   id: "start" | "growth" | "scale";
   name: string;
-  /** السعر الشهري بالريال، أو null للباقة حسب الطلب. */
-  monthly: number | null;
+  /** باقة «حسب الطلب» بلا سعر منشور. */
+  custom?: boolean;
   tag: string;
   desc: string;
   highlight: boolean;
@@ -15,13 +22,12 @@ export type Plan = {
 };
 
 /** خصم الاشتراك السنوي. */
-export const yearlyDiscount = 0.2;
+export const yearlyDiscount = YEARLY_DISCOUNT;
 
 export const plans: Plan[] = [
   {
     id: "start",
     name: "البداية",
-    monthly: 149,
     tag: "لصاحب مشروع يبدأ وحده",
     desc: "موظف رقمي واحد تختاره ويبدأ العمل اليوم.",
     highlight: false,
@@ -38,7 +44,6 @@ export const plans: Plan[] = [
   {
     id: "growth",
     name: "النمو",
-    monthly: 399,
     tag: "الأكثر اختيارًا",
     desc: "الفريق الكامل بموظفيه الستة بمسارات عمل تلقائية بينهم.",
     highlight: true,
@@ -56,7 +61,7 @@ export const plans: Plan[] = [
   {
     id: "scale",
     name: "المؤسسات",
-    monthly: null,
+    custom: true,
     tag: "لفرق متعددة الفروع والعلامات",
     desc: "علامات وفروع متعددة بصلاحيات ومدير حساب.",
     highlight: false,
@@ -72,36 +77,20 @@ export const plans: Plan[] = [
   },
 ];
 
-/** العملات المحلية — السعر الأساسي بالريال السعودي، ويُعرض بعملة بلد الزائر. */
-export type Currency = { code: string; label: string; rate: number; step: number };
+export type PriceResult =
+  | { kind: "custom" }
+  | { kind: "soon" }
+  | { kind: "amount"; value: number; text: string };
 
-const USD: Currency = { code: "USD", label: "دولار", rate: 0.267, step: 1 };
-
-export const CURRENCIES: Record<string, Currency> = {
-  SA: { code: "SAR", label: "ر.س", rate: 1, step: 1 },
-  EG: { code: "EGP", label: "ج.م", rate: 13.3, step: 10 },
-  AE: { code: "AED", label: "د.إ", rate: 0.98, step: 1 },
-  KW: { code: "KWD", label: "د.ك", rate: 0.082, step: 0.5 },
-  QA: { code: "QAR", label: "ر.ق", rate: 0.97, step: 1 },
-  BH: { code: "BHD", label: "د.ب", rate: 0.1, step: 0.5 },
-  OM: { code: "OMR", label: "ر.ع", rate: 0.103, step: 0.5 },
-  JO: { code: "JOD", label: "د.أ", rate: 0.19, step: 1 },
-  MA: { code: "MAD", label: "د.م", rate: 2.6, step: 5 },
-};
-
-export function currencyOf(countryCode: string): Currency {
-  return CURRENCIES[countryCode] ?? USD;
+export function currencySymbol(code: CurrencyCode): string {
+  return CURRENCY_OPTIONS.find((c) => c.code === code)?.symbol ?? code;
 }
 
-function roundTo(n: number, step: number): number {
-  const v = Math.round(n / step) * step;
-  return step < 1 ? Number(v.toFixed(1)) : v;
-}
-
-/** السعر المعروض حسب دورة الفوترة المختارة وعملة البلد. */
-export function priceOf(plan: Plan, yearly: boolean, countryCode = "SA"): string {
-  if (plan.monthly === null) return "حسب الطلب";
-  const cur = currencyOf(countryCode);
-  const sar = yearly ? plan.monthly * (1 - yearlyDiscount) : plan.monthly;
-  return roundTo(sar * cur.rate, cur.step).toLocaleString("en-US");
+/** السعر المعروض حسب الباقة ودورة الفوترة والعملة، مقروءًا من pricing.config.ts. */
+export function priceOf(plan: Plan, yearly: boolean, currency: CurrencyCode): PriceResult {
+  if (plan.custom || plan.id === "scale") return { kind: "custom" };
+  const cell = PRICES[plan.id][currency];
+  const value = yearly ? cell.yearly : cell.monthly;
+  if (value === null) return { kind: "soon" };
+  return { kind: "amount", value, text: value.toLocaleString("en-US") };
 }

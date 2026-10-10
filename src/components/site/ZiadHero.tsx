@@ -14,7 +14,7 @@ const reduced = () =>
   typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /** المعاينة الحية: مساحة عمل زياد تعمل أمام الزائر مباشرة. */
-export function SahlHero() {
+export function ZiadHero() {
   const [userText, setUserText] = useState("");
   const [replyText, setReplyText] = useState("");
   const [stage, setStage] = useState<Stage>("typing-user");

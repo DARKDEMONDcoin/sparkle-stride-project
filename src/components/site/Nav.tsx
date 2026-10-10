@@ -189,7 +189,7 @@ export function Nav({ variant = "over" }: { variant?: "over" | "solid" }) {
                 <div className="sahl-workers-heading">
                   <span>
                     <b>موظفو زياد</b>
-                    <small>ستة تخصصات تعمل معاً كفريق واحد</small>
+                    <small>ستة تخصصات تعمل معًا كفريق واحد</small>
                   </span>
                   <Link to="/employees" onClick={() => setActive(null)}>كل الفريق ←</Link>
                 </div>
@@ -260,7 +260,7 @@ export function Nav({ variant = "over" }: { variant?: "over" | "solid" }) {
         </div>
         <div className="sahl-white-nav-actions">
           <Link to="/auth" search={{ mode: "signin" as const }}>
-            دخول
+            تسجيل الدخول
           </Link>
           <Button asChild>
             <Link to="/welcome">

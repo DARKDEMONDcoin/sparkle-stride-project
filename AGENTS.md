@@ -48,3 +48,4 @@
 - Brand extraction uses safe schemas; competitor-research ranks direct substitutes with literal buyer/offer proof from both sites. Why: precision.
 - Keep gateway keys registered in storage/hosting; research preserves service errors. Why: stale keys broke analysis.
 - Webhook/login/OAuth origins default to `SITE_ORIGIN`; Vercel maxDuration set in vite.config. Why: old hosts are dead.
+- All plan prices live in src/data/pricing.config.ts (null = shown as «قريبًا»); components never hard-code amounts. Why: swap/add currencies in one place.

@@ -1,4 +1,4 @@
-import logo from "@/assets/sahl-logo.png";
+import logo from "@/assets/ziad-logo.png";
 import { cn } from "@/lib/utils";
 
 export function LogoMark({ className, size = 36 }: { className?: string; size?: number }) {

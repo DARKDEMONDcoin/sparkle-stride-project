@@ -8,19 +8,21 @@ import {
   Check,
   CheckCircle2,
   ChevronDown,
+  ClipboardList,
+  Languages,
+  CalendarClock,
+  Users,
   Code2,
-  Instagram,
   Loader2,
   LockKeyhole,
   Megaphone,
-  MessageCircle,
   MessageSquareText,
   SearchCheck,
   Send,
   ShieldCheck,
-  ShoppingBag,
   Sparkles,
   Workflow,
+  X,
 } from "lucide-react";
 import { faqs } from "@/components/site/Faq";
 import { Portrait } from "@/components/site/Portrait";
@@ -34,18 +36,20 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
-import { plans, priceOf, currencyOf, yearlyDiscount } from "@/data/pricing";
-import { useRegion } from "@/hooks/use-region";
+import { plans, priceOf, currencySymbol, yearlyDiscount } from "@/data/pricing";
+import { usePricingCurrency } from "@/hooks/use-pricing-currency";
+import { CurrencySelect } from "@/components/site/CurrencySelect";
+import { IntegrationsStrip } from "@/components/site/IntegrationsStrip";
 import ecommerceSector from "@/assets/sectors/ecommerce.jpg";
 import restaurantsSector from "@/assets/sectors/restaurants.jpg";
 import clinicsSector from "@/assets/sectors/clinics.jpg";
 import realestateSector from "@/assets/sectors/realestate.jpg";
-const sonnyDesktopAsset = { url: "/chat-captures/sonny-desktop.webp" };
-const sonnyMobileAsset = { url: "/chat-captures/sonny-mobile.webp" };
-const evaDesktopAsset = { url: "/chat-captures/eva-desktop.webp" };
-const evaMobileAsset = { url: "/chat-captures/eva-mobile.webp" };
-const samDesktopAsset = { url: "/chat-captures/sam-desktop.webp" };
-const samMobileAsset = { url: "/chat-captures/sam-mobile.webp" };
+const sirajDesktopAsset = { url: "/chat-captures/siraj-desktop.webp" };
+const sirajMobileAsset = { url: "/chat-captures/siraj-mobile.webp" };
+const amalDesktopAsset = { url: "/chat-captures/amal-desktop.webp" };
+const amalMobileAsset = { url: "/chat-captures/amal-mobile.webp" };
+const salemDesktopAsset = { url: "/chat-captures/salem-desktop.webp" };
+const salemMobileAsset = { url: "/chat-captures/salem-mobile.webp" };
 const nourDesktopAsset = { url: "/chat-captures/nour-desktop.webp" };
 const nourMobileAsset = { url: "/chat-captures/nour-mobile.webp" };
 const danaDesktopAsset = { url: "/chat-captures/dana-desktop.webp" };
@@ -64,38 +68,44 @@ type DemoPhase = "idle" | "thinking" | "draft" | "approved";
 
 /**
  * الموكاب واحد في الأصل — شاشة بداية المحادثة نفسها. نكرره في كل بطاقة
- * يخنق الصفحة، لذلك نُبقيه للبطاقتين العريضتين فقط (سِراج ونور).
+ * يخنق الصفحة، لذلك نُبقيه للبطاقتين العريضتين فقط (سراج ونور).
  */
 const capabilities = [
   {
     icon: MessageSquareText,
-    kicker: "سِراج · السوشيال والإعلانات المموّلة",
+    kicker: "سراج · مدير السوشيال ميديا والإعلانات",
     title: "من طلب واحد إلى حملة جاهزة للاعتماد.",
     body: "يبني خطة 30 يومًا، يكتب كل نسخة، ينسّق التصميم والنشر، ثم يعيد أفضل الأفكار إلى التقويم.",
-    image: sonnyDesktopAsset.url,
-    mobileImage: sonnyMobileAsset.url,
+    memberId: "sonny",
+    snippet: "حملة 14 يومًا بانتظار اعتمادك",
+    image: sirajDesktopAsset.url,
+    mobileImage: sirajMobileAsset.url,
     frame: true,
     tone: "terracotta",
     span: "wide",
   },
   {
     icon: CalendarCheck2,
-    kicker: "أمَل · المساعدة التنفيذية",
+    kicker: "أمل · المساعدة التنفيذية",
     title: "ساعتك القادمة واضحة قبل أن تبدأ.",
     body: "تفرز البريد، ترتب الاجتماعات، وتضع القرارات المعلّقة في ملخص صباحي واحد.",
-    image: evaDesktopAsset.url,
-    mobileImage: evaMobileAsset.url,
+    memberId: "eva",
+    snippet: "ملخص الصباح جاهز",
+    image: amalDesktopAsset.url,
+    mobileImage: amalMobileAsset.url,
     frame: false,
     tone: "gold",
     span: "standard",
   },
   {
     icon: BarChart3,
-    kicker: "سالم · المبيعات",
+    kicker: "سالم · مدير المبيعات",
     title: "لكل فرصة رسالة وخطوة تالية.",
     body: "يبحث عن العميل المناسب، يخصص التواصل، ويسلمك الفرص الجاهزة للمكالمة.",
-    image: samDesktopAsset.url,
-    mobileImage: samMobileAsset.url,
+    memberId: "sam",
+    snippet: "رسائل المتابعة بانتظار اعتمادك",
+    image: salemDesktopAsset.url,
+    mobileImage: salemMobileAsset.url,
     frame: false,
     tone: "teal",
     span: "standard",
@@ -105,17 +115,21 @@ const capabilities = [
     kicker: "نور · المحتوى والسيو",
     title: "إجابة عربية يجدها عميلك لحظة البحث.",
     body: "ترصد السؤال، تبني خطة موضوعات، وتكتب صفحات أصلية مرتبطة بما يطلبه السوق.",
+    memberId: "nour",
+    snippet: "خطة الموضوعات جاهزة للمراجعة",
     image: nourDesktopAsset.url,
     mobileImage: nourMobileAsset.url,
-    frame: true,
+    frame: false,
     tone: "terracotta",
-    span: "wide",
+    span: "standard",
   },
   {
     icon: Sparkles,
-    kicker: "دانة · التصميم",
+    kicker: "دانة · مديرة التصميم",
     title: "فكرة واحدة، وكل المقاسات جاهزة.",
     body: "تحول المسودة إلى نظام بصري متسق، ثم تجهز نسخ كل منصة للمراجعة.",
+    memberId: "dana",
+    snippet: "المقاسات جاهزة للمراجعة",
     image: danaDesktopAsset.url,
     mobileImage: danaMobileAsset.url,
     frame: false,
@@ -124,9 +138,11 @@ const capabilities = [
   },
   {
     icon: BrainCircuit,
-    kicker: "آدم · تحليل البيانات",
+    kicker: "آدم · محلل البيانات",
     title: "تقرير ينتهي بقرار، لا برقم فقط.",
     body: "يجمع أداء القنوات، يرصد التغير، ويحدد أين تتحرك الميزانية والجهد بعد ذلك.",
+    memberId: "adam",
+    snippet: "تقرير الأسبوع جاهز",
     image: adamDesktopAsset.url,
     mobileImage: adamMobileAsset.url,
     frame: false,
@@ -140,10 +156,10 @@ const sectors = [
     id: "ecommerce",
     label: "المتاجر",
     title: "الحملة تبدأ بالمحتوى وتنتهي بقرار شراء.",
-    body: "سِراج يطلق القصة، دانة تجهز المقاسات، سالم يتابع المهتمين، وآدم يوضح ما يستحق التكرار.",
+    body: "سراج يطلق القصة، دانة تجهز المقاسات، سالم يتابع المهتمين، وآدم يوضح ما يستحق التكرار.",
     stat: "6 أدوار متصلة",
     image: ecommerceSector,
-    task: "إطلاق مجموعة الخريف",
+    task: "عروض الجمعة البيضاء",
     result: "12 مادة للمراجعة",
     signal: "4 قنوات جاهزة",
     icon: "◫",
@@ -152,11 +168,11 @@ const sectors = [
     id: "restaurants",
     label: "المطاعم",
     title: "عرض اليوم لا ينتظر اجتماع الأسبوع.",
-    body: "أمَل ترتب الموعد، سِراج يجهز النشر، دانة تصمم العرض، والفريق يتابع الرسائل في مسار واحد.",
+    body: "أمل ترتب الموعد، سراج يجهز النشر، دانة تصمم العرض، والفريق يتابع الرسائل في مسار واحد.",
     stat: "من الطلب للنشر",
     image: restaurantsSector,
-    task: "قائمة نهاية الأسبوع",
-    result: "موعد النشر 6:30",
+    task: "قائمة سحور رمضان",
+    result: "موعد النشر 6:30 مساءً",
     signal: "3 مواد جاهزة",
     icon: "✦",
   },
@@ -164,10 +180,10 @@ const sectors = [
     id: "clinics",
     label: "العيادات",
     title: "معلومة دقيقة تمر بالمراجعة قبل جمهورك.",
-    body: "نور تكتب المادة، دانة توضحها بصريًا، وأمَل توقف أي مادة حساسة حتى تصل موافقتك.",
+    body: "نور تكتب المادة، دانة توضحها بصريًا، وأمل توقف أي مادة حساسة حتى تصل موافقتك.",
     stat: "مراجعة بشرية",
     image: clinicsSector,
-    task: "سلسلة التوعية الشهرية",
+    task: "توعية موسم الصيف",
     result: "بانتظار موافقتك",
     signal: "6 موضوعات",
     icon: "+",
@@ -176,10 +192,10 @@ const sectors = [
     id: "realestate",
     label: "العقار",
     title: "الإعلان والمتابعة والتقرير في سياق واحد.",
-    body: "سِراج يقدم العقار، سالم يتابع المهتمين، وآدم يلخص القنوات التي جلبت فرصًا جادة.",
+    body: "سراج يقدم العقار، سالم يتابع المهتمين، وآدم يلخص القنوات التي جلبت فرصًا جادة.",
     stat: "فريق واحد",
     image: realestateSector,
-    task: "إطلاق عقار جديد",
+    task: "عرض عقار جديد قبل العيد",
     result: "قائمة المتابعة جاهزة",
     signal: "5 مواعيد",
     icon: "⌂",
@@ -213,7 +229,7 @@ const proofs = [
   },
 ] as const;
 
-/** منهج سِراج في الإعلانات الممولة — معايير سوق معلنة، لا نتائج عميل مزعومة. */
+/** منهج سراج في الإعلانات الممولة — معايير سوق معلنة، لا نتائج عميل مزعومة. */
 const adsProof = [
   { k: "نسبة نقر مستهدفة", v: "1%–2%", note: "معيار Meta لتصميم إعلاني جيد" },
   { k: "إيقاف التمرير 3 ثوانٍ", v: "25%–40%", note: "معيار فيديو قوي" },
@@ -230,12 +246,12 @@ const sampleBoards = [
     cards: [
       {
         employeeId: "sonny",
-        employee: "سِراج",
+        employee: "سراج",
         role: "مدير السوشيال ميديا",
         quality: 82,
         image: null as string | null,
         publish: { connect: "إنستجرام" },
-        body: "### المنشور\nلعشاق القهوة الباردة في جدة… من 4 إلى 7، أي مشروب بارد من قهوتنا المختصة بـ19 ريال.\n\nخلّ حرارة جدة برا، وبرّد يومك بخيارك المفضل يوميًا طوال الأسبوع.\n\nشاهد الخيارات في الصورة، ومرّ علينا قبل 7 واطلب مشروبك.\n\n### الهاشتاقات\n\\#قهوة\\_مختصة \\#قهوة\\_باردة \\#جدة\n\n### التوقيت والقياس\n- النشر: 3:30 عصرًا بتوقيت جدة؛ قبل بداية العرض بنصف ساعة.\n- القياس بعد 48 ساعة: نسبة المشاركات إلى الوصول.",
+        body: "### المنشور\nلعشاق القهوة الباردة في جدة… من 4 إلى 7، أي مشروب بارد من قهوتنا المختصة بـ19 ريال.\n\nأبعد حرارة جدة عنك، وبرّد يومك بخيارك المفضل يوميًا طوال الأسبوع.\n\nشاهد الخيارات في الصورة، وزرنا قبل السابعة واطلب مشروبك.\n\n### الوسوم\n\\#قهوة\\_مختصة \\#قهوة\\_باردة \\#جدة\n\n### التوقيت والقياس\n- النشر: 3:30 عصرًا بتوقيت جدة؛ قبل بداية العرض بنصف ساعة.\n- القياس بعد 48 ساعة: نسبة المشاركات إلى الوصول.",
       },
       {
         employeeId: "dana",
@@ -364,12 +380,12 @@ const guards = [
 ] as const;
 
 const trustPoints = [
-  "يفهم العربية ولهجاتها",
-  "ذاكرة تعرف مشروعك",
-  "ستة تخصصات تعمل معًا",
-  "لا تنفيذ دون موافقتك",
-  "أدواتك في مكان واحد",
-  "سجل واضح لكل خطوة",
+  { icon: Languages, text: "يفهم العربية ولهجاتها" },
+  { icon: BrainCircuit, text: "ذاكرة تعرف مشروعك" },
+  { icon: Users, text: "ستة تخصصات تعمل معًا" },
+  { icon: ShieldCheck, text: "لا تنفيذ دون موافقتك" },
+  { icon: Workflow, text: "أدواتك في مكان واحد" },
+  { icon: ClipboardList, text: "سجل واضح لكل خطوة" },
 ] as const;
 
 const statHorizonPaths = Array.from({ length: 36 }, (_, index) => {
@@ -489,54 +505,6 @@ function ProductFrame({
   );
 }
 
-function ToolConnections() {
-  return (
-    <div
-      className="sahl-tool-connections"
-      aria-label="إنستجرام وواتساب وجوجل وفيسبوك وشوبيفاي متصلة بزياد"
-    >
-      <svg className="sahl-tool-wires" viewBox="0 0 560 136" aria-hidden="true">
-        <path id="sahl-tool-wire-1" d="M74 28 C164 28 194 68 280 68" />
-        <path id="sahl-tool-wire-2" d="M74 68 C166 68 200 68 280 68" />
-        <path id="sahl-tool-wire-3" d="M74 108 C164 108 194 68 280 68" />
-        <path id="sahl-tool-wire-4" d="M486 42 C394 42 368 68 280 68" />
-        <path id="sahl-tool-wire-5" d="M486 94 C394 94 368 68 280 68" />
-        <g className="sahl-tool-pulses">
-          <use href="#sahl-tool-wire-1" />
-          <use href="#sahl-tool-wire-2" />
-          <use href="#sahl-tool-wire-3" />
-          <use href="#sahl-tool-wire-4" />
-          <use href="#sahl-tool-wire-5" />
-        </g>
-      </svg>
-      <div className="sahl-tool-icon is-instagram" title="إنستجرام">
-        <Instagram />
-        <span>إنستجرام</span>
-      </div>
-      <div className="sahl-tool-icon is-whatsapp" title="واتساب">
-        <MessageCircle />
-        <span>واتساب</span>
-      </div>
-      <div className="sahl-tool-icon is-google" title="جوجل">
-        <b>G</b>
-        <span>جوجل</span>
-      </div>
-      <div className="sahl-tool-icon is-facebook" title="فيسبوك">
-        <b>f</b>
-        <span>فيسبوك</span>
-      </div>
-      <div className="sahl-tool-icon is-shopify" title="شوبيفاي">
-        <ShoppingBag />
-        <span>شوبيفاي</span>
-      </div>
-      <div className="sahl-tool-core">
-        <LogoMark size={34} />
-        <span>زياد</span>
-      </div>
-    </div>
-  );
-}
-
 function SirajDemo() {
   const [prompt, setPrompt] = useState("أطلق المنتج الجديد خلال أسبوعين ونسّق الفريق كله");
   const [phase, setPhase] = useState<DemoPhase>("idle");
@@ -558,13 +526,13 @@ function SirajDemo() {
         <span>
           <i /> غرفة عمل الفريق
         </span>
-        <strong>سِراج ينسّق المهمة</strong>
+        <strong>سراج ينسّق المهمة</strong>
         <small>6 موظفين جاهزون</small>
       </header>
       <div className="sahl-demo-grid">
         <aside>
-          <Portrait memberId="sonny" name="سِراج" eager />
-          <strong>سِراج</strong>
+          <Portrait memberId="sonny" name="سراج" eager />
+          <strong>سراج</strong>
           <small>يقود الإطلاق</small>
           <nav>
             <b>المحادثة</b>
@@ -580,17 +548,17 @@ function SirajDemo() {
           </div>
           {phase === "thinking" && (
             <div className="sahl-thinking">
-              <Loader2 className="animate-spin" /> سِراج يقسم الإطلاق ويوزع العمل على الفريق...
+              <Loader2 className="animate-spin" /> سراج يقسم الإطلاق ويوزع العمل على الفريق...
             </div>
           )}
           {(phase === "draft" || phase === "approved") && (
             <div className="sahl-agent-message">
               <span>
-                <Portrait memberId="sonny" name="سِراج" />
-                <b>سِراج</b>
+                <Portrait memberId="sonny" name="سراج" />
+                <b>سراج</b>
               </span>
               <p>
-                بنيت خطة 14 يومًا: 8 منشورات و6 قصص. دانة تجهز المقاسات، نور تكتب صفحة الإطلاق، أمَل
+                بنيت خطة 14 يومًا: 8 منشورات و6 قصص. دانة تجهز المقاسات، نور تكتب صفحة الإطلاق، أمل
                 ترتب الجدول، سالم يتابع المهتمين، وآدم يقيس القنوات.
               </p>
               <div>
@@ -651,8 +619,8 @@ export function EditorialHomepage() {
   const [sample, setSample] = useState(0);
   const [sampleExpanded, setSampleExpanded] = useState(false);
   const [pricingYearly, setPricingYearly] = useState(true);
-  const { country } = useRegion();
-  const pricingCurrency = currencyOf(country);
+  const { currency: pricingCurrency, setCurrency: setPricingCurrency } = usePricingCurrency();
+  const pricingSymbol = currencySymbol(pricingCurrency);
   const currentSector = sectors[sector] ?? sectors[0];
   const currentSample = sampleBoards[sample] ?? sampleBoards[0];
   /** إيقاف حركات المشاهد خارج الشاشة حتى يبقى التمرير سلسًا تمامًا. */
@@ -691,9 +659,7 @@ export function EditorialHomepage() {
               </span>
             </div>
             <h1 id="home-title">
-              ما يستغرق شهرًا من العمل،
-              <br />
-              ينتهي <em>قبل أن تُكمل قهوتك.</em>
+              ما يستغرق شهرًا من العمل، ينتهي <em>قبل أن تُكمل قهوتك.</em>
             </h1>
             <p className="sahl-lead">يكتبون ويصمّمون ويبيعون نيابةً عنك، وأنت تتابع نمو النتائج.</p>
             <div className="sahl-actions">
@@ -715,11 +681,11 @@ export function EditorialHomepage() {
           <div className="sahl-hero-product">
             <span className="sahl-hero-wash" aria-hidden="true" />
             <ProductFrame
-              src={sonnyDesktopAsset.url}
-              mobileSrc={sonnyMobileAsset.url}
+              src={sirajDesktopAsset.url}
+              mobileSrc={sirajMobileAsset.url}
 
 
-              alt="مساحة عمل زياد: محادثة سِراج داخل المنصة"
+              alt="مساحة عمل زياد: محادثة سراج داخل المنصة"
               hero
             />
             <div className="sahl-float-note liquid-glass-sahl" role="status">
@@ -731,6 +697,20 @@ export function EditorialHomepage() {
               </div>
               <i className="sahl-float-note-dot" aria-hidden="true" />
             </div>
+            <div className="ziad-float-card is-schedule" aria-hidden="true">
+              <CalendarClock />
+              <span>
+                <small>منشور مجدول</small>
+                <b>الخميس 4 عصرًا</b>
+              </span>
+            </div>
+            <div className="ziad-float-card is-metric" aria-hidden="true">
+              <span>
+                <small>جودة المسودة</small>
+                <b>82%</b>
+              </span>
+              <i />
+            </div>
           </div>
         </div>
       </section>
@@ -739,10 +719,12 @@ export function EditorialHomepage() {
         <div className="sahl-shell">
           <strong className="sahl-arabic-first">مصمم للعمل بالعربية، من أول طلب حتى آخر قرار</strong>
           <div className="sahl-trust-row">
-            {trustPoints.map((point, index) => (
-              <span key={point}>
-                <small>{String(index + 1).padStart(2, "0")}</small>
-                <b>{point}</b>
+            {trustPoints.map((point) => (
+              <span key={point.text}>
+                <small aria-hidden="true">
+                  <point.icon />
+                </small>
+                <b>{point.text}</b>
               </span>
             ))}
           </div>
@@ -789,6 +771,7 @@ export function EditorialHomepage() {
               role="tabpanel"
             >
               <SampleChatShot
+                key={currentSample.business}
                 business={currentSample.business}
                 prompt={currentSample.prompt}
                 cards={currentSample.cards}
@@ -807,8 +790,9 @@ export function EditorialHomepage() {
           </Reveal>
           <Reveal>
             <p className="sahl-sample-note">
-              <CheckCircle2 aria-hidden="true" /> مثال توضيحي · الأرقام والعروض في الأمثلة من طلب المستخدم نفسه؛
-              الفريق لا يخترع سعرًا ولا وعدًا من عنده.
+              <CheckCircle2 aria-hidden="true" />
+              <b>مثال توضيحي</b> — الأرقام والعروض في الأمثلة من طلب المستخدم نفسه؛ الفريق لا يخترع
+              سعرًا ولا وعدًا من عنده.
             </p>
           </Reveal>
         </div>
@@ -825,8 +809,8 @@ export function EditorialHomepage() {
                 <em>وكل نتيجة تُسلَّم إلى الدور التالي.</em>
               </h2>
               <p>
-                سِراج يبدأ الحملة، دانة تجهز صورتها، نور توسع قصتها، سالم يحول الاهتمام إلى فرصة،
-                أمَل ترتب الوقت، وآدم يقرأ ما حدث.
+                سراج يبدأ الحملة، دانة تجهز صورتها، نور توسع قصتها، سالم يحول الاهتمام إلى فرصة،
+                أمل ترتب الوقت، وآدم يقرأ ما حدث.
               </p>
             </header>
           </Reveal>
@@ -834,18 +818,27 @@ export function EditorialHomepage() {
             {capabilities.map((item) => (
               <Reveal key={item.kicker} className={`sahl-cap-card is-${item.span} is-${item.tone}`}>
                 <div>
-                  <item.icon />
-                  <span>{item.kicker}</span>
+                  <div className="ziad-cap-head">
+                    <span className="ziad-cap-avatar">
+                      <Portrait memberId={item.memberId} name={item.kicker.split(" · ")[0] ?? ""} />
+                    </span>
+                    <span className="ziad-cap-role">{item.kicker}</span>
+                    <item.icon aria-hidden="true" />
+                  </div>
                   <h3>{item.title}</h3>
                   <p>{item.body}</p>
-                  {item.kicker.startsWith("سِراج") && (
+                  <p className="ziad-cap-snippet">
+                    <i aria-hidden="true" />
+                    {item.snippet}
+                  </p>
+                  {item.kicker.startsWith("سراج") && (
                     <aside className="sahl-coming-ads">
                       <Megaphone aria-hidden="true" />
                       <div>
                         <span>تخصص إضافي</span>
-                        <strong>سِراج يبني حملاتك المموّلة</strong>
+                        <strong>سراج يبني حملاتك المموّلة</strong>
                         <p>
-                          يحسب هامشك وسقف تكلفة التحويل، يضع هيكل الحساب ومصفوفة خمس زوايا كرييتف
+                          يحسب هامشك وسقف تكلفة التحويل، يضع هيكل الحساب ومصفوفة خمس زوايا للتصاميم والنصوص الإعلانية
                           وخطة القياس. الإطلاق المباشر على المنصات يتم بعد ربطها وبموافقتك.
                         </p>
                       </div>
@@ -925,11 +918,25 @@ export function EditorialHomepage() {
                 </h2>
               </div>
               <p>
-                طلب واحد من عندك، يتحول إلى ست مهام موزعة على سِراج ودانة ونور وأمَل وسالم وآدم.
+                طلب واحد من عندك، يتحول إلى ست مهام موزعة على سراج ودانة ونور وأمل وسالم وآدم.
               </p>
             </header>
           </Reveal>
           <Reveal>
+            <ol className="ziad-timeline">
+              {[
+                ["أرسل هدفك", "اكتب ما تريده بكلماتك مرة واحدة."],
+                ["يوزّع سراج العمل", "تتحول الفكرة إلى مهام لكل تخصص."],
+                ["ينفّذ كل موظف دوره", "ويسلّم نتيجته إلى الدور التالي."],
+                ["تعتمد أنت القرار", "لا نشر ولا إرسال قبل موافقتك."],
+              ].map(([title, text], index) => (
+                <li key={title}>
+                  <span className="ziad-timeline-num">{String(index + 1).padStart(2, "0")}</span>
+                  <b>{title}</b>
+                  <p>{text}</p>
+                </li>
+              ))}
+            </ol>
             <figure className="sahl-plan-flow">
               <picture>
                 <source media="(max-width: 720px)" srcSet={planFlowTall} />
@@ -955,30 +962,40 @@ export function EditorialHomepage() {
             <header className="sahl-section-head">
               <span>السؤال الأول دائمًا</span>
               <h2>
-                ولماذا لا أستخدم محادثة ذكاء اصطناعي عادية؟
+                ولماذا لا أستخدم محادثة ذكاء اصطناعي عامة؟
                 <br />
-                <em>لأن المحادثة تكتب، وزياد يشتغل.</em>
+                <em>لأن المحادثة تكتب، وزياد ينفّذ.</em>
               </h2>
             </header>
           </Reveal>
-          <Reveal className="sahl-versus-table">
-            <div className="sahl-versus-head">
-              <span>الفرق</span>
-              <span>محادثة عامة</span>
-              <span>
-                <LogoMark size={18} /> زياد
-              </span>
-            </div>
-            {versus.map((row) => (
-              <div key={row.q} className="sahl-versus-row">
-                <span>{row.q}</span>
-                <span className="is-plain">{row.chat}</span>
-                <span className="is-sahl">
-                  <Check aria-hidden="true" />
-                  {row.sahl}
-                </span>
-              </div>
-            ))}
+          <Reveal className="ziad-versus-wrap">
+            <table className="ziad-versus">
+              <caption className="sr-only">مقارنة بين محادثة ذكاء اصطناعي عامة وفريق زياد</caption>
+              <thead>
+                <tr>
+                  <th scope="col">وجه المقارنة</th>
+                  <th scope="col">محادثة ذكاء اصطناعي عامة</th>
+                  <th scope="col" className="is-ziad">
+                    <LogoMark size={18} /> زياد
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {versus.map((row) => (
+                  <tr key={row.q}>
+                    <th scope="row">{row.q}</th>
+                    <td data-label="محادثة عامة" className="is-plain">
+                      <X aria-hidden="true" />
+                      <span>{row.chat}</span>
+                    </td>
+                    <td data-label="زياد" className="is-ziad">
+                      <Check aria-hidden="true" />
+                      <span>{row.sahl}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </Reveal>
         </div>
       </section>
@@ -1067,7 +1084,7 @@ export function EditorialHomepage() {
                 alt={`مشهد يوضح عمل فريق زياد في قطاع ${currentSector.label}`}
                 loading="lazy"
                 width={1280}
-                height={900}
+                height={960}
               />
               <div className="sahl-sector-brand">
                 <i>{currentSector.icon}</i>
@@ -1107,13 +1124,13 @@ export function EditorialHomepage() {
                 </h2>
               </div>
               <p>
-                سِراج ينشر، سالم يتابع، نور تقرأ البحث، وآدم يجمع الأداء. لا يخرج إجراء حساس قبل
+                سراج ينشر، سالم يتابع، نور تقرأ البحث، وآدم يجمع الأداء. لا يخرج إجراء حساس قبل
                 قاعدة الاعتماد التي تحددها.
               </p>
             </header>
           </Reveal>
           <Reveal className="sahl-system-board">
-            <ToolConnections />
+            <IntegrationsStrip />
             <div className="sahl-system-points">
               <span>
                 <Workflow />
@@ -1237,7 +1254,7 @@ export function EditorialHomepage() {
           <Reveal>
             <header className="sahl-section-head is-split">
               <div>
-                <span>سِراج · الإعلانات المموّلة</span>
+                <span>سراج · الإعلانات المموّلة</span>
                 <h2>
                   حملة تُبنى من أرقام مشروعك.
                   <br />
@@ -1245,7 +1262,7 @@ export function EditorialHomepage() {
                 </h2>
               </div>
               <p>
-                سِراج يحسب هامشك وقيمة عميلك أولًا، ثم يبني هيكل الحساب ومصفوفة التصاميم والنصوص الإعلانية وخطة القياس
+                سراج يحسب هامشك وقيمة عميلك أولًا، ثم يبني هيكل الحساب ومصفوفة التصاميم والنصوص الإعلانية وخطة القياس
                 ليوم واحد حتى اليوم الرابع عشر — ولا تُعتمد ميزانية ولا تُطلق حملة قبل موافقتك.
               </p>
             </header>
@@ -1267,7 +1284,7 @@ export function EditorialHomepage() {
               <span className="sahl-visual-sweep" aria-hidden="true" />
             </figure>
             <div>
-              <span>منهج سِراج</span>
+              <span>منهج سراج</span>
               <h3>من الوحدات الاقتصادية إلى التصاميم الإعلانية إلى القياس.</h3>
               <p>
                 قبل أي ريال إنفاق: نعرف هامشك، وقيمة عميلك، والسقف الذي لا تتجاوزه تكلفة التحويل. ثم
@@ -1295,14 +1312,14 @@ export function EditorialHomepage() {
                 <span>حملة تحويل واحدة، مجموعات محدودة، وتوزيع 70/20/10 على القمع.</span>
               </li>
               <li>
-                <b>خمس زوايا كرييتف</b>
+                <b>خمس زوايا للتصاميم والنصوص الإعلانية</b>
                 <span>
-                  ألم، نتيجة، اعتراض، دليل، مقارنة — بنصوص بلهجة جمهورك وبريف تصميم لدانة.
+                  ألم، نتيجة، اعتراض، دليل، مقارنة — بنصوص بلهجة جمهورك وموجز تصميم لدانة.
                 </span>
               </li>
               <li>
                 <b>القياس والتشخيص</b>
-                <span>بيكسل وأحداث وUTM، ثم شجرة تشخيص تحدد أين يضيع الإنفاق بالضبط.</span>
+                <span>وسم التتبع (Pixel) والأحداث ووسوم UTM، ثم شجرة تشخيص تحدد أين يضيع الإنفاق.</span>
               </li>
             </ol>
             <p className="sahl-ads-note">
@@ -1340,9 +1357,12 @@ export function EditorialHomepage() {
             </header>
           </Reveal>
           <div className="sahl-guard-grid">
-            {guards.map((item) => (
+            {guards.map((item, index) => (
               <Reveal key={item.t}>
                 <article>
+                  <span className="ziad-rule-num" aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   <item.icon aria-hidden="true" />
                   <h3>{item.t}</h3>
                   <p>{item.d}</p>
@@ -1369,7 +1389,8 @@ export function EditorialHomepage() {
               </p>
             </header>
           </Reveal>
-          <Reveal>
+          <Reveal className="ziad-pricing-controls">
+            <CurrencySelect value={pricingCurrency} onChange={setPricingCurrency} />
             <div className="sahl-home-billing" role="radiogroup" aria-label="دورة الفوترة">
               <Button
                 type="button"
@@ -1395,8 +1416,7 @@ export function EditorialHomepage() {
           </Reveal>
           <div className="sahl-plan-grid">
             {plans.map((plan, planIndex) => {
-              const displayPrice = priceOf(plan, pricingYearly, country);
-              const numericPrice = Number(displayPrice.replace(/,/g, ""));
+              const price = priceOf(plan, pricingYearly, pricingCurrency);
               return (
               <Reveal key={plan.id} className="sahl-plan-reveal">
                 <article
@@ -1409,13 +1429,13 @@ export function EditorialHomepage() {
                     <p>{plan.desc}</p>
                   </header>
                   <div className="sahl-price">
-                    {Number.isFinite(numericPrice) ? (
+                    {price.kind === "amount" ? (
                       <>
-                        <strong><AnimatedNumber value={numericPrice} duration={450} /></strong>
-                        <span>{pricingCurrency.label} / شهريًا</span>
+                        <strong><AnimatedNumber value={price.value} duration={450} /></strong>
+                        <span>{pricingSymbol} / شهريًا</span>
                       </>
                     ) : (
-                      <strong className="is-custom">حسب الطلب</strong>
+                      <strong className="is-custom">{price.kind === "soon" ? "قريبًا" : "حسب الطلب"}</strong>
                     )}
                   </div>
                   <div className="sahl-plan-divider" aria-hidden="true" />
@@ -1465,8 +1485,8 @@ export function EditorialHomepage() {
               </h2>
             </header>
           </Reveal>
-          <Accordion type="single" collapsible>
-            {faqs.slice(0, 6).map((item, index) => (
+          <Accordion type="single" collapsible defaultValue="faq-0">
+            {faqs.map((item, index) => (
               <AccordionItem key={item.q} value={`faq-${index}`}>
                 <AccordionTrigger>{item.q}</AccordionTrigger>
                 <AccordionContent>{item.a}</AccordionContent>
