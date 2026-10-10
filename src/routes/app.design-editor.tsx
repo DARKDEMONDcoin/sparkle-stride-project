@@ -30,10 +30,10 @@ const FORMATS: Record<FormatKey, { label: string; width: number; height: number 
   landscape: { label: "عرضي", width: 1200, height: 628 },
 };
 const PALETTES = [
-  { id: "ink", label: "حبر وذهب", bg: "#171513", accent: "#d6a64b", text: "#fffaf0" },
-  { id: "jade", label: "يشم", bg: "#123c3a", accent: "#e1ad53", text: "#fffdf6" },
-  { id: "paper", label: "ورق", bg: "#f7f4ed", accent: "#9d512d", text: "#191715" },
-  { id: "coral", label: "مرجان", bg: "#8d3f2a", accent: "#f4c76a", text: "#fff9ef" },
+  { id: "ink", label: "حبر وذهب", bg: "#0E2A2B", accent: "#E0A526", text: "#F7F2E8" },
+  { id: "jade", label: "يشم", bg: "#137C6F", accent: "#E0A526", text: "#FFFFFF" },
+  { id: "paper", label: "ورق", bg: "#F7F2E8", accent: "#C94A24", text: "#0E2A2B" },
+  { id: "coral", label: "مرجان", bg: "#C94A24", accent: "#FBEFD0", text: "#FFFFFF" },
 ];
 
 function id() { return Math.random().toString(36).slice(2, 10); }
