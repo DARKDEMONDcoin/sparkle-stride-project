@@ -67,7 +67,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
               reset();
             }}
           >
-            المحاولة مجدداً
+            المحاولة مجددًا
           </Button>
           <Button variant="outline" asChild>
             <Link to="/">العودة للرئيسية</Link>
@@ -92,19 +92,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "msapplication-TileColor", content: BROWSER_THEME },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "default" },
-      { title: "زياد | فريق موظفين ذكاء اصطناعي لشركتك" },
+      { title: "زياد | فريق ذكاء اصطناعي يعمل بالعربية لمشروعك" },
       {
         name: "description",
         content:
-          "زياد يمنحك فريق موظفين بالذكاء الاصطناعي يعملون 24/7: تسويق ونشر على السوشيال، رد على العملاء، مبيعات، وتصميم — بالعربي وبفهم كامل للسوق.",
+          "زياد يجمع ستة موظفين رقميين بالعربية للمحتوى والتصميم والمبيعات والتنظيم والبحث والتحليل، في مساحة عمل واحدة، وتراجع أنت كل خطوة قبل التنفيذ.",
       },
       { name: "author", content: "Ziad" },
-      { property: "og:title", content: "زياد | فريق موظفين ذكاء اصطناعي لشركتك" },
+      { property: "og:title", content: "زياد | فريق ذكاء اصطناعي يعمل بالعربية لمشروعك" },
       {
         property: "og:description",
-        content: "موظفو ذكاء اصطناعي ينشرون، يردون، ويبيعون نيابة عنك — بالعربي، على مدار الساعة.",
+        content: "ستة موظفين رقميين يكتبون ويصمّمون ويبيعون نيابةً عنك بالعربية، وأنت تعتمد كل خطوة قبل التنفيذ.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "ar_SA" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [

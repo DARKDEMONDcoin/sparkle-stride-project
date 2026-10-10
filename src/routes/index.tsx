@@ -44,8 +44,8 @@ export const Route = createFileRoute("/")({
               inLanguage: "ar",
               offers: {
                 "@type": "Offer",
-                price: "149",
-                priceCurrency: "SAR",
+                price: "1980",
+                priceCurrency: "EGP",
                 description: "باقة البداية — موظف رقمي واحد",
               },
             },
