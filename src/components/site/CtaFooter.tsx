@@ -22,7 +22,7 @@ export function CtaFooter() {
                 فريقك الجديد جاهز للعمل الليلة
               </h2>
               <p className="mx-auto mt-5 max-w-xl text-lg text-white/90">
-                ابدأ مجاناً بدون بطاقة ائتمان. أول منشور خلال دقائق، وأول تقرير خلال أسبوع.
+                ابدأ مجانًا بدون بطاقة ائتمان. أول منشور خلال دقائق، وأول تقرير خلال أسبوع.
               </p>
               <div className="mt-9 flex flex-wrap justify-center gap-3">
                 <Link

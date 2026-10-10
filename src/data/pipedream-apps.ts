@@ -3,7 +3,7 @@
  * كل موظف يعمل على منصاته عبر Pipedream كوسيط واحد لكل التكاملات.
  *
  * المنطق مطابق لمنظومة Marblism (Eva/Sonny/Penny/Stan) وأوسع منها:
- * لكل تطبيق «قراءة» تغذّي الموظف بالواقع، و«إجراءات» ينفّذها فعلياً بعد اعتمادك.
+ * لكل تطبيق «قراءة» تغذّي الموظف بالواقع، و«إجراءات» ينفّذها فعليًا بعد اعتمادك.
  */
 
 export type PipedreamAction = {
@@ -515,7 +515,7 @@ export function isPipedreamProvider(provider: string): boolean {
   return byProvider.has(provider);
 }
 
-/** إجراء محدد على منصة محددة (إن كان مدعوماً). */
+/** إجراء محدد على منصة محددة (إن كان مدعومًا). */
 export function pipedreamAction(provider: string, action: string): PipedreamAction | undefined {
   return byProvider.get(provider)?.actions?.[action];
 }

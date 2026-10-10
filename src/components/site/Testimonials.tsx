@@ -3,7 +3,7 @@ import { Reveal } from "@/components/Reveal";
 
 const quotes = [
   {
-    q: "أول مرة أشوف أداة تكتب بلهجتنا بدون ما تبان مترجمة. سِراج بيدير حسابات ٣ فروع لوحده.",
+    q: "أول مرة أشوف أداة تكتب بلهجتنا بدون ما تبان مترجمة. سِراج بيدير حسابات 3 فروع لوحده.",
     n: "ريم القحطاني",
     r: "مؤسِّسة، سلسلة مقاهي",
   },
@@ -58,7 +58,7 @@ export function Testimonials() {
         el.classList.remove("is-user");
       }
       if (!paused && !el.matches(":hover")) {
-        // RTL: التمرير التلقائي البطيء جداً (تراكم عشري حتى لا تُهمل الكسور)
+        // RTL: التمرير التلقائي البطيء جدًا (تراكم عشري حتى لا تُهمل الكسور)
         const half = el.scrollWidth / 2;
         pos -= (dt / 1000) * 22;
         if (Math.abs(pos) >= half) pos += half;

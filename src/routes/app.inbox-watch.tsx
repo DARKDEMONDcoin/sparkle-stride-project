@@ -75,7 +75,7 @@ function Row({ item, workspaceId }: { item: InboxItem; workspaceId: string }) {
           {draft.error ? <p className="text-xs text-coral">{(draft.error as Error).message}</p> : null}
         </>
       ) : (
-        <p className="text-xs text-muted-foreground">لا تحتاج رداً.</p>
+        <p className="text-xs text-muted-foreground">لا تحتاج ردًا.</p>
       )}
     </article>
   );
@@ -94,7 +94,7 @@ function InboxWatchPage() {
             <MailWarning className="size-5 text-primary" /> أمَل تراجع بريدك
           </div>
           <p className="mb-3 text-sm text-muted-foreground">
-            تبحث في رسائل آخر 4 أيام عن التي لم ترد عليها، وترتبها حسب الأهمية، وتجهّز لك رداً، وتحذّرك من رسائل الاحتيال. لا يُرسل أي رد — يُحفظ مسودة فقط لتراجعه.
+            تبحث في رسائل آخر 4 أيام عن التي لم ترد عليها، وترتبها حسب الأهمية، وتجهّز لك ردًا، وتحذّرك من رسائل الاحتيال. لا يُرسل أي رد — يُحفظ مسودة فقط لتراجعه.
           </p>
           <button
             onClick={() => run.mutate()}

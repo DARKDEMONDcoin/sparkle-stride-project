@@ -18,7 +18,7 @@ export const BROWSER_THEME = "#137C6F";
  * أزرار التنقل السفلية الثلاثة في هواتف أندرويد: بلا خلفية ظاهرة.
  * شريط أزرار النظام يأخذ لونه من theme-color، وكثير من المتصفحات تتجاهل
  * قناة الشفافية فتظهره أسود معتم؛ لذلك نستخدم أبيض يطابق خلفية الصفحة
- * فيندمج الشريط معها تماماً ويظهر شفافاً، مع رموز داكنة يختارها النظام.
+ * فيندمج الشريط معها تمامًا ويظهر شفافًا، مع رموز داكنة يختارها النظام.
  */
 export const BROWSER_NAV_THEME = "#F7F2E8";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -83,8 +83,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      // شريط أزرار النظام السفلية في هواتف أندرويد: شفاف تماماً بلا خلفية،
-      // ومع color-scheme: light يختار النظام رموزاً داكنة لأعلى تباين مع
+      // شريط أزرار النظام السفلية في هواتف أندرويد: شفاف تمامًا بلا خلفية،
+      // ومع color-scheme: light يختار النظام رموزًا داكنة لأعلى تباين مع
       // الصفحات الفاتحة. وسم واحد بلا media: المتصفحات تُدمج الوسوم المتشابهة،
       // وبقاء وسم مقيّد بـ media كان يجعل اللون يختفي على بعض الأجهزة.
       { name: "theme-color", content: BROWSER_NAV_THEME },

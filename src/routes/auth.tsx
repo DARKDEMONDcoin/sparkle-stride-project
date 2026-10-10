@@ -31,7 +31,7 @@ export const Route = createFileRoute("/auth")({
       {
         name: "description",
         content:
-          "سجّل حساباً مجانياً في زياد خلال دقيقة، أو سجّل الدخول إلى مساحة عملك — فريق موظفين بالذكاء الاصطناعي يعمل بالعربية.",
+          "سجّل حسابًا مجانيًا في زياد خلال دقيقة، أو سجّل الدخول إلى مساحة عملك — فريق موظفين بالذكاء الاصطناعي يعمل بالعربية.",
       },
       { property: "og:title", content: "أنشئ حسابك في زياد" },
       {
@@ -86,9 +86,9 @@ function arabicError(message: string) {
   if (m.includes("email not confirmed"))
     return "لم يتم تأكيد البريد بعد — افتح رسالة التأكيد في بريدك.";
   if (m.includes("password should be at least"))
-    return "كلمة المرور قصيرة جداً — ٨ أحرف على الأقل.";
+    return "كلمة المرور قصيرة جدًا — 8 أحرف على الأقل.";
   if (m.includes("provider is not enabled") || m.includes("unsupported provider"))
-    return "الدخول عبر Google غير مفعّل حالياً — استخدم البريد وكلمة المرور.";
+    return "الدخول عبر Google غير مفعّل حاليًا — استخدم البريد وكلمة المرور.";
   if (m.includes("rate limit") || m.includes("too many"))
     return "محاولات كثيرة في وقت قصير — انتظر دقيقة ثم أعد المحاولة.";
   if (m.includes("invalid email") || m.includes("email address"))
@@ -206,9 +206,9 @@ function AuthPage() {
     if (!mail) e["email"] = "أدخل بريدك الإلكتروني.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail)) e["email"] = "صيغة البريد غير صحيحة.";
     if (!password) e["password"] = "أدخل كلمة المرور.";
-    else if (isSignup && password.length < 8) e["password"] = "٨ أحرف على الأقل.";
+    else if (isSignup && password.length < 8) e["password"] = "8 أحرف على الأقل.";
     if (isSignup && fullName.trim().length < 3)
-      e["fullName"] = "اكتب اسمك الكامل (٣ أحرف على الأقل).";
+      e["fullName"] = "اكتب اسمك الكامل (3 أحرف على الأقل).";
     setErrors(e);
     return Object.keys(e).length === 0;
   }
@@ -243,7 +243,7 @@ function AuthPage() {
             res.reason === "duplicate"
               ? "هذا البريد مسجّل بالفعل — سجّل الدخول أو استعد كلمة المرور."
               : res.reason === "password"
-                ? "كلمة المرور غير مقبولة — اجعلها ٨ أحرف على الأقل وأقوى."
+                ? "كلمة المرور غير مقبولة — اجعلها 8 أحرف على الأقل وأقوى."
                 : res.reason === "rate_limited"
                   ? "محاولات كثيرة من هذا الجهاز — انتظر بضع دقائق ثم أعد المحاولة."
                   : "تعذّر إنشاء الحساب الآن — أعد المحاولة بعد لحظات.",
@@ -299,7 +299,7 @@ function AuthPage() {
     setFormError("");
     const mail = email.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail)) {
-      setErrors({ email: "أدخل بريدك أولاً لنرسل رابط الاستعادة." });
+      setErrors({ email: "أدخل بريدك أولًا لنرسل رابط الاستعادة." });
       return;
     }
     setBusy(true);

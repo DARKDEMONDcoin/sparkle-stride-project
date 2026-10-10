@@ -47,7 +47,7 @@ const GOALS = ["مبيعات أكثر", "زيارات من جوجل", "حجوز�
 
 const SCAN_STEPS = [
   "أقرأ صفحات موقعك وأفهم نشاطك",
-  "أفحص السيو والسرعة فحصاً حقيقياً",
+  "أفحص السيو والسرعة فحصًا حقيقيًا",
   "أقيس طلب الكلمات في بحث جوجل وبينج",
   "أجرد محتوى منافسيك من خرائط مواقعهم",
   "أبحث عن حضورك على المنصات وأرتّب خطة البداية",
@@ -71,8 +71,8 @@ function DiscoveryPage() {
     {
       from: "nour",
       text: savedSite
-        ? `أهلاً 👋 أنا نور. هأعمل لك كشفاً كاملاً لعلامتك من رابط واحد. موقعك هو ${savedSite}؟ اكتب «نعم» أو ابعث رابطاً آخر.`
-        : "أهلاً 👋 أنا نور. ابعث لي رابط موقعك وهأفحص كل شيء: صحة الموقع، ما يبحث عنه جمهورك، منافسوك، وأين تبدأ.",
+        ? `أهلًا 👋 أنا نور. هأعمل لك كشفًا كاملًا لعلامتك من رابط واحد. موقعك هو ${savedSite}؟ اكتب «نعم» أو ابعث رابطًا آخر.`
+        : "أهلًا 👋 أنا نور. ابعث لي رابط موقعك وهأفحص كل شيء: صحة الموقع، ما يبحث عنه جمهورك، منافسوك، وأين تبدأ.",
     },
   ]);
   const endRef = useRef<HTMLDivElement | null>(null);
@@ -93,14 +93,14 @@ function DiscoveryPage() {
         "nour",
         `خلصت ✅ جاهزية علامتك ${r.readiness}/100. ${
           r.actions.length ? `أهم خطوة الآن: ${r.actions[0]!.title}.` : "التقرير الكامل تحت."
-        } التفاصيل كلها ظاهرة أسفل المحادثة — اضغط أي بند لأبدأ تنفيذه فوراً.`,
+        } التفاصيل كلها ظاهرة أسفل المحادثة — اضغط أي بند لأبدأ تنفيذه فورًا.`,
       );
     },
     onError: (e) => {
       setStep("url");
       say(
         "nour",
-        `تعذّر إكمال الفحص: ${e instanceof Error ? e.message : "خطأ غير متوقع"}. جرّب رابطاً آخر.`,
+        `تعذّر إكمال الفحص: ${e instanceof Error ? e.message : "خطأ غير متوقع"}. جرّب رابطًا آخر.`,
       );
     },
   });
@@ -108,7 +108,7 @@ function DiscoveryPage() {
   const start = (finalUrl: string, finalGoal: string | null, finalRivals: string[]) => {
     setStep("running");
     setScanStep(0);
-    say("nour", "تمام، بدأت الفحص الآن — دقيقة تقريباً.");
+    say("nour", "تمام، بدأت الفحص الآن — دقيقة تقريبًا.");
     scan.mutate({
       url: finalUrl,
       ...(finalGoal ? { goal: finalGoal } : {}),
@@ -318,7 +318,7 @@ function ReportView({ report }: { report: DiscoveryReport }) {
         <section className="rounded-3xl border border-border bg-card p-6">
           <h2 className="font-display text-lg font-black">ابدأ من هنا</h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            مرتّبة حسب الأثر — اضغط أي بند ليبدأ الموظف المسؤول فوراً.
+            مرتّبة حسب الأثر — اضغط أي بند ليبدأ الموظف المسؤول فورًا.
           </p>
           <div className="mt-4 space-y-3">
             {actions.map((a) => {

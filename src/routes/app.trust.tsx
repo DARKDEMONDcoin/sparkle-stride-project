@@ -112,7 +112,7 @@ function TrustPage() {
     <AppShell title="الثقة والصلاحيات">
       <div className="mx-auto max-w-3xl space-y-4 p-4" dir="rtl">
         <div className="flex items-center gap-2 font-semibold">
-          <ShieldCheck className="size-5 text-primary" /> أنت المتحكم دائماً
+          <ShieldCheck className="size-5 text-primary" /> أنت المتحكم دائمًا
         </div>
         <div className="flex gap-2">
           {([
@@ -135,7 +135,7 @@ function TrustPage() {
         {q.data && tab === "profile" ? (
           <div className="space-y-3">
             <p className="text-sm text-muted-foreground">
-              كل ما تعلّمه الفريق من محادثاتك: قراراتك وتفضيلاتك. احذف أي شيء لم يعد صحيحاً وسيتوقف الفريق عن استخدامه فوراً.
+              كل ما تعلّمه الفريق من محادثاتك: قراراتك وتفضيلاتك. احذف أي شيء لم يعد صحيحًا وسيتوقف الفريق عن استخدامه فورًا.
             </p>
             {q.data.decisions.length + q.data.memories.length === 0 ? (
               <p className="rounded-2xl border border-border bg-card p-4 text-sm">لا شيء محفوظ بعد.</p>

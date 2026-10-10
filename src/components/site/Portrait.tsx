@@ -29,7 +29,7 @@ export function Portrait({ memberId, name, className, eager }: PortraitProps) {
 }
 
 /**
- * مبدّل البلد — يُكتشف بلد الزائر تلقائياً ويستطيع تغييره في أي وقت.
+ * مبدّل البلد — يُكتشف بلد الزائر تلقائيًا ويستطيع تغييره في أي وقت.
  */
 export function RegionPicker({ className }: { className?: string }) {
   const { country, countryInfo, setCountry, auto } = useRegion();
@@ -54,7 +54,7 @@ export function RegionPicker({ className }: { className?: string }) {
             {auto && (
               <span className="mt-1 flex items-center gap-1 text-[0.62rem] font-semibold opacity-70">
                 <Sparkles className="size-2.5" />
-                اكتشفناه تلقائياً
+                اكتشفناه تلقائيًا
               </span>
             )}
           </span>

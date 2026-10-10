@@ -34,7 +34,7 @@ export const Route = createFileRoute("/s/$token")({
     </main>
   ),
   errorComponent: () => (
-    <main dir="rtl" className="grid min-h-screen place-items-center p-6">تعذّر فتح الصفحة، حاول لاحقاً.</main>
+    <main dir="rtl" className="grid min-h-screen place-items-center p-6">تعذّر فتح الصفحة، حاول لاحقًا.</main>
   ),
   component: SharedPage,
 });

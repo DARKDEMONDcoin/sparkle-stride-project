@@ -6,7 +6,7 @@ import { team } from "@/data/team";
 
 const USER_MSG = "اعملي بوست عن العرض الجديد";
 const REPLY =
-  "تمام 👌 عرض الجمعة: «خصم ٢٥٪ على كل الطلبات لمدة ٤٨ ساعة فقط». كتبت المسودة بلهجتك، صمّمت صورة مربعة، وحضّرتها لإنستقرام وفيسبوك — تحت أمرك للنشر.";
+  "تمام 👌 عرض الجمعة: «خصم 25% على كل الطلبات لمدة 48 ساعة فقط». كتبت المسودة بلهجتك، صمّمت صورة مربعة، وحضّرتها لإنستقرام وفيسبوك — تحت أمرك للنشر.";
 
 type Stage = "typing-user" | "thinking" | "typing-reply" | "pending" | "published";
 
@@ -149,7 +149,7 @@ export function ZiadHero() {
             {showCard ? (
               <article className={`sahl-approval-card${stage === "published" ? " is-done" : ""}`}>
                 <div className="sahl-approval-thumb" aria-hidden="true" />
-                <strong>منشور: عرض الجمعة −٢٥٪</strong>
+                <strong>منشور: عرض الجمعة −25%</strong>
                 <small>إنستقرام + فيسبوك</small>
                 <span>
                   {stage === "published" ? (

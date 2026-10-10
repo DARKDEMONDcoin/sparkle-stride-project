@@ -3,7 +3,7 @@ import { secretsMatch } from "@/lib/timing-safe";
 
 /**
  * ويبهوك واتساب للأعمال: يستقبل رسائل صاحب البيزنس ويرد بمسودة المنشور،
- * وينشر فعلياً بعد موافقته الصريحة. الأمان: كلمة تحقق مخزّنة لكل مساحة عمل + معرّف رقم الإرسال.
+ * وينشر فعليًا بعد موافقته الصريحة. الأمان: كلمة تحقق مخزّنة لكل مساحة عمل + معرّف رقم الإرسال.
  */
 type WaChange = {
   value?: {
@@ -85,7 +85,7 @@ export const Route = createFileRoute("/api/public/whatsapp/webhook")({
                     externalId: message.from,
                     text,
                   })
-                : "أرسل طلبك نصاً من فضلك — أتعامل حالياً مع الرسائل النصية.";
+                : "أرسل طلبك نصًا من فضلك — أتعامل حاليًا مع الرسائل النصية.";
               await sendWhatsapp(match.creds, message.from, reply);
             } catch (e) {
               const detail = e instanceof Error ? e.message : "خطأ غير معروف";
@@ -103,7 +103,7 @@ export const Route = createFileRoute("/api/public/whatsapp/webhook")({
           }
         }
 
-        // واتساب يعيد الإرسال عند أي رد غير 200 — نرد دائماً بنجاح بعد المعالجة.
+        // واتساب يعيد الإرسال عند أي رد غير 200 — نرد دائمًا بنجاح بعد المعالجة.
         return Response.json({ ok: true });
       },
     },

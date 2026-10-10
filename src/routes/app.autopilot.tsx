@@ -19,7 +19,7 @@ export const Route = createFileRoute("/app/autopilot")({
           "خلّ سِراج يشتغل لوحده: يكتب منشوراتك اليومية بصورها وينشرها على إنستجرام وفيسبوك ولينكدإن وإكس في مواعيدها.",
       },
       { property: "og:title", content: "الطيار الآلي | زياد" },
-      { property: "og:description", content: "محتوى يومي يُكتب ويُنشر تلقائياً بلا تدخّل منك." },
+      { property: "og:description", content: "محتوى يومي يُكتب ويُنشر تلقائيًا بلا تدخّل منك." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex" },
@@ -138,7 +138,7 @@ function AutopilotPage() {
       setNote(
         res.report.status === "generated"
           ? res.report.created
-            ? `تم تجهيز ${res.report.created} منشوراً — تابعها في طابور النشر.`
+            ? `تم تجهيز ${res.report.created} منشورًا — تابعها في طابور النشر.`
             : "تم توليد المنشور — راجعه في صفحة الموافقات."
           : (res.report.note ?? "لم يُنتج شيء هذه المرة."),
       );
@@ -269,7 +269,7 @@ function AutopilotPage() {
             value={brief}
             onChange={(e) => setBrief(e.target.value)}
             rows={3}
-            placeholder="مثال: محمصة قهوة مختصة في جدة — نبيع حبوب مختصة واشتراكات شهرية، الجمهور شباب ٢٥–٤٠."
+            placeholder="مثال: محمصة قهوة مختصة في جدة — نبيع حبوب مختصة واشتراكات شهرية، الجمهور شباب 25–40."
             className="mt-3 w-full rounded-2xl border border-border bg-background p-4 text-sm leading-relaxed outline-none focus:border-foreground"
           />
           <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -315,7 +315,7 @@ function AutopilotPage() {
               onClick={() => addSlot(newSlot)}
               className="rounded-full bg-foreground px-4 py-2 text-sm font-bold text-background"
             >
-              أضف موعداً
+              أضف موعدًا
             </button>
             <label className="ms-auto flex items-center gap-2 text-sm font-bold">
               التوقيت:
@@ -346,7 +346,7 @@ function AutopilotPage() {
                 </button>
               ))
             ) : (
-              <span className="text-sm text-ink-soft">لم تضف موعداً بعد.</span>
+              <span className="text-sm text-ink-soft">لم تضف موعدًا بعد.</span>
             )}
           </div>
 

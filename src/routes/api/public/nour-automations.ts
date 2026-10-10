@@ -3,7 +3,7 @@ import { secretsMatch } from "@/lib/timing-safe";
 
 /**
  * مشغّل الجدولة التلقائية لنور: يقرأ الجدولات المستحقة وينفّذها بنفس نواة التنفيذ اليدوية،
- * ثم يحسب الموعد القادم، ويرسل المخرج مسودةً للمنصة المربوطة إن كان النشر التلقائي مفعّلاً.
+ * ثم يحسب الموعد القادم، ويرسل المخرج مسودةً للمنصة المربوطة إن كان النشر التلقائي مفعّلًا.
  * محمي بترويسة x-cron-secret (LOVABLE_CRON_SECRET أو الرمز الداخلي في private.cron_tokens).
  */
 export const Route = createFileRoute("/api/public/nour-automations")({
@@ -18,7 +18,7 @@ export const Route = createFileRoute("/api/public/nour-automations")({
         const envSecret = process.env["LOVABLE_CRON_SECRET"];
         let authorized = secretsMatch(provided, envSecret);
         if (!authorized) {
-          // الرمز الخاص بهذا المسار أولاً؛ ورمز nour-weekly يُقبل توافقاً مع إعدادات
+          // الرمز الخاص بهذا المسار أولًا؛ ورمز nour-weekly يُقبل توافقًا مع إعدادات
           // كرون قديمة ضُبطت باسمه قبل فصل المسارين.
           for (const name of ["nour-automations", "nour-weekly"]) {
             const { data: valid } = await supabaseAdmin.rpc("verify_cron_token", {
@@ -34,7 +34,7 @@ export const Route = createFileRoute("/api/public/nour-automations")({
         if (!authorized) return new Response("unauthorized", { status: 401 });
 
         const now = new Date();
-        // حجز الصف قبل تنفيذه يمنع تشغيل نفس المهمة مرتين لو وصل نداءان معاً.
+        // حجز الصف قبل تنفيذه يمنع تشغيل نفس المهمة مرتين لو وصل نداءان معًا.
         const LOCK_MS = 15 * 60 * 1000;
         const staleBefore = new Date(now.getTime() - LOCK_MS).toISOString();
         const { data: candidates, error } = await supabaseAdmin

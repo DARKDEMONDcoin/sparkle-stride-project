@@ -20,9 +20,9 @@ import { SITE_ORIGIN } from "@/lib/site-origin";
 
 export const Route = createFileRoute("/app/referral")({
   head: () => ({ meta: [
-    { title: "شارك واربح حتى ٥٠٪ | زياد" },
-    { name: "description", content: "لوحة إحالات زياد: شارك رابطك، تابع عملاءك وأرباحك، وارتقِ بعمولتك حتى ٥٠٪." },
-    { property: "og:title", content: "شارك واربح حتى ٥٠٪ | زياد" },
+    { title: "شارك واربح حتى 50% | زياد" },
+    { name: "description", content: "لوحة إحالات زياد: شارك رابطك، تابع عملاءك وأرباحك، وارتقِ بعمولتك حتى 50%." },
+    { property: "og:title", content: "شارك واربح حتى 50% | زياد" },
     { property: "og:description", content: "تابع الإحالات والعمولات وطلبات السحب من مكان واحد." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary" },
@@ -70,9 +70,9 @@ function PartnerCard({ rate, level }: { rate: number; level: string }) {
     el.style.setProperty("--rx", "0deg"); el.style.setProperty("--ry", "0deg");
   }
   return <div className="ziad-card-scene">
-    <div ref={ref} onPointerMove={move} onPointerLeave={leave} className="ziad-partner-card" role="img" aria-label={`بطاقة شريك زياد، مستوى ${level}، عمولة ${rate}٪`}>
+    <div ref={ref} onPointerMove={move} onPointerLeave={leave} className="ziad-partner-card" role="img" aria-label={`بطاقة شريك زياد، مستوى ${level}، عمولة ${rate}%`}>
       <div className="ziad-card-top"><div className="ziad-card-brand"><LogoMark size={52} /><div><strong>زياد</strong><span dir="ltr">ZIAD PARTNERS</span></div></div><Crown className="size-6" aria-hidden="true" /></div>
-      <div className="ziad-card-middle"><div><span className="ziad-card-caption">عمولتك المتكررة</span><strong className="ziad-card-rate">{rate.toLocaleString("ar")}<small>٪</small></strong></div><div className="ref-chip" aria-hidden="true" /></div>
+      <div className="ziad-card-middle"><div><span className="ziad-card-caption">عمولتك المتكررة</span><strong className="ziad-card-rate">{rate.toLocaleString("ar")}<small>%</small></strong></div><div className="ref-chip" aria-hidden="true" /></div>
       <div className="ziad-card-bottom"><span>عضوية الشركاء <b>· {level}</b></span><span dir="ltr">ZIAD / {String(rate).padStart(2, "0")}</span></div>
     </div>
     <p className="ziad-card-note"><span /> شريك زياد · مستوى {level}</p>
@@ -80,10 +80,10 @@ function PartnerCard({ rate, level }: { rate: number; level: string }) {
 }
 
 const faqs = [
-  { q: "متى تُحتسب العمولة؟", a: "فقط بعد دفع العميل فعلياً. مجرد التسجيل لا يُحتسب، والعمولة تتكرر مع كل دفعة مؤكدة." },
-  { q: "متى أستطيع سحب أرباحي؟", a: "تبقى العمولة معلّقة ٣٠ يوماً (فترة الاسترداد)، ثم تنتقل للرصيد المتاح. الحد الأدنى للسحب ٥٠ دولاراً." },
-  { q: "كيف أرتقي لعمولة أعلى؟", a: "المستوى يعتمد على عدد عملائك النشطين: ٥ عملاء = ٣٠٪، ١٠ = ٤٠٪، ٢٥ = ٥٠٪." },
-  { q: "ماذا يحدث عند الاسترداد؟", a: "يُعكس مبلغ العمولة المرتبط تلقائياً ويُحفظ السبب في السجل، فتبقى أرقامك دقيقة." },
+  { q: "متى تُحتسب العمولة؟", a: "فقط بعد دفع العميل فعليًا. مجرد التسجيل لا يُحتسب، والعمولة تتكرر مع كل دفعة مؤكدة." },
+  { q: "متى أستطيع سحب أرباحي؟", a: "تبقى العمولة معلّقة 30 يومًا (فترة الاسترداد)، ثم تنتقل للرصيد المتاح. الحد الأدنى للسحب 50 دولارًا." },
+  { q: "كيف أرتقي لعمولة أعلى؟", a: "المستوى يعتمد على عدد عملائك النشطين: 5 عملاء = 30%، 10 = 40%، 25 = 50%." },
+  { q: "ماذا يحدث عند الاسترداد؟", a: "يُعكس مبلغ العمولة المرتبط تلقائيًا ويُحفظ السبب في السجل، فتبقى أرقامك دقيقة." },
 ];
 
 function ReferralPage() {
@@ -117,7 +117,7 @@ function ReferralPage() {
     { label: "زيارات الرابط", value: dashboard.clicks.toLocaleString("ar"), icon: MousePointerClick },
     { label: "حسابات جديدة", value: dashboard.signups.toLocaleString("ar"), icon: Users },
     { label: "عملاء نشطون", value: dashboard.active.toLocaleString("ar"), icon: UserCheck },
-    { label: "معدل التحويل", value: `${conversionRate.toLocaleString("ar")}٪`, icon: TrendingUp },
+    { label: "معدل التحويل", value: `${conversionRate.toLocaleString("ar")}%`, icon: TrendingUp },
   ] : [], [dashboard, conversionRate]);
 
   async function copyLink() {
@@ -143,19 +143,19 @@ function ReferralPage() {
             <p className="ziad-referral-kicker">توصية منك. فرصة أكبر لك.</p>
             <h2 id="partner-heading">نادي شركاء <span>زياد.</span></h2>
             <p className="ziad-referral-promise">شارك الفريق الذكي.<br />واكسب مع كل اشتراك.</p>
-            <p className="ziad-referral-description">عمولة متكررة من مدفوعات عملائك المؤكدة، تبدأ من ٢٠٪ وتصل إلى ٥٠٪ مع ارتقائك.</p>
+            <p className="ziad-referral-description">عمولة متكررة من مدفوعات عملائك المؤكدة، تبدأ من 20% وتصل إلى 50% مع ارتقائك.</p>
             <Button className="ziad-gold-button" onClick={() => void shareLink()}><Share2 /> شارك رابطك <ArrowLeft /></Button>
             <div className="ziad-referral-trust"><span><CheckCircle2 /> مدفوعات مؤكدة</span><span><Scale /> شروط واضحة</span></div>
           </div>
           <div className="ziad-referral-card-area"><PartnerCard rate={dashboard.rate} level={currentLevel.name} /></div>
         </div>
-        <div className="ziad-referral-hero-footer"><span>طموحك يستحق شراكة.</span><span>حتى <strong>٥٠٪</strong> عمولة متكررة <TrendingUp className="size-4" /></span></div>
+        <div className="ziad-referral-hero-footer"><span>طموحك يستحق شراكة.</span><span>حتى <strong>50%</strong> عمولة متكررة <TrendingUp className="size-4" /></span></div>
       </section>
 
       <section className="ziad-referral-link" aria-labelledby="referral-link-heading">
         <div className="ziad-referral-section-title"><div><p className="ziad-section-number" dir="ltr">01 / YOUR INVITATION</p><h3 id="referral-link-heading">رابطك. بداية كل فرصة.</h3></div><Link2 className="size-6 text-gold-deep" /></div>
         <div className="ziad-link-row"><div className="ziad-link-field" dir="ltr"><Link2 className="size-4 shrink-0" /><code>{referralUrl}</code></div><Button className="ziad-copy-button" onClick={() => void copyLink()}>{copied ? <Check /> : <Copy />} {copied ? "تم النسخ" : "نسخ الرابط"}</Button></div>
-        <div className="ziad-link-footer"><p>كل تسجيل عبر رابطك يُنسب إليك تلقائياً.</p><div><Button variant="ghost" onClick={() => void shareLink()}><Share2 /> مشاركة</Button><Button asChild variant="ghost"><a href={`https://wa.me/?text=${encodeURIComponent(`جرّب زياد وفريقه الذكي (رابط إحالة: قد أحصل على عمولة إذا اشتركت): ${referralUrl}`)}`} target="_blank" rel="noreferrer"><Send /> واتساب</a></Button></div></div>
+        <div className="ziad-link-footer"><p>كل تسجيل عبر رابطك يُنسب إليك تلقائيًا.</p><div><Button variant="ghost" onClick={() => void shareLink()}><Share2 /> مشاركة</Button><Button asChild variant="ghost"><a href={`https://wa.me/?text=${encodeURIComponent(`جرّب زياد وفريقه الذكي (رابط إحالة: قد أحصل على عمولة إذا اشتركت): ${referralUrl}`)}`} target="_blank" rel="noreferrer"><Send /> واتساب</a></Button></div></div>
       </section>
 
       <section className="ziad-referral-overview" aria-label="أداء الإحالات والأرباح">
@@ -163,7 +163,7 @@ function ReferralPage() {
         <div className="ziad-referral-balance"><div className="ziad-balance-heading"><span><WalletCards className="size-4" /> رصيد شراكتك</span><Button variant="ghost" size="sm" onClick={() => setTab("earnings")}>التفاصيل <ArrowLeft /></Button></div><strong className="ziad-balance-total" dir="ltr">{money(dashboard.totals.available)}</strong><p>متاح للسحب</p><dl><div><dt>قيد الانتظار</dt><dd dir="ltr">{money(dashboard.totals.pending)}</dd></div><div><dt>تم دفعه</dt><dd dir="ltr">{money(dashboard.totals.paid)}</dd></div></dl></div>
       </section>
 
-      <section className="ziad-referral-next" aria-label="المستوى التالي"><div className="ziad-next-icon"><Crown /></div><div className="min-w-0 flex-1"><h3>{nextLevel ? `خطوتك التالية: مستوى ${nextLevel.name}` : "وصلت إلى مستوى النخبة"}</h3><p>{nextLevel ? `باقي ${(nextLevel.count - dashboard.active).toLocaleString("ar")} عملاء نشطين للوصول إلى عمولة ${nextLevel.rate.toLocaleString("ar")}٪` : "عمولتك الحالية ٥٠٪ من المدفوعات المؤكدة"}</p><Progress aria-label="التقدم نحو المستوى التالي" value={Math.max(0, Math.min(100, progress))} className="mt-3 h-1.5" /></div><Button variant="ghost" size="icon" aria-label="عرض مستويات الشراكة" onClick={() => setTab("levels")}><ArrowLeft /></Button></section>
+      <section className="ziad-referral-next" aria-label="المستوى التالي"><div className="ziad-next-icon"><Crown /></div><div className="min-w-0 flex-1"><h3>{nextLevel ? `خطوتك التالية: مستوى ${nextLevel.name}` : "وصلت إلى مستوى النخبة"}</h3><p>{nextLevel ? `باقي ${(nextLevel.count - dashboard.active).toLocaleString("ar")} عملاء نشطين للوصول إلى عمولة ${nextLevel.rate.toLocaleString("ar")}%` : "عمولتك الحالية 50% من المدفوعات المؤكدة"}</p><Progress aria-label="التقدم نحو المستوى التالي" value={Math.max(0, Math.min(100, progress))} className="mt-3 h-1.5" /></div><Button variant="ghost" size="icon" aria-label="عرض مستويات الشراكة" onClick={() => setTab("levels")}><ArrowLeft /></Button></section>
 
       <Tabs value={tab} onValueChange={setTab} dir="rtl" className="ziad-referral-tabs">
         <TabsList className="h-auto w-full justify-start gap-1 overflow-x-auto rounded-none border-b border-border bg-transparent p-0">
@@ -175,7 +175,7 @@ function ReferralPage() {
             {[
               { icon: Link2, title: "شارك رابطك", text: "أرسله لأصحاب أعمال تثق أنهم سيستفيدون، وتابع كل زيارة وتسجيل.", action: <Button className="w-full rounded-lg bg-foreground font-black text-background hover:bg-foreground/90" onClick={() => void copyLink()}><Copy /> نسخ الرابط</Button> },
               { icon: Gift, title: "رشّح بصدق", text: "أفصح أنه رابط إحالة ولا تَعِد بنتائج مضمونة.", action: <Button asChild className="w-full rounded-lg bg-foreground font-black text-background hover:bg-foreground/90"><Link to="/referral-terms"><Scale /> قواعد الترويج</Link></Button> },
-              { icon: WalletCards, title: "استلم أرباحك", text: "بعد ٣٠ يوماً تصبح العمولة متاحة، واسحبها لحسابك البنكي أو PayPal.", action: <Button variant="outline" className="w-full rounded-lg font-black" disabled={dashboard.totals.available < 5000 || dashboard.totals.reserved > 0} onClick={() => setWithdrawOpen(true)}>طلب سحب</Button> },
+              { icon: WalletCards, title: "استلم أرباحك", text: "بعد 30 يومًا تصبح العمولة متاحة، واسحبها لحسابك البنكي أو PayPal.", action: <Button variant="outline" className="w-full rounded-lg font-black" disabled={dashboard.totals.available < 5000 || dashboard.totals.reserved > 0} onClick={() => setWithdrawOpen(true)}>طلب سحب</Button> },
             ].map((c, i) => <motion.article key={c.title} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * .08 }} className="ziad-referral-step flex flex-col">
               <div className="ziad-step-icon"><c.icon className="size-6 text-gold-deep" /></div>
               <h3 className="mt-4 font-display text-base font-black">{c.title}</h3>
@@ -187,7 +187,7 @@ function ReferralPage() {
 
         <TabsContent value="earnings" className="mt-5">
           <div className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-3">
-            <div className="bg-card p-5"><p className="text-xs font-black text-muted-foreground">عمولتك الآن</p><p className="mt-2 font-display text-4xl font-black text-primary">{dashboard.rate.toLocaleString("ar")}٪</p><p className="mt-1 text-xs text-muted-foreground">مستوى {currentLevel.name}</p></div>
+            <div className="bg-card p-5"><p className="text-xs font-black text-muted-foreground">عمولتك الآن</p><p className="mt-2 font-display text-4xl font-black text-primary">{dashboard.rate.toLocaleString("ar")}%</p><p className="mt-1 text-xs text-muted-foreground">مستوى {currentLevel.name}</p></div>
             <div className="bg-card p-5"><p className="text-xs font-black text-muted-foreground">إجمالي ما كسبته</p><p className="mt-2 font-display text-4xl font-black">{money(dashboard.totals.earned)}</p><p className="mt-1 text-xs text-muted-foreground">من مدفوعات مؤكدة فقط</p></div>
             <div className="bg-gold-soft p-5"><p className="text-xs font-black text-gold-deep">الجاهز للسحب</p><p className="mt-2 font-display text-4xl font-black text-gold-deep">{money(dashboard.totals.available)}</p><Button size="sm" className="mt-3 font-black" disabled={dashboard.totals.available < 5000 || dashboard.totals.reserved > 0} onClick={() => setWithdrawOpen(true)}>طلب سحب <ArrowLeft /></Button></div>
           </div>
@@ -199,9 +199,9 @@ function ReferralPage() {
 
         <TabsContent value="levels" className="mt-5">
           <div className="rounded-lg border border-border bg-card p-5">
-            <div className="flex items-start justify-between gap-4"><div><h3 className="font-display text-lg font-black">طريقك إلى ٥٠٪</h3><p className="mt-1 text-sm text-muted-foreground">المستوى يعتمد على عدد العملاء النشطين.</p></div>{nextLevel ? <span className="shrink-0 text-xs font-black text-primary">باقي {(nextLevel.count - dashboard.active).toLocaleString("ar")}</span> : <span className="shrink-0 text-xs font-black text-jade">أعلى مستوى</span>}</div>
+            <div className="flex items-start justify-between gap-4"><div><h3 className="font-display text-lg font-black">طريقك إلى 50%</h3><p className="mt-1 text-sm text-muted-foreground">المستوى يعتمد على عدد العملاء النشطين.</p></div>{nextLevel ? <span className="shrink-0 text-xs font-black text-primary">باقي {(nextLevel.count - dashboard.active).toLocaleString("ar")}</span> : <span className="shrink-0 text-xs font-black text-jade">أعلى مستوى</span>}</div>
             <Progress aria-label="التقدم نحو المستوى التالي" value={Math.max(0, Math.min(100, progress))} className="mt-6 h-2" />
-            <div className="mt-5 grid grid-cols-4 gap-2">{levels.map((level) => { const reached = dashboard.active >= level.count; return <div key={level.rate} className="text-center"><span className={`mx-auto grid size-8 place-items-center rounded-full border text-xs font-black ${reached ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-muted-foreground"}`}>{reached ? <Check className="size-4" /> : level.count.toLocaleString("ar")}</span><p className="mt-2 text-sm font-black">{level.rate.toLocaleString("ar")}٪</p><p className="text-[0.65rem] text-muted-foreground">{level.name}</p></div>; })}</div>
+            <div className="mt-5 grid grid-cols-4 gap-2">{levels.map((level) => { const reached = dashboard.active >= level.count; return <div key={level.rate} className="text-center"><span className={`mx-auto grid size-8 place-items-center rounded-full border text-xs font-black ${reached ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-muted-foreground"}`}>{reached ? <Check className="size-4" /> : level.count.toLocaleString("ar")}</span><p className="mt-2 text-sm font-black">{level.rate.toLocaleString("ar")}%</p><p className="text-[0.65rem] text-muted-foreground">{level.name}</p></div>; })}</div>
           </div>
         </TabsContent>
 

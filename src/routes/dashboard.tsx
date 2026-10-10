@@ -2,7 +2,7 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 
 /**
  * صفحة قديمة للوحة التحكم — مساحة العمل الحقيقية صارت في /app.
- * نحتفظ بالرابط عاملاً ونحوّله حتى لا ينكسر أي رابط قديم.
+ * نحتفظ بالرابط عاملًا ونحوّله حتى لا ينكسر أي رابط قديم.
  */
 export const Route = createFileRoute("/dashboard")({
   beforeLoad: () => {

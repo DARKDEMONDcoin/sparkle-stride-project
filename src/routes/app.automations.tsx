@@ -21,7 +21,7 @@ export const Route = createFileRoute("/app/automations")({
   head: () => ({
     meta: [
       { title: "الجدولة التلقائية | زياد" },
-      { name: "description", content: "اجعل نور تنفّذ مهامها تلقائياً كل يوم أو أسبوع أو شهر." },
+      { name: "description", content: "اجعل نور تنفّذ مهامها تلقائيًا كل يوم أو أسبوع أو شهر." },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -29,9 +29,9 @@ export const Route = createFileRoute("/app/automations")({
 });
 
 const cadenceLabel: Record<string, string> = {
-  daily: "يومياً",
-  weekly: "أسبوعياً",
-  monthly: "شهرياً",
+  daily: "يوميًا",
+  weekly: "أسبوعيًا",
+  monthly: "شهريًا",
 };
 
 const days = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
@@ -176,9 +176,9 @@ function Form({ workspaceId, onClose }: { workspaceId: string; onClose: () => vo
               onChange={(e) => setCadence(e.target.value as typeof cadence)}
               className="mt-1.5 w-full rounded-2xl border border-border bg-background px-3 py-2.5 text-sm"
             >
-              <option value="daily">يومياً</option>
-              <option value="weekly">أسبوعياً</option>
-              <option value="monthly">شهرياً</option>
+              <option value="daily">يوميًا</option>
+              <option value="weekly">أسبوعيًا</option>
+              <option value="monthly">شهريًا</option>
             </select>
           </div>
           <div>
@@ -219,7 +219,7 @@ function Form({ workspaceId, onClose }: { workspaceId: string; onClose: () => vo
             onChange={(e) => setAutoPublish(e.target.checked)}
             className="size-4"
           />
-          أرسل المخرج مسودةً تلقائياً إلى منصة النشر المربوطة
+          أرسل المخرج مسودةً تلقائيًا إلى منصة النشر المربوطة
         </label>
 
         {error ? <p className="mt-3 text-sm font-semibold text-coral">{error}</p> : null}
@@ -293,7 +293,7 @@ function AutomationsPage() {
           <CalendarClock className="mx-auto size-8 text-muted-foreground" />
           <p className="mt-3 font-display font-black">لا جدولات بعد</p>
           <p className="mt-1 text-sm text-muted-foreground">
-            أضف جدولة واحدة، وستجد المخرج جاهزاً في الموافقات كل مرة.
+            أضف جدولة واحدة، وستجد المخرج جاهزًا في الموافقات كل مرة.
           </p>
         </div>
       ) : (

@@ -24,7 +24,7 @@ function supabaseFetch(key: string): typeof fetch {
 
 /**
  * بثّ حقيقي لتنفيذ طلب الموظف: مراحل العمل الفعلية + نص الرد وهو يُكتب.
- * نفس منطق askEmployee تماماً — لا تكرار ولا اختلاف في النتيجة النهائية.
+ * نفس منطق askEmployee تمامًا — لا تكرار ولا اختلاف في النتيجة النهائية.
  */
 export const Route = createFileRoute("/api/employee-stream")({
   server: {
@@ -131,7 +131,7 @@ export const Route = createFileRoute("/api/employee-stream")({
                 try {
                   controller.close();
                 } catch {
-                  /* أُغلق مسبقاً */
+                  /* أُغلق مسبقًا */
                 }
               }
             })();

@@ -91,7 +91,7 @@ function ProposalsPage() {
           {scan.isPending ? "أفحص بياناتك…" : "افحص الآن"}
         </button>
         <span className="text-xs text-muted-foreground">
-          يُفحَص تلقائياً كل يوم، ويمكنك الفحص الآن في أي وقت.
+          يُفحَص تلقائيًا كل يوم، ويمكنك الفحص الآن في أي وقت.
         </span>
       </div>
 

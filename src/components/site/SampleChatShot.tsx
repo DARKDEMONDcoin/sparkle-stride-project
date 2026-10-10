@@ -83,7 +83,7 @@ export function SampleChatShot({
               ) : (
                 <div className="sahl-shot-publish">
                   <div className="sahl-shot-publish-head">
-                    <span>جودة المخرج {card.quality}٪</span>
+                    <span>جودة المخرج {card.quality}%</span>
                   </div>
                   <div className="sahl-shot-publish-actions">
                     <button type="button" className="is-primary" disabled>

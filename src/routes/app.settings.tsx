@@ -140,8 +140,8 @@ function SettingsPage() {
           <p>{tab === "account" ? "بياناتك الشخصية وأمان حسابك" : "مساحة العمل، التفضيلات، والباقات"}</p>
         </div>
         <div className="settings-completion">
-          <div><span>اكتمال مساحة العمل</span><span className="font-semibold text-primary">{profileScore}٪</span></div>
-          <Progress value={profileScore} aria-label={`اكتمال مساحة العمل ${profileScore}٪`} />
+          <div><span>اكتمال مساحة العمل</span><span className="font-semibold text-primary">{profileScore}%</span></div>
+          <Progress value={profileScore} aria-label={`اكتمال مساحة العمل ${profileScore}%`} />
         </div>
       </header>
 
@@ -469,7 +469,7 @@ function AccountPanel({ profile, onNotice }: { profile: ProfileData; onNotice: N
                 className={field}
               />
             </Field>
-            <Field label="رقم الجوال" hint="اختياري — لتنبيهات واتساب مستقبلاً">
+            <Field label="رقم الجوال" hint="اختياري — لتنبيهات واتساب مستقبلًا">
               <input
                 name="phone"
                 type="tel"
@@ -515,13 +515,13 @@ function AccountPanel({ profile, onNotice }: { profile: ProfileData; onNotice: N
         />
         {anonymous ? (
           <div className="rounded-lg border border-primary/20 bg-primary/10 p-4 text-sm">
-            أنت تستخدم التجربة حالياً.{" "}
+            أنت تستخدم التجربة حاليًا.{" "}
             <Link
               to="/auth"
               search={{ mode: "signup" }}
               className="font-bold text-primary underline"
             >
-              أنشئ حساباً دائماً
+              أنشئ حسابًا دائمًا
             </Link>{" "}
             لإدارة كلمة المرور.
           </div>
@@ -536,7 +536,7 @@ function AccountPanel({ profile, onNotice }: { profile: ProfileData; onNotice: N
               if (password.length < 8)
                 return onNotice({
                   type: "error",
-                  text: "كلمة المرور يجب أن تكون ٨ أحرف على الأقل.",
+                  text: "كلمة المرور يجب أن تكون 8 أحرف على الأقل.",
                 });
               if (password !== confirm)
                 return onNotice({ type: "error", text: "كلمتا المرور غير متطابقتين." });
@@ -817,7 +817,7 @@ function BillingPanel({ doneCount, loading }: { doneCount: number; loading: bool
         </Button>
       </div>
       <p className="mt-4 text-xs text-muted-foreground">
-        لا توجد وسيلة دفع مرتبطة بهذه المساحة حالياً.
+        لا توجد وسيلة دفع مرتبطة بهذه المساحة حاليًا.
       </p>
     </SettingsCard>
   );

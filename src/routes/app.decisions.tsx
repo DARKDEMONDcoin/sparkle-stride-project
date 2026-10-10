@@ -68,7 +68,7 @@ function DecisionsPage() {
   return (
     <AppShell
       title="سجل القرارات"
-      lead="كل قرار وقيد ورقم اتفقتم عليه محفوظ هنا، ويُحقن تلقائياً في تعليمات كل موظف قبل أي رد."
+      lead="كل قرار وقيد ورقم اتفقتم عليه محفوظ هنا، ويُحقن تلقائيًا في تعليمات كل موظف قبل أي رد."
     >
       <div className="relative mb-4 max-w-md">
         <Search className="absolute inset-y-0 end-3 my-auto size-4 text-muted-foreground" />
@@ -88,7 +88,7 @@ function DecisionsPage() {
         <div className="rounded-3xl border border-dashed border-border bg-card/60 p-8 text-center">
           <p className="font-display text-lg font-black">لا قرارات محفوظة بعد</p>
           <p className="mt-2 text-sm text-muted-foreground">
-            حين تحسم شيئاً في أي محادثة — ميزانية، أسلوب، منصة، ممنوعات — يحفظه الموظف هنا تلقائياً
+            حين تحسم شيئًا في أي محادثة — ميزانية، أسلوب، منصة، ممنوعات — يحفظه الموظف هنا تلقائيًا
             ويلتزم به في كل ردّ لاحق.
           </p>
         </div>

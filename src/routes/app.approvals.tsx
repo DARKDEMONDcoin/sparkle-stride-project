@@ -78,7 +78,7 @@ function ApprovalsPage() {
   const [bulk, setBulk] = useState<{ done: number; total: number } | null>(null);
   const [previewId, setPreviewId] = useState<string | null>(null);
 
-  // الطابور ينقسم: ما ينتظر قرارك فعلاً، وأرشيف تجاوز ثلاثين يوماً بلا قرار.
+  // الطابور ينقسم: ما ينتظر قرارك فعلًا، وأرشيف تجاوز ثلاثين يومًا بلا قرار.
   const allPending = (tasks ?? []).filter((t) => t.status === "review");
   const { live: pending, stale: archived } = splitReview(allPending);
   const [showArchive, setShowArchive] = useState(false);
@@ -169,8 +169,8 @@ function ApprovalsPage() {
       setBulk({ done: ok + failed, total: ids.length });
     }
     setBulk(null);
-    if (failed) toast.error(`تعذّر ${failed} عنصراً، حاول مجدداً`);
-    else toast.success(status === "done" ? `تم اعتماد ${ok} عنصراً` : `تم رفض ${ok} عنصراً`);
+    if (failed) toast.error(`تعذّر ${failed} عنصرًا، حاول مجددًا`);
+    else toast.success(status === "done" ? `تم اعتماد ${ok} عنصرًا` : `تم رفض ${ok} عنصرًا`);
   };
 
   const chip = (active: boolean) =>
@@ -181,7 +181,7 @@ function ApprovalsPage() {
   return (
     <AppShell
       title="طابور الموافقات"
-      lead={`${pending.length} عنصراً بانتظارك`}
+      lead={`${pending.length} عنصرًا بانتظارك`}
       actions={
         visible.length ? (
           <button
@@ -392,10 +392,10 @@ function ApprovalsPage() {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <h2 className="font-display text-base font-black">
-                أرشيف {archived.length} مخرجاً قديماً
+                أرشيف {archived.length} مخرجًا قديمًا
               </h2>
               <p className="mt-1 text-sm text-ink-soft">
-                مضى عليها أكثر من {STALE_REVIEW_DAYS} يوماً بلا قرار، فخرجت من العدّاد ومن إحاطة
+                مضى عليها أكثر من {STALE_REVIEW_DAYS} يومًا بلا قرار، فخرجت من العدّاد ومن إحاطة
                 أمَل حتى لا يبني الفريق عليها إشارات قديمة.
               </p>
             </div>

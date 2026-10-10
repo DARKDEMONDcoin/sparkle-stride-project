@@ -13,14 +13,14 @@ export function IntegrationFlow() {
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
             <span className="inline-flex items-center gap-2 text-sm font-bold text-amber">
-              منظومة واحدة بدلاً من أدوات متفرقة
+              منظومة واحدة بدلًا من أدوات متفرقة
             </span>
             <h2 className="mt-4 font-display text-4xl leading-tight font-black sm:text-5xl">
               حساباتك تدخل من هنا،
               <span className="text-amber"> وفريقك يتولّى الباقي</span>
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-background/70 sm:text-lg">
-              اربط منصاتك مرة واحدة. يفهم موظفو زياد السياق، ينسّقون العمل معاً، ثم ينفّذون داخل
+              اربط منصاتك مرة واحدة. يفهم موظفو زياد السياق، ينسّقون العمل معًا، ثم ينفّذون داخل
               أدواتك بعد موافقتك.
             </p>
           </div>
@@ -37,7 +37,7 @@ export function IntegrationFlow() {
             <TeamOrbit compact mapCenter dark />
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-background/65">
-              {["صلاحيات تحددها أنت", "موافقتك قبل النشر", "تفصل أي حساب فوراً"].map((item) => (
+              {["صلاحيات تحددها أنت", "موافقتك قبل النشر", "تفصل أي حساب فورًا"].map((item) => (
                 <span key={item} className="flex items-center gap-2">
                   <span className="size-1.5 rounded-full bg-amber/80" />
                   {item}
