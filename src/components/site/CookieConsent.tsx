@@ -41,6 +41,14 @@ export function CookieConsent() {
     setLeaving(true);
   };
 
+  /** يحجز مساحة أسفل الصفحة ما دام الشريط ظاهرًا حتى لا يغطي أي محتوى أو زر. */
+  useEffect(() => {
+    const root = document.documentElement;
+    if (visible && !leaving) root.classList.add("has-cookie-bar");
+    else root.classList.remove("has-cookie-bar");
+    return () => root.classList.remove("has-cookie-bar");
+  }, [visible, leaving]);
+
   if (!visible) return null;
 
   return (

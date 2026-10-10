@@ -8,6 +8,10 @@ import {
   Check,
   CheckCircle2,
   ChevronDown,
+  ClipboardList,
+  Languages,
+  CalendarClock,
+  Users,
   Code2,
   Loader2,
   LockKeyhole,
@@ -72,6 +76,8 @@ const capabilities = [
     kicker: "سراج · مدير السوشيال ميديا والإعلانات",
     title: "من طلب واحد إلى حملة جاهزة للاعتماد.",
     body: "يبني خطة 30 يومًا، يكتب كل نسخة، ينسّق التصميم والنشر، ثم يعيد أفضل الأفكار إلى التقويم.",
+    memberId: "sonny",
+    snippet: "حملة 14 يومًا بانتظار اعتمادك",
     image: sirajDesktopAsset.url,
     mobileImage: sirajMobileAsset.url,
     frame: true,
@@ -83,6 +89,8 @@ const capabilities = [
     kicker: "أمل · المساعدة التنفيذية",
     title: "ساعتك القادمة واضحة قبل أن تبدأ.",
     body: "تفرز البريد، ترتب الاجتماعات، وتضع القرارات المعلّقة في ملخص صباحي واحد.",
+    memberId: "eva",
+    snippet: "ملخص الصباح جاهز",
     image: amalDesktopAsset.url,
     mobileImage: amalMobileAsset.url,
     frame: false,
@@ -94,6 +102,8 @@ const capabilities = [
     kicker: "سالم · مدير المبيعات",
     title: "لكل فرصة رسالة وخطوة تالية.",
     body: "يبحث عن العميل المناسب، يخصص التواصل، ويسلمك الفرص الجاهزة للمكالمة.",
+    memberId: "sam",
+    snippet: "رسائل المتابعة بانتظار اعتمادك",
     image: salemDesktopAsset.url,
     mobileImage: salemMobileAsset.url,
     frame: false,
@@ -105,17 +115,21 @@ const capabilities = [
     kicker: "نور · المحتوى والسيو",
     title: "إجابة عربية يجدها عميلك لحظة البحث.",
     body: "ترصد السؤال، تبني خطة موضوعات، وتكتب صفحات أصلية مرتبطة بما يطلبه السوق.",
+    memberId: "nour",
+    snippet: "خطة الموضوعات جاهزة للمراجعة",
     image: nourDesktopAsset.url,
     mobileImage: nourMobileAsset.url,
-    frame: true,
+    frame: false,
     tone: "terracotta",
-    span: "wide",
+    span: "standard",
   },
   {
     icon: Sparkles,
     kicker: "دانة · مديرة التصميم",
     title: "فكرة واحدة، وكل المقاسات جاهزة.",
     body: "تحول المسودة إلى نظام بصري متسق، ثم تجهز نسخ كل منصة للمراجعة.",
+    memberId: "dana",
+    snippet: "المقاسات جاهزة للمراجعة",
     image: danaDesktopAsset.url,
     mobileImage: danaMobileAsset.url,
     frame: false,
@@ -127,6 +141,8 @@ const capabilities = [
     kicker: "آدم · محلل البيانات",
     title: "تقرير ينتهي بقرار، لا برقم فقط.",
     body: "يجمع أداء القنوات، يرصد التغير، ويحدد أين تتحرك الميزانية والجهد بعد ذلك.",
+    memberId: "adam",
+    snippet: "تقرير الأسبوع جاهز",
     image: adamDesktopAsset.url,
     mobileImage: adamMobileAsset.url,
     frame: false,
@@ -364,12 +380,12 @@ const guards = [
 ] as const;
 
 const trustPoints = [
-  "يفهم العربية ولهجاتها",
-  "ذاكرة تعرف مشروعك",
-  "ستة تخصصات تعمل معًا",
-  "لا تنفيذ دون موافقتك",
-  "أدواتك في مكان واحد",
-  "سجل واضح لكل خطوة",
+  { icon: Languages, text: "يفهم العربية ولهجاتها" },
+  { icon: BrainCircuit, text: "ذاكرة تعرف مشروعك" },
+  { icon: Users, text: "ستة تخصصات تعمل معًا" },
+  { icon: ShieldCheck, text: "لا تنفيذ دون موافقتك" },
+  { icon: Workflow, text: "أدواتك في مكان واحد" },
+  { icon: ClipboardList, text: "سجل واضح لكل خطوة" },
 ] as const;
 
 const statHorizonPaths = Array.from({ length: 36 }, (_, index) => {
@@ -643,9 +659,7 @@ export function EditorialHomepage() {
               </span>
             </div>
             <h1 id="home-title">
-              ما يستغرق شهرًا من العمل،
-              <br />
-              ينتهي <em>قبل أن تُكمل قهوتك.</em>
+              ما يستغرق شهرًا من العمل، ينتهي <em>قبل أن تُكمل قهوتك.</em>
             </h1>
             <p className="sahl-lead">يكتبون ويصمّمون ويبيعون نيابةً عنك، وأنت تتابع نمو النتائج.</p>
             <div className="sahl-actions">
@@ -683,6 +697,20 @@ export function EditorialHomepage() {
               </div>
               <i className="sahl-float-note-dot" aria-hidden="true" />
             </div>
+            <div className="ziad-float-card is-schedule" aria-hidden="true">
+              <CalendarClock />
+              <span>
+                <small>منشور مجدول</small>
+                <b>الخميس 4 عصرًا</b>
+              </span>
+            </div>
+            <div className="ziad-float-card is-metric" aria-hidden="true">
+              <span>
+                <small>جودة المسودة</small>
+                <b>82%</b>
+              </span>
+              <i />
+            </div>
           </div>
         </div>
       </section>
@@ -691,10 +719,12 @@ export function EditorialHomepage() {
         <div className="sahl-shell">
           <strong className="sahl-arabic-first">مصمم للعمل بالعربية، من أول طلب حتى آخر قرار</strong>
           <div className="sahl-trust-row">
-            {trustPoints.map((point, index) => (
-              <span key={point}>
-                <small>{String(index + 1).padStart(2, "0")}</small>
-                <b>{point}</b>
+            {trustPoints.map((point) => (
+              <span key={point.text}>
+                <small aria-hidden="true">
+                  <point.icon />
+                </small>
+                <b>{point.text}</b>
               </span>
             ))}
           </div>
@@ -741,6 +771,7 @@ export function EditorialHomepage() {
               role="tabpanel"
             >
               <SampleChatShot
+                key={currentSample.business}
                 business={currentSample.business}
                 prompt={currentSample.prompt}
                 cards={currentSample.cards}
@@ -787,10 +818,19 @@ export function EditorialHomepage() {
             {capabilities.map((item) => (
               <Reveal key={item.kicker} className={`sahl-cap-card is-${item.span} is-${item.tone}`}>
                 <div>
-                  <item.icon />
-                  <span>{item.kicker}</span>
+                  <div className="ziad-cap-head">
+                    <span className="ziad-cap-avatar">
+                      <Portrait memberId={item.memberId} name={item.kicker.split(" · ")[0] ?? ""} />
+                    </span>
+                    <span className="ziad-cap-role">{item.kicker}</span>
+                    <item.icon aria-hidden="true" />
+                  </div>
                   <h3>{item.title}</h3>
                   <p>{item.body}</p>
+                  <p className="ziad-cap-snippet">
+                    <i aria-hidden="true" />
+                    {item.snippet}
+                  </p>
                   {item.kicker.startsWith("سراج") && (
                     <aside className="sahl-coming-ads">
                       <Megaphone aria-hidden="true" />
@@ -883,6 +923,20 @@ export function EditorialHomepage() {
             </header>
           </Reveal>
           <Reveal>
+            <ol className="ziad-timeline">
+              {[
+                ["أرسل هدفك", "اكتب ما تريده بكلماتك مرة واحدة."],
+                ["يوزّع سراج العمل", "تتحول الفكرة إلى مهام لكل تخصص."],
+                ["ينفّذ كل موظف دوره", "ويسلّم نتيجته إلى الدور التالي."],
+                ["تعتمد أنت القرار", "لا نشر ولا إرسال قبل موافقتك."],
+              ].map(([title, text], index) => (
+                <li key={title}>
+                  <span className="ziad-timeline-num">{String(index + 1).padStart(2, "0")}</span>
+                  <b>{title}</b>
+                  <p>{text}</p>
+                </li>
+              ))}
+            </ol>
             <figure className="sahl-plan-flow">
               <picture>
                 <source media="(max-width: 720px)" srcSet={planFlowTall} />
@@ -1030,7 +1084,7 @@ export function EditorialHomepage() {
                 alt={`مشهد يوضح عمل فريق زياد في قطاع ${currentSector.label}`}
                 loading="lazy"
                 width={1280}
-                height={900}
+                height={960}
               />
               <div className="sahl-sector-brand">
                 <i>{currentSector.icon}</i>
@@ -1303,9 +1357,12 @@ export function EditorialHomepage() {
             </header>
           </Reveal>
           <div className="sahl-guard-grid">
-            {guards.map((item) => (
+            {guards.map((item, index) => (
               <Reveal key={item.t}>
                 <article>
+                  <span className="ziad-rule-num" aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   <item.icon aria-hidden="true" />
                   <h3>{item.t}</h3>
                   <p>{item.d}</p>
