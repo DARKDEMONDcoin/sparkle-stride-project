@@ -48344,3 +48344,12 @@ button[role="checkbox"].bg-primary, button[role="checkbox"][data-state="checked"
 
 /* Gulf Modern: auth glow blob — saffron wash instead of old orange */
 html body .sauth-glow-blob.is-four { background: color-mix(in oklab, var(--saffron) 55%, transparent) !important; }
+
+/* Gulf Modern — auth page: two soft washes only (emerald top, saffron bottom); links use emerald-ink */
+html body .sauth-glow-blob { animation: none !important; filter: blur(110px); }
+html body .sauth-glow-blob.is-one,
+html body .sauth-glow-blob.is-two { background-color: var(--emerald); opacity: 0.1; }
+html body .sauth-glow-blob.is-three,
+html body .sauth-glow-blob.is-four { background-color: var(--saffron); opacity: 0.12; }
+html body .sauth-link { color: var(--emerald-ink); }
+html body .sauth-check input { accent-color: var(--emerald); }
