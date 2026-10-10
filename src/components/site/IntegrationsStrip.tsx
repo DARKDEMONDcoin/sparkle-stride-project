@@ -32,7 +32,7 @@ const tools: readonly Tool[] = [
   { id: "gbp", name: "ملف النشاط التجاري في جوجل", brand: `#${siGoogle.hex}`, glyph: siGoogle },
   { id: "shopify", name: "شوبيفاي", brand: `#${siShopify.hex}`, glyph: siShopify },
   { id: "salla", name: "سلة", brand: `#${siSalla.hex}`, glyph: siSalla },
-  { id: "zid", name: "زد", brand: "#6d28d9", wordmark: "زد" },
+  { id: "zid", name: "زد", brand: "var(--emerald-ink)", wordmark: "زد" },
 ];
 
 /**

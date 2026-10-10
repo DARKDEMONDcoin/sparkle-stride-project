@@ -34,6 +34,7 @@ export function SampleChatShot({
         <span />
         <span />
         <p>{business}</p>
+        <em className="sahl-shot-badge">مثال توضيحي</em>
       </div>
 
       <div className="sahl-shot-thread">
@@ -63,7 +64,7 @@ export function SampleChatShot({
               {card.publish ? (
                 <div className="sahl-shot-publish">
                   <div className="sahl-shot-publish-head">
-                    <span>جودة المنشور {card.quality}٪</span>
+                    <span>جودة المنشور {card.quality}%</span>
                     {card.publish.connect ? (
                       <button type="button" className="is-connect" disabled>
                         <Link2 className="size-3.5" /> {card.publish.connect} · اربطه
