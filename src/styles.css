@@ -48581,7 +48581,7 @@ html body .sahl-white-home :is(.sahl-home-plan, .sahl-proof-grid article, .sahl-
 
 /* Phone mockups on small screens: keep a true portrait screen */
 @media (max-width: 720px) {
-  .sahl-device-frame.is-responsive-device .sahl-device-screen {
+  html body .sahl-white-home .sahl-device-frame.is-responsive-device .sahl-device-screen {
     aspect-ratio: 390 / 844;
     height: auto;
     max-height: none;
