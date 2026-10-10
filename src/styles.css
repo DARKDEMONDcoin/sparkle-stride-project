@@ -14221,7 +14221,7 @@ section:has(> .integration-grid-wave) {
 }
 .chat-history-row > button:last-child:hover {
   background: color-mix(in oklab, var(--coral) 10%, transparent);
-  color: var(--coral);
+  color: var(--coral-tint-ink);
 }
 .chat-history-empty {
   padding: 1.5rem 0.5rem;
@@ -48364,3 +48364,9 @@ html body .sahl-page-cta-ribbon {
 
 /* Gulf Modern — eyebrows on light use emerald-ink */
 html body .sahl-site-page .sahl-page-eyebrow { color: var(--emerald-ink) !important; }
+
+/* Gulf Modern — only two washes: emerald and saffron (no coral/orange mix) */
+html body .sahl-smoke i:nth-child(1),
+html body .sahl-smoke i:nth-child(3) { background: color-mix(in oklab, var(--saffron) 60%, transparent); }
+html body .sahl-smoke i:nth-child(2) { background: color-mix(in oklab, var(--emerald) 40%, transparent); }
+html body .ambient-cloud-c { background: color-mix(in oklab, var(--saffron) 68%, transparent); }
