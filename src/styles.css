@@ -48557,3 +48557,17 @@ html body .sahl-white-home :is(.sahl-home-plan, .sahl-proof-grid article, .sahl-
     @keyframes ziad-parallax { to { translate: 0 var(--ziad-par, 40px); } }
   }
 }
+
+/* صورة الهيرو تظهر بلا انتظار تحميل JavaScript: حركة CSS خالصة تحسّن LCP */
+@keyframes ziad-hero-in {
+  from { opacity: 0; transform: translate3d(0, -40px, 0) rotateY(5deg) rotateX(1deg) scale(.97); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) rotateY(5deg) rotateX(1deg) scale(1); }
+}
+.sahl-device-frame.is-hero.sahl-device-drop {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotateY(5deg) rotateX(1deg) scale(1);
+  animation: ziad-hero-in .7s cubic-bezier(.16,.84,.3,1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sahl-device-frame.is-hero.sahl-device-drop { animation: none; }
+}
