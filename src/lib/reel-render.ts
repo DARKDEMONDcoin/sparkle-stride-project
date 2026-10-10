@@ -120,7 +120,7 @@ export async function renderReel({
       const idx = Math.min(scenes.length - 1, Math.floor(elapsed / (secondsPerScene * 1000)));
       const local = (elapsed % (secondsPerScene * 1000)) / (secondsPerScene * 1000);
 
-      ctx.fillStyle = "#000";
+      ctx.fillStyle = "#0E2A2B";
       ctx.fillRect(0, 0, w, h);
 
       const paint = (img: HTMLImageElement, t: number, alpha: number) => {
@@ -144,8 +144,8 @@ export async function renderReel({
 
       // تدرّج سفلي يجعل النص مقروءاً على أي صورة.
       const grad = ctx.createLinearGradient(0, h * 0.5, 0, h);
-      grad.addColorStop(0, "rgba(0,0,0,0)");
-      grad.addColorStop(1, "rgba(0,0,0,0.72)");
+      grad.addColorStop(0, "rgba(14,42,43,0)");
+      grad.addColorStop(1, "rgba(14,42,43,0.72)");
       ctx.fillStyle = grad;
       ctx.fillRect(0, h * 0.5, w, h * 0.5);
 
@@ -156,7 +156,7 @@ export async function renderReel({
         ctx.direction = "rtl";
         ctx.textAlign = "center";
         ctx.fillStyle = accent;
-        ctx.shadowColor = "rgba(0,0,0,0.65)";
+        ctx.shadowColor = "rgba(14,42,43,0.65)";
         ctx.shadowBlur = 14;
         const lines = wrap(ctx, caption, w * 0.84);
         const lh = size * 1.35;

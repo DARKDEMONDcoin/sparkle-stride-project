@@ -118,7 +118,7 @@ function DesignEditorPage() {
       const dw = image.width * baseScale, dh = image.height * baseScale;
       const dx = (size.width - dw) * imageX / 100, dy = (size.height - dh) * imageY / 100;
       ctx.drawImage(image, dx, dy, dw, dh);
-      ctx.fillStyle = `rgba(0,0,0,${overlay / 100})`; ctx.fillRect(0, 0, size.width, size.height);
+      ctx.fillStyle = `rgba(14,42,43,${overlay / 100})`; ctx.fillRect(0, 0, size.width, size.height);
     }
     const pad = size.width * 0.075; const center = align === "center";
     ctx.textAlign = center ? "center" : align === "left" ? "left" : "right";
