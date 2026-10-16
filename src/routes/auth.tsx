@@ -149,6 +149,7 @@ function AuthPage() {
   const [formError, setFormError] = useState("");
   const [busy, setBusy] = useState(false);
   const [googleBusy, setGoogleBusy] = useState(false);
+  const [oauthProvider, setOauthProvider] = useState<"google" | "azure">("google");
   const [resetSent, setResetSent] = useState(false);
 
   useEffect(() => {
@@ -269,10 +270,11 @@ function AuthPage() {
     }
   }
 
-  async function onGoogle() {
+  async function onGoogle(provider: "google" | "azure" = "google") {
     if (googleBusy || busy) return;
     setFormError("");
     setGoogleBusy(true);
+    setOauthProvider(provider);
     try {
       // Always return to the public site. Preview/local origins are not reachable from
       // a user's phone after Google completes the external OAuth round trip.
@@ -285,12 +287,16 @@ function AuthPage() {
       if (search.plan) callback.searchParams.set("plan", search.plan);
       if (search.ref) callback.searchParams.set("ref", search.ref);
       const { error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: { redirectTo: callback.toString() },
+        provider,
+        options: {
+          redirectTo: callback.toString(),
+          ...(provider === "azure" ? { scopes: "email openid profile" } : {}),
+        },
       });
       if (error) throw error;
     } catch (error) {
-      setFormError(arabicError(error instanceof Error ? error.message : String(error)));
+      const msg = arabicError(error instanceof Error ? error.message : String(error));
+      setFormError(provider === "azure" ? msg.replace("Google", "Microsoft") : msg);
       setGoogleBusy(false);
     }
   }
@@ -331,9 +337,18 @@ function AuthPage() {
           <div className="sauth-card-body">
             <h1 className="sauth-title">{isSignup ? "أنشئ حساب زياد" : "سجّل الدخول إلى زياد"}</h1>
 
-            <Button type="button" variant="outline" className="sauth-google" onClick={onGoogle} disabled={googleBusy || busy}>
-              <span>{googleBusy ? "نفتح Google…" : isSignup ? "التسجيل عبر Google" : "المتابعة عبر Google"}</span>
-              {googleBusy ? <Loader2 className="animate-spin" /> : <GoogleIcon />}
+            <Button type="button" variant="outline" className="sauth-google" onClick={() => void onGoogle("google")} disabled={googleBusy || busy}>
+              <span>{googleBusy && oauthProvider === "google" ? "نفتح Google…" : isSignup ? "التسجيل عبر Google" : "المتابعة عبر Google"}</span>
+              {googleBusy && oauthProvider === "google" ? <Loader2 className="animate-spin" /> : <GoogleIcon />}
+            </Button>
+            <Button type="button" variant="outline" className="sauth-google mt-3" onClick={() => void onGoogle("azure")} disabled={googleBusy || busy}>
+              <span>{googleBusy && oauthProvider === "azure" ? "نفتح Microsoft…" : isSignup ? "التسجيل عبر Microsoft" : "المتابعة عبر Microsoft"}</span>
+              {googleBusy && oauthProvider === "azure" ? <Loader2 className="animate-spin" /> : (
+                <svg viewBox="0 0 18 18" className="sauth-google-icon" aria-hidden="true">
+                  <path fill="#F25022" d="M1 1h7.5v7.5H1z" /><path fill="#7FBA00" d="M9.5 1H17v7.5H9.5z" />
+                  <path fill="#00A4EF" d="M1 9.5h7.5V17H1z" /><path fill="#FFB900" d="M9.5 9.5H17V17H9.5z" />
+                </svg>
+              )}
             </Button>
 
             <div className="sauth-divider">
