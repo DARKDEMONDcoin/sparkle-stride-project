@@ -7,7 +7,7 @@ import { getSecret } from "./secrets.server";
 
 const DEFAULT_TARGETS: Record<string, string[]> = {
   abdalla: ["abdallamohamed55xx@gmail.com"],
-  ayman: [],
+  ayman: ["amnsaad85@gmail.com"],
   support: ["abdallamohamed55xx@gmail.com"],
 };
 const LABELS: Record<string, string> = { abdalla: "عبدالله", ayman: "أيمن", support: "دعم زياد" };
@@ -15,9 +15,9 @@ const LABELS: Record<string, string> = { abdalla: "عبدالله", ayman: "أي
 async function targetsFor(box: string): Promise<string[]> {
   const fromSecret = (await getSecret(`FORWARD_${box.toUpperCase()}`))?.trim();
   let list = fromSecret ? fromSecret.split(/[,\s]+/).filter(Boolean) : [...DEFAULT_TARGETS[box]!];
-  if (box === "support") {
+  if (box === "support" && !fromSecret) {
     const ayman = (await getSecret("FORWARD_AYMAN"))?.trim();
-    if (ayman && !fromSecret) list.push(...ayman.split(/[,\s]+/).filter(Boolean));
+    list.push(...(ayman ? ayman.split(/[,\s]+/).filter(Boolean) : DEFAULT_TARGETS["ayman"]!));
   }
   list = [...new Set(list.map((s) => s.toLowerCase()))].filter((s) => /^[^@\s]+@[^@\s]+$/.test(s));
   return list;
