@@ -42,4 +42,5 @@
 - Brand extraction uses safe schemas; competitor-research ranks direct substitutes with literal buyer/offer proof from both sites. Why: precision.
 - Keep gateway keys registered in storage/hosting; research preserves service errors. Why: stale keys broke analysis.
 - Webhook/login/OAuth origins default to `SITE_ORIGIN`; Vercel maxDuration set in vite.config. Why: old hosts are dead.
+- Publish via `bunx vercel@latest deploy --prod --token="$VERCEL_TOKEN" --yes` (`.vercel/project.json` linked, gitignored). Why: GitHub→Vercel sync is broken; API-only deploys missed later file uploads.
 - Employee email (`employee-email.server.ts`, route `api/public/resend.webhook.ts`): Svix signature, DKIM/DMARC sender check, one idempotent row per message in `inbound_emails`; replies go out via Resend as the employee so threads stay unbroken.
