@@ -32,7 +32,15 @@ const map: Record<string, { icon?: Icon; label: string }> = {
   youtube: { icon: si.siYoutube, label: "يوتيوب" },
   threads: { icon: si.siThreads, label: "ثريدز" },
   gmail: { icon: si.siGmail, label: "جيميل" },
-  outlook: { icon: si.siGmail, label: "أوتلوك" },
+  outlook: {
+    icon: {
+      title: "Outlook",
+      hex: "0078D4",
+      // Outlook-style tile: envelope panel + "O" badge (simple-icons dropped Microsoft marks).
+      path: "M13 4h9a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-9v-6.2l4.5 3 4.5-3V9.3l-4.5 3L13 9.3zM1.5 3.5 12 2v20L1.5 20.5zm5.25 4.25C4.68 7.75 3.5 9.6 3.5 12s1.18 4.25 3.25 4.25S10 14.4 10 12 8.82 7.75 6.75 7.75m0 1.9c.96 0 1.45 1.06 1.45 2.35s-.49 2.35-1.45 2.35S5.3 13.29 5.3 12s.49-2.35 1.45-2.35",
+    },
+    label: "أوتلوك",
+  },
   calendar: { icon: si.siGooglecalendar, label: "التقويم" },
   slack: { icon: siSlack, label: "سلاك" },
   notion: { icon: si.siNotion, label: "نوشن" },
