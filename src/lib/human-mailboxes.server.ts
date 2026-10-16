@@ -17,7 +17,7 @@ async function targetsFor(box: string): Promise<string[]> {
   let list = fromSecret ? fromSecret.split(/[,\s]+/).filter(Boolean) : [...DEFAULT_TARGETS[box]!];
   if (box === "support" && !fromSecret) {
     const ayman = (await getSecret("FORWARD_AYMAN"))?.trim();
-    list.push(...(ayman ? ayman.split(/[,\s]+/).filter(Boolean) : DEFAULT_TARGETS.ayman!));
+    list.push(...(ayman ? ayman.split(/[,\s]+/).filter(Boolean) : DEFAULT_TARGETS["ayman"]!));
   }
   list = [...new Set(list.map((s) => s.toLowerCase()))].filter((s) => /^[^@\s]+@[^@\s]+$/.test(s));
   return list;
