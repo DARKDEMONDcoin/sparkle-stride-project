@@ -207,7 +207,30 @@ export async function handleInboundEmail(event: ReceivedEvent): Promise<EmailRes
   if (event.type !== "email.received" || !emailId || !d?.from) return { ok: true, skipped: "not-received-event" };
 
   const domain = await emailDomain();
-  const employeeId = resolveEmployee([...(d.to ?? []), ...(d.cc ?? [])], domain);
+  const recipients = [...(d.to ?? []), ...(d.cc ?? [])];
+  const { resolveHumanBox, forwardHumanEmail } = await import("./human-mailboxes.server");
+  const box = resolveHumanBox(recipients, domain);
+  if (box) {
+    const fromBare = bareAddress(d.from);
+    if (fromBare.endsWith(`@${domain}`)) return { ok: true, skipped: "own-domain" };
+    const admin = await getAdmin();
+    const { error: dupErr } = await admin
+      .from("inbound_emails")
+      .insert({ email_id: emailId, employee_id: `human:${box}`, sender: fromBare, subject: (d.subject ?? "").slice(0, 300) });
+    if (dupErr) return { ok: true, skipped: dupErr.code === "23505" ? "duplicate" : `log-failed:${dupErr.message}` };
+    const r = await forwardHumanEmail({
+      box,
+      domain,
+      emailId,
+      from: d.from,
+      subject: d.subject ?? "",
+      hasAttachments: !!d.attachments?.length,
+      resend: resendFetch,
+    });
+    await admin.from("inbound_emails").update({ status: r.skipped ?? "forwarded" }).eq("email_id", emailId);
+    return r;
+  }
+  const employeeId = resolveEmployee(recipients, domain);
   if (!employeeId) return { ok: true, skipped: "unknown-recipient" };
   const who = EMPLOYEE_IDENTITY[employeeId]!;
   const fromAddr = bareAddress(d.from);
