@@ -149,6 +149,7 @@ function AuthPage() {
   const [formError, setFormError] = useState("");
   const [busy, setBusy] = useState(false);
   const [googleBusy, setGoogleBusy] = useState(false);
+  const [oauthProvider, setOauthProvider] = useState<"google" | "azure">("google");
   const [resetSent, setResetSent] = useState(false);
 
   useEffect(() => {
@@ -269,10 +270,11 @@ function AuthPage() {
     }
   }
 
-  async function onGoogle() {
+  async function onGoogle(provider: "google" | "azure" = "google") {
     if (googleBusy || busy) return;
     setFormError("");
     setGoogleBusy(true);
+    setOauthProvider(provider);
     try {
       // Always return to the public site. Preview/local origins are not reachable from
       // a user's phone after Google completes the external OAuth round trip.
@@ -285,12 +287,16 @@ function AuthPage() {
       if (search.plan) callback.searchParams.set("plan", search.plan);
       if (search.ref) callback.searchParams.set("ref", search.ref);
       const { error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: { redirectTo: callback.toString() },
+        provider,
+        options: {
+          redirectTo: callback.toString(),
+          ...(provider === "azure" ? { scopes: "email openid profile" } : {}),
+        },
       });
       if (error) throw error;
     } catch (error) {
-      setFormError(arabicError(error instanceof Error ? error.message : String(error)));
+      const msg = arabicError(error instanceof Error ? error.message : String(error));
+      setFormError(provider === "azure" ? msg.replace("Google", "Microsoft") : msg);
       setGoogleBusy(false);
     }
   }
