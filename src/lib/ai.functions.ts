@@ -1515,6 +1515,8 @@ export async function runEmployeeTurn(
     // ويُعاد كتابة الرد من النتائج الحقيقية فقط بدل عناوين يخمّنها النموذج.
     if (pendingAction && (await import("./read-only-actions")).isReadOnlyAction(pendingAction.id)) {
       const readAction = pendingAction;
+      if (readAction.id === "eva-gmail-search" && !readAction.values["query"]?.trim())
+        readAction.values = { ...readAction.values, query: "in:inbox" };
       pendingAction = null;
       deliverables = [];
       try {
