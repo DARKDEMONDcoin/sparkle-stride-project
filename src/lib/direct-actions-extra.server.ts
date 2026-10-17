@@ -152,11 +152,26 @@ export const extraDirectActions: Record<string, (ctx: DirectContext) => Promise<
         },
       },
     ),
-  "eva-gmail-search": (ctx) =>
-    api(
+  "eva-gmail-search": async (ctx) => {
+    // The list endpoint returns IDs only; fetch headers + snippet so the employee can actually answer.
+    const max = Math.max(1, Math.min(15, Number(opt(ctx, "max") || "10") || 10));
+    const listed = await api<{ messages?: { id: string; threadId: string }[] }>(
       ctx,
-      `https://gmail.googleapis.com/gmail/v1/users/me/messages?q=${encodeURIComponent(v(ctx, "query"))}&maxResults=${Math.max(1, Math.min(50, Number(v(ctx, "max") || "10") || 10))}`,
-    ),
+      `https://gmail.googleapis.com/gmail/v1/users/me/messages?q=${encodeURIComponent(v(ctx, "query"))}&maxResults=${max}`,
+    );
+    const ids = (listed.messages ?? []).slice(0, max);
+    const messages = await Promise.all(
+      ids.map(async ({ id, threadId }) => {
+        const m = await api<{ snippet?: string; labelIds?: string[]; payload?: { headers?: { name: string; value: string }[] } }>(
+          ctx,
+          `https://gmail.googleapis.com/gmail/v1/users/me/messages/${id}?format=metadata&metadataHeaders=Subject&metadataHeaders=From&metadataHeaders=Date`,
+        );
+        const h = (n: string) => m.payload?.headers?.find((x) => x.name.toLowerCase() === n.toLowerCase())?.value ?? "";
+        return { id, threadId, subject: h("Subject"), from: h("From"), date: h("Date"), snippet: m.snippet ?? "", unread: Boolean(m.labelIds?.includes("UNREAD")) };
+      }),
+    );
+    return { count: messages.length, messages };
+  },
   "eva-outlook-reply": (ctx) =>
     api(
       ctx,
