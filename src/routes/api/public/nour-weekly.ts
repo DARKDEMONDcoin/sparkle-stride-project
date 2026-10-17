@@ -75,7 +75,7 @@ export const Route = createFileRoute("/api/public/nour-weekly")({
               status: string;
             }[] = [];
 
-            const fmt = (n: number) => n.toLocaleString("ar-EG");
+            const fmt = (n: number) => n.toLocaleString("ar-EG-u-nu-latn");
 
             for (const q of opportunities)
               rows.push({

@@ -92,7 +92,7 @@ export const extractBrandVoice = createServerFn({ method: "POST" })
           workspace_id: workspace.id,
           kind: "note",
           title: "دليل صوت العلامة",
-          meta: `دليل أسلوبي · استُخرج ${urls.length ? `من ${urls.length} صفحات` : "من عينات نصية"} · ${stats.sampleWords} كلمة · ثقة اللهجة ${Math.round(stats.dialectConfidence * 100)}٪ · ${new Date().toLocaleDateString("ar-EG")}`,
+          meta: `دليل أسلوبي · استُخرج ${urls.length ? `من ${urls.length} صفحات` : "من عينات نصية"} · ${stats.sampleWords} كلمة · ثقة اللهجة ${Math.round(stats.dialectConfidence * 100)}٪ · ${new Date().toLocaleDateString("ar-EG-u-nu-latn")}`,
           body: [rule, urls.length ? `مصادر الدليل: ${urls.join("، ")}` : "مصدر الدليل: النصوص التي قدمها المالك."].join("\n"),
           used_by: [...BRAND_EMPLOYEE_IDS],
       };

@@ -337,7 +337,7 @@ function RankingsPage() {
                       </td>
                       <td className="p-3 text-xs text-muted-foreground">
                         {row.last_checked_at
-                          ? new Date(row.last_checked_at).toLocaleDateString("ar-EG")
+                          ? new Date(row.last_checked_at).toLocaleDateString("ar-EG-u-nu-latn")
                           : "—"}
                       </td>
                       <td className="p-3">

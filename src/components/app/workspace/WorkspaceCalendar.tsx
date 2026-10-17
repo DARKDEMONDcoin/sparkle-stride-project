@@ -36,7 +36,7 @@ export function WorkspaceCalendar({ tasks, people = [], onOpen }: { tasks: WorkI
       <div><h3 className="font-display text-xl font-black">التقويم</h3><p className="mt-1 text-sm text-muted-foreground">مواعيد كل المهام في المساحة. اضغط مهمة لتفتح مشروعها.{undated ? ` (${undated} مهمة مفتوحة بلا موعد)` : ""}</p></div>
       <div className="flex items-center gap-1">
         <Button size="icon" variant="outline" aria-label="الشهر السابق" onClick={() => shift(-1)}><ChevronRight className="size-4" /></Button>
-        <span className="min-w-32 text-center text-sm font-black">{cursor.toLocaleDateString("ar", { month: "long", year: "numeric" })}</span>
+        <span className="min-w-32 text-center text-sm font-black">{cursor.toLocaleDateString("ar-u-nu-latn", { month: "long", year: "numeric" })}</span>
         <Button size="icon" variant="outline" aria-label="الشهر التالي" onClick={() => shift(1)}><ChevronLeft className="size-4" /></Button>
         <Button size="sm" variant="ghost" onClick={() => { const d = new Date(); d.setDate(1); setCursor(d); }}>اليوم</Button>
       </div>

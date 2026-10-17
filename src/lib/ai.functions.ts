@@ -461,7 +461,7 @@ export async function runEmployeeTurn(
     emit({
       type: "step",
       label: (history ?? []).length
-        ? `قرأت طلبك و${(history ?? []).length.toLocaleString("ar")} رسالة سابقة من محادثتنا`
+        ? `قرأت طلبك و${(history ?? []).length.toLocaleString("ar-u-nu-latn")} رسالة سابقة من محادثتنا`
         : `قرأت طلبك عن «${turnTopic}»`,
     });
 
@@ -707,7 +707,7 @@ export async function runEmployeeTurn(
     {
       // ملخص ما حدث فعلاً — أرقام من نتائج البحث نفسها، لا جملة محفوظة.
       const parts: string[] = [];
-      if (ownFieldResearch.used.length) parts.push(`${ownFieldResearch.used.length.toLocaleString("ar")} مصدر`);
+      if (ownFieldResearch.used.length) parts.push(`${ownFieldResearch.used.length.toLocaleString("ar-u-nu-latn")} مصدر`);
       if (browseBlock) parts.push("تصفّح مباشر");
       if (liveBlock) parts.push("أخبار حيّة");
       if (parts.length) emit({ type: "step", label: `جمعت الأدلة: ${parts.join(" + ")}` });
@@ -1547,6 +1547,13 @@ export async function runEmployeeTurn(
       }
     }
 
+    // Brand rule: Western digits (0-9) everywhere, including model-written replies and deliverables.
+    {
+      const { toWesternDigits } = await import("./western-digits");
+      reply = toWesternDigits(reply);
+      deliverables = deliverables.map((d) => ({ ...d, title: toWesternDigits(d.title ?? ""), body: toWesternDigits(d.body ?? "") }));
+    }
+
     // في المحادثة الحرة (سؤال/دردشة) لا مخرجات ولا طلبات ربط — إجابة فقط.
     if (intent !== "work") {
       // المصنّف قد يخطئ فيعدّ طلب عمل («اعمل بريف…») دردشة؛ حينها لا نُسقط المتن الذي
@@ -1887,7 +1894,7 @@ export async function runEmployeeTurn(
       reply = `${reply.trim()}\n\n### 📸 صور من موقعك تصلح لهذا المحتوى\n\n${gallery}\n\nاختر أي صورة منها بدل الصورة المولّدة — كلها صور حقيقية من موقعك.`;
     }
 
-    if (!quickTurn) emit({ type: "step", label: deliverables.length ? `أحفظ ${deliverables.length.toLocaleString("ar")} مخرج في مساحتك` : "أحفظ الرد في مساحتك" });
+    if (!quickTurn) emit({ type: "step", label: deliverables.length ? `أحفظ ${deliverables.length.toLocaleString("ar-u-nu-latn")} مخرج في مساحتك` : "أحفظ الرد في مساحتك" });
 
     // ذاكرة القرارات تُستخلص بالتوازي مع الحفظ بدل أن تُضاف إلى زمن انتظار المستخدم.
     const decisionsTask: Promise<number> =

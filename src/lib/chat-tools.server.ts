@@ -592,7 +592,7 @@ export async function runChatTools(
             `### أنشأتَ فعلاً تقويم محتوى لـ${days} يوماً (${r.created} فكرة) في قسم «التقويم» — هذه هي الأفكار:`,
             ...(items ?? []).map((p) => {
               const m = (p.meta ?? {}) as { title?: string; hook?: string; goal?: string };
-              return `- ${new Date(p.scheduled_at).toLocaleDateString("ar-EG", { weekday: "short", day: "numeric", month: "short" })} · ${p.provider}: ${m.title ?? ""} — ${m.hook ?? ""} (${m.goal ?? ""})`;
+              return `- ${new Date(p.scheduled_at).toLocaleDateString("ar-EG-u-nu-latn", { weekday: "short", day: "numeric", month: "short" })} · ${p.provider}: ${m.title ?? ""} — ${m.hook ?? ""} (${m.goal ?? ""})`;
             }),
             "اعرضها للمستخدم كجدول، وأخبره أن كل فكرة جاهزة لتوليد النص والصورة والاعتماد والنشر من قسم التقويم بضغطة.",
           ].join("\n"),

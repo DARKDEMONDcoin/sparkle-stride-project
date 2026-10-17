@@ -165,7 +165,7 @@ export function SeoAuditCard({ defaultUrl = "" }: { defaultUrl?: string }) {
             <span className="font-black text-jade">{passes.length} ممتاز</span>
             <span className="text-muted-foreground">
               {" "}
-              — {result.page.wordCount.toLocaleString("ar-EG")} كلمة · {result.page.images} صورة ·{" "}
+              — {result.page.wordCount.toLocaleString("ar-EG-u-nu-latn")} كلمة · {result.page.images} صورة ·{" "}
               {result.page.internalLinks} رابط داخلي
             </span>
           </p>

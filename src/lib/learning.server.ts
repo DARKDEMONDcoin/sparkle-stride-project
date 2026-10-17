@@ -258,7 +258,7 @@ export async function buildSelfReviewLessons(
   for (const group of groups.values()) {
     if (group.count < minimumEvidence) continue;
     const instruction = clean(
-      `تكرّر هذا الخلل في مخرجاتك السابقة (${group.count.toLocaleString("ar-EG")} مرات): «${group.issue}». طبّق إصلاحه من أول مسودة، وتحقّق منه قبل التسليم.`,
+      `تكرّر هذا الخلل في مخرجاتك السابقة (${group.count.toLocaleString("ar-EG-u-nu-latn")} مرات): «${group.issue}». طبّق إصلاحه من أول مسودة، وتحقّق منه قبل التسليم.`,
       400,
     );
     const { data: exists } = await client
@@ -282,7 +282,7 @@ export async function buildSelfReviewLessons(
       .insert({
         workspace_id: workspaceId,
         employee_id: employeeId,
-        title: `مراجعة ذاتية: خلل متكرر في ${group.count.toLocaleString("ar-EG")} مخرجات`,
+        title: `مراجعة ذاتية: خلل متكرر في ${group.count.toLocaleString("ar-EG-u-nu-latn")} مخرجات`,
         instruction,
         source_kind: "self_review",
         status: "approved",
@@ -361,7 +361,7 @@ export async function buildLearningCandidates(
       .insert({
         workspace_id: workspaceId,
         employee_id: employeeId,
-        title: `درس من ${count.toLocaleString("ar-EG")} إشارات متكررة`,
+        title: `درس من ${count.toLocaleString("ar-EG-u-nu-latn")} إشارات متكررة`,
         instruction: group.instruction,
         source_kind: "owner_feedback",
         status,

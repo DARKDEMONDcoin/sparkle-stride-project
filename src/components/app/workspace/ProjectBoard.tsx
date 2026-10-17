@@ -38,7 +38,7 @@ function dueLabel(date: string | null) {
   const d = new Date(`${date}T00:00:00`);
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const diff = Math.round((d.getTime() - today.getTime()) / 86400000);
-  const text = d.toLocaleDateString("ar", { day: "numeric", month: "short" });
+  const text = d.toLocaleDateString("ar-u-nu-latn", { day: "numeric", month: "short" });
   return { text: diff === 0 ? "اليوم" : diff === 1 ? "غداً" : text, late: diff < 0 };
 }
 
@@ -172,7 +172,7 @@ function Comments({ task, people }: { task: WorkItem; people: Person[] }) {
   }, onSuccess: () => { setBody(""); void qc.invalidateQueries({ queryKey: key }); } });
   return <div className="space-y-3">
     <h4 className="flex items-center gap-2 text-sm font-black"><MessageSquare className="size-4" /> التعليقات {list.data?.length ? <span className="text-xs text-muted-foreground">{list.data.length}</span> : null}</h4>
-    {list.data?.length ? <ul className="space-y-3">{list.data.map((c) => { const p = people.find((x) => x.userId === c.author_id); return <li key={c.id} className="flex gap-2.5"><PersonAvatar avatar={p?.avatar} name={p?.name ?? "عضو"} className="size-7" /><div className="min-w-0 flex-1 rounded-md bg-secondary/60 px-3 py-2"><p className="text-xs font-bold">{p?.name ?? "عضو"} <span className="font-normal text-muted-foreground">· {new Date(c.created_at).toLocaleString("ar", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" })}</span></p><p className="mt-1 whitespace-pre-wrap break-words text-sm">{c.body}</p></div></li>; })}</ul> : <p className="text-xs text-muted-foreground">لا تعليقات بعد. اكتب @ ثم اسم زميل لتنبيهه.</p>}
+    {list.data?.length ? <ul className="space-y-3">{list.data.map((c) => { const p = people.find((x) => x.userId === c.author_id); return <li key={c.id} className="flex gap-2.5"><PersonAvatar avatar={p?.avatar} name={p?.name ?? "عضو"} className="size-7" /><div className="min-w-0 flex-1 rounded-md bg-secondary/60 px-3 py-2"><p className="text-xs font-bold">{p?.name ?? "عضو"} <span className="font-normal text-muted-foreground">· {new Date(c.created_at).toLocaleString("ar-u-nu-latn", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" })}</span></p><p className="mt-1 whitespace-pre-wrap break-words text-sm">{c.body}</p></div></li>; })}</ul> : <p className="text-xs text-muted-foreground">لا تعليقات بعد. اكتب @ ثم اسم زميل لتنبيهه.</p>}
     <form onSubmit={(e) => { e.preventDefault(); if (body.trim()) add.mutate(); }} className="space-y-2">
       <textarea value={body} onChange={(e) => setBody(e.target.value)} rows={2} maxLength={4000} placeholder="اكتب تعليقاً…" aria-label="تعليق جديد" className="w-full rounded-md border border-border bg-background p-3 text-sm" />
       <div className="flex flex-wrap items-center gap-1.5">{people.map((p) => <button key={p.userId} type="button" onClick={() => setBody((b) => `${b}${b && !b.endsWith(" ") ? " " : ""}@${p.name} `)} className="rounded-full border border-border px-2 py-0.5 text-xs hover:border-primary">@{p.name}</button>)}<Button type="submit" size="sm" className="ms-auto" disabled={add.isPending || !body.trim()}>إرسال</Button></div>

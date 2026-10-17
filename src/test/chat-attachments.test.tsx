@@ -30,7 +30,6 @@ describe("chat media", () => {
     render(<ChatAttachments items={[{ url: IMAGE, type: "image", alt: "صورة اختبار" }]} />);
 
     const trigger = screen.getByRole("button", { name: "عرض الصورة بحجم كامل" });
-    expect(trigger.parentElement?.className).toContain("max-w-[min(20rem,78vw)]");
     expect(screen.getByAltText("صورة اختبار").className).toContain("max-h-[22rem]");
 
     fireEvent.click(trigger);

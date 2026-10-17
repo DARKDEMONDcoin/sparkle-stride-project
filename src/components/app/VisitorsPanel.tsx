@@ -16,7 +16,7 @@ const RANGES = [
   { days: 90, label: "٩٠ يوماً" },
 ];
 
-const num = (n: number) => new Intl.NumberFormat("ar-EG").format(n);
+const num = (n: number) => new Intl.NumberFormat("ar-EG-u-nu-latn").format(n);
 
 function Bars({
   rows,

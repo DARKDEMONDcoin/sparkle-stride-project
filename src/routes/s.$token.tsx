@@ -46,7 +46,7 @@ function SharedPage() {
       <article className="mx-auto max-w-3xl rounded-3xl border border-border bg-card p-6 sm:p-10">
         <div className="text-sm text-muted-foreground">{r.company}</div>
         <h1 className="mt-1 font-display text-3xl font-black break-words">{r.title}</h1>
-        <div className="mt-1 text-xs text-muted-foreground">{new Date(r.created_at).toLocaleDateString("ar")}</div>
+        <div className="mt-1 text-xs text-muted-foreground">{new Date(r.created_at).toLocaleDateString("ar-u-nu-latn")}</div>
         <div className="mt-6 leading-relaxed">
           <Markdown body={r.body} />
         </div>

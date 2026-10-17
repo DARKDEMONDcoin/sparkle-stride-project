@@ -43,7 +43,7 @@ function formatScheduled(raw: string | null | undefined): string {
   const date = new Date(trimmed);
   if (Number.isNaN(date.getTime())) return trimmed;
   try {
-    return new Intl.DateTimeFormat("ar", { dateStyle: "full", timeStyle: "short" }).format(date);
+    return new Intl.DateTimeFormat("ar-u-nu-latn", { dateStyle: "full", timeStyle: "short" }).format(date);
   } catch {
     return trimmed;
   }

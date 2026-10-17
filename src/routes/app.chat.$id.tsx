@@ -109,7 +109,7 @@ function dayLabel(iso: string) {
   const same = (a: Date, b: Date) => a.toDateString() === b.toDateString();
   if (same(d, today)) return "اليوم";
   if (same(d, yesterday)) return "أمس";
-  return d.toLocaleDateString("ar", { weekday: "long", day: "numeric", month: "long" });
+  return d.toLocaleDateString("ar-u-nu-latn", { weekday: "long", day: "numeric", month: "long" });
 }
 
 function CopyButton({ text }: { text: string }) {
@@ -413,7 +413,7 @@ function prettyBody(body: string): string {
 }
 
 function timeOf(iso: string) {
-  const parts = new Intl.DateTimeFormat("ar-EG", {
+  const parts = new Intl.DateTimeFormat("ar-EG-u-nu-latn", {
     hour: "numeric",
     minute: "2-digit",
     hour12: true,

@@ -35,7 +35,7 @@ export const saveBrandKnowledge = createServerFn({ method: "POST" })
         [`المصدر: ${url}`, ...site.headings.slice(0, 12), site.text].join("\n"),
         16_000,
       );
-      meta = `رابط مقروء · ${site.urls.length} صفحة · ${new Date().toLocaleDateString("ar-EG")}`;
+      meta = `رابط مقروء · ${site.urls.length} صفحة · ${new Date().toLocaleDateString("ar-EG-u-nu-latn")}`;
     }
 
     const duplicateQuery = supabase

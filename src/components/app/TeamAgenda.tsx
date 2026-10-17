@@ -24,7 +24,7 @@ const EMPTY_BODY: Record<AgendaItem["kind"], string> = {
 const time = (iso: string) =>
   iso.length <= 10
     ? "طوال اليوم"
-    : new Date(iso).toLocaleTimeString("ar-EG", { hour: "numeric", minute: "2-digit" });
+    : new Date(iso).toLocaleTimeString("ar-EG-u-nu-latn", { hour: "numeric", minute: "2-digit" });
 
 export function AgendaChip({ item, onOpen }: { item: AgendaItem; onOpen?: (i: AgendaItem) => void }) {
   const k = KIND[item.kind];
@@ -78,7 +78,7 @@ export function AgendaItemDialog({ item, onClose }: { item: AgendaItem; onClose:
               </span>
               <span>{m?.name}</span>
               <span>
-                · {new Date(item.start.length <= 10 ? `${item.start}T12:00:00` : item.start).toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long" })}
+                · {new Date(item.start.length <= 10 ? `${item.start}T12:00:00` : item.start).toLocaleDateString("ar-EG-u-nu-latn", { weekday: "long", day: "numeric", month: "long" })}
                 {item.start.length > 10 ? ` · ${time(item.start)}` : ""}
               </span>
               {item.status === "review" || item.status === "awaiting_approval" ? (
@@ -261,7 +261,7 @@ export function TeamAgendaList({
               <div className="pt-1 text-center">
                 <p className="font-display text-xl font-black">{d.getDate()}</p>
                 <p className="text-[0.62rem] font-bold text-muted-foreground">
-                  {d.toLocaleDateString("ar-EG", { weekday: "short" })}
+                  {d.toLocaleDateString("ar-EG-u-nu-latn", { weekday: "short" })}
                 </p>
               </div>
               <div className="space-y-2">
