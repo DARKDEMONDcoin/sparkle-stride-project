@@ -39,7 +39,7 @@ const statusStyle: Record<string, string> = {
 };
 
 function when(t: Task) {
-  return new Date(t.created_at).toLocaleDateString("ar", { day: "numeric", month: "long" });
+  return new Date(t.created_at).toLocaleDateString("ar-u-nu-latn", { day: "numeric", month: "long" });
 }
 
 function TasksPage() {

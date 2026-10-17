@@ -218,7 +218,7 @@ export function BusinessProfileCard({
             </div>
           ) : null}
 
-          {p.analyzedAt ? <p className="text-xs text-muted-foreground">آخر فحص: {new Date(p.analyzedAt).toLocaleString("ar-EG")}</p> : null}
+          {p.analyzedAt ? <p className="text-xs text-muted-foreground">آخر فحص: {new Date(p.analyzedAt).toLocaleString("ar-EG-u-nu-latn")}</p> : null}
           <div className="border-t border-border pt-4">
             <h3 className="flex items-center gap-2 text-sm font-bold"><Swords className="size-4" /> منافسون من مصادر عامة</h3>
             {p.competitorEvidence?.length ? <ul className="mt-3 divide-y divide-border">{p.competitorEvidence.map((c) => <li key={c.domain} className="py-3 text-sm leading-7">

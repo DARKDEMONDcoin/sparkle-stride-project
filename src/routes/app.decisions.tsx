@@ -116,7 +116,7 @@ function DecisionsPage() {
                     </span>
                   ) : null}
                   <span className="text-[0.7rem] text-muted-foreground" dir="ltr">
-                    {new Date(d.created_at).toLocaleDateString("ar", {
+                    {new Date(d.created_at).toLocaleDateString("ar-u-nu-latn", {
                       day: "numeric",
                       month: "long",
                       year: "numeric",

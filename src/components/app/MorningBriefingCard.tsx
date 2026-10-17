@@ -105,7 +105,7 @@ export function MorningBriefingCard({
               >
                 <p className="truncate text-[10px] text-foreground/60 sm:text-[11px]">{s.k}</p>
                 <p className="font-display text-xl font-black text-foreground">
-                  {s.v.toLocaleString("ar-EG")}
+                  {s.v.toLocaleString("ar-EG-u-nu-latn")}
                 </p>
               </div>
             ))}
@@ -153,7 +153,7 @@ export function MorningBriefingCard({
                           <span className="block truncate font-bold">{p.title}</span>
                           <span className="text-foreground/55">
                             {appLabel(p.provider)} ·{" "}
-                            {new Date(p.at).toLocaleTimeString("ar-EG", {
+                            {new Date(p.at).toLocaleTimeString("ar-EG-u-nu-latn", {
                               hour: "2-digit",
                               minute: "2-digit",
                             })}{" "}

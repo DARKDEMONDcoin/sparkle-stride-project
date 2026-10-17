@@ -296,7 +296,7 @@ export async function computeBestTimes(
         source: "history",
         samples: rows.length,
         note: matched
-          ? `${base} ورجّحنا ${matched.toLocaleString("ar-EG")} منشوراً قريباً من موضوع منشورك الحالي.`
+          ? `${base} ورجّحنا ${matched.toLocaleString("ar-EG-u-nu-latn")} منشوراً قريباً من موضوع منشورك الحالي.`
           : base,
         slots: top.map((b) => {
           const at = nextAt(b.hour, b.weekday, offsetMin, now);

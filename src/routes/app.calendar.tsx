@@ -459,7 +459,7 @@ function CalendarPage() {
     setWeekIdx(Math.floor((first.getDay() + d.getDate() - 1) / 7));
   };
 
-  const monthLabel = cursor.toLocaleDateString("ar-EG", { month: "long", year: "numeric" });
+  const monthLabel = cursor.toLocaleDateString("ar-EG-u-nu-latn", { month: "long", year: "numeric" });
   const monthPosts = useMemo(
     () =>
       list
@@ -886,10 +886,10 @@ function CalendarPage() {
                 <div key={post.id} className="grid grid-cols-[3rem_minmax(0,1fr)] gap-3">
                   <div className="pt-1 text-center">
                     <p className="font-display text-xl font-black">
-                      {date.toLocaleDateString("ar-EG", { day: "numeric" })}
+                      {date.toLocaleDateString("ar-EG-u-nu-latn", { day: "numeric" })}
                     </p>
                     <p className="text-[0.62rem] font-bold text-muted-foreground">
-                      {date.toLocaleDateString("ar-EG", { weekday: "short" })}
+                      {date.toLocaleDateString("ar-EG-u-nu-latn", { weekday: "short" })}
                     </p>
                   </div>
                   <CalendarPostCard
@@ -1215,7 +1215,7 @@ function CalendarPage() {
           <div className="flex max-h-[85vh] w-full max-w-md flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-xl">
             <div className="flex items-center justify-between border-b border-border p-4">
               <p className="font-display font-black">
-                {dayOpen.toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long" })}
+                {dayOpen.toLocaleDateString("ar-EG-u-nu-latn", { weekday: "long", day: "numeric", month: "long" })}
               </p>
               <button onClick={() => setDayOpen(null)} aria-label="إغلاق اليوم" className="grid size-9 place-items-center rounded-lg hover:bg-secondary">
                 <X className="size-4" />
@@ -1376,7 +1376,7 @@ function CalendarPostCard({
             <span className="truncate">{appLabel(post.provider)}</span>
           </span>
           <span className="shrink-0">
-            {new Date(post.scheduled_at).toLocaleTimeString("ar-EG", {
+            {new Date(post.scheduled_at).toLocaleTimeString("ar-EG-u-nu-latn", {
               hour: "2-digit",
               minute: "2-digit",
             })}
@@ -1561,7 +1561,7 @@ function PostPanel(props: {
               {post.body}
             </p>
             <p className="mt-2 text-xs text-muted-foreground">
-              {new Date(post.scheduled_at).toLocaleString("ar-EG", {
+              {new Date(post.scheduled_at).toLocaleString("ar-EG-u-nu-latn", {
                 dateStyle: "full",
                 timeStyle: "short",
               })}

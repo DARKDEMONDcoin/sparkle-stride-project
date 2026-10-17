@@ -728,7 +728,7 @@ export async function learnFromPerformance(
     workspace_id: workspaceId,
     kind: "learning",
     title,
-    meta: `تعلّم من الأداء · ${sample.length} منشوراً · ${new Date().toLocaleDateString("ar-EG")}`,
+    meta: `تعلّم من الأداء · ${sample.length} منشوراً · ${new Date().toLocaleDateString("ar-EG-u-nu-latn")}`,
     body: summary,
     used_by: [...BRAND_EMPLOYEE_IDS],
   };

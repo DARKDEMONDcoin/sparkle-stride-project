@@ -21,7 +21,7 @@ const engagement = (m: Metrics | null | undefined) =>
   m?.score ?? (m?.likes ?? 0) + (m?.comments ?? 0) * 3 + Math.round((m?.views ?? 0) / 100);
 
 const dayAr = (iso: string) =>
-  new Date(iso).toLocaleDateString("ar-EG", {
+  new Date(iso).toLocaleDateString("ar-EG-u-nu-latn", {
     timeZone: "Asia/Riyadh",
     weekday: "long",
     day: "numeric",

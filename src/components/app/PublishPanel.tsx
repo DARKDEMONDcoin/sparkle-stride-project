@@ -221,7 +221,7 @@ export function PublishPanel({
     ).then(() => {
       if (failed)
         setNote(
-          `أُزيلت من المنشور، لكن تعذّر حذف ${failed.toLocaleString("ar-EG")} ملف من المخزن.`,
+          `أُزيلت من المنشور، لكن تعذّر حذف ${failed.toLocaleString("ar-EG-u-nu-latn")} ملف من المخزن.`,
         );
     });
   };
@@ -315,7 +315,7 @@ export function PublishPanel({
       cursor.setDate(cursor.getDate() + 1);
     }
     setSlots(next);
-    setNote(`جهّزنا ${next.length.toLocaleString("ar-EG")} موعداً ويمكنك تعديل أي موعد قبل الحفظ.`);
+    setNote(`جهّزنا ${next.length.toLocaleString("ar-EG-u-nu-latn")} موعداً ويمكنك تعديل أي موعد قبل الحفظ.`);
   };
 
   const calendarDays = useMemo(() => {
@@ -566,7 +566,7 @@ export function PublishPanel({
           else await publishNow({ data: base });
           ok.push(
             at
-              ? `${appLabel(provider)} (${at.toLocaleString("ar-EG", { dateStyle: "short", timeStyle: "short" })})`
+              ? `${appLabel(provider)} (${at.toLocaleString("ar-EG-u-nu-latn", { dateStyle: "short", timeStyle: "short" })})`
               : appLabel(provider),
           );
         } catch (e) {
@@ -1079,7 +1079,7 @@ export function PublishPanel({
                 <ChevronRight className="size-4" />
               </button>
               <strong>
-                {calendarMonth.toLocaleDateString("ar-EG", { month: "long", year: "numeric" })}
+                {calendarMonth.toLocaleDateString("ar-EG-u-nu-latn", { month: "long", year: "numeric" })}
               </strong>
               <button
                 type="button"
@@ -1114,9 +1114,9 @@ export function PublishPanel({
                       today ? "is-today" : ""
                     } ${entries.length ? "has-posts" : ""}`}
                     onClick={() => setSelectedDay((value) => (value === key ? null : key))}
-                    aria-label={`${day.toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long" })} · ${entries.length} منشور`}
+                    aria-label={`${day.toLocaleDateString("ar-EG-u-nu-latn", { weekday: "long", day: "numeric", month: "long" })} · ${entries.length} منشور`}
                   >
-                    <b>{day.getDate().toLocaleString("ar-EG")}</b>
+                    <b>{day.getDate().toLocaleString("ar-EG-u-nu-latn")}</b>
                     {entries.length ? (
                       <span className="post-calendar-day-thumbs">
                         {entries
@@ -1156,7 +1156,7 @@ export function PublishPanel({
                         <div className="post-inline-calendar-meta">
                           <AppIcon name={entry.provider} className="size-3.5" />
                           <b>
-                            {entry.at.toLocaleTimeString("ar-EG", {
+                            {entry.at.toLocaleTimeString("ar-EG-u-nu-latn", {
                               hour: "2-digit",
                               minute: "2-digit",
                             })}
@@ -1287,7 +1287,7 @@ export function PublishPanel({
                 <p className="mt-2 text-[11px] text-muted-foreground">
                   {Number.isNaN(new Date(s).getTime())
                     ? "الموعد غير مكتمل — اختر اليوم والساعة."
-                    : new Date(s).toLocaleString("ar-EG", {
+                    : new Date(s).toLocaleString("ar-EG-u-nu-latn", {
                         dateStyle: "full",
                         timeStyle: "short",
                       })}

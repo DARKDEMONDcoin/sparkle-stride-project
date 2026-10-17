@@ -196,7 +196,7 @@ function TrustPage() {
                 </div>
                 {a.summary ? <div className="text-muted-foreground" dir="auto">{a.summary}</div> : null}
                 {a.detail ? <div className="text-xs text-coral">{a.detail}</div> : null}
-                <div className="text-xs text-muted-foreground" dir="ltr">{new Date(a.created_at).toLocaleString("ar")}</div>
+                <div className="text-xs text-muted-foreground" dir="ltr">{new Date(a.created_at).toLocaleString("ar-u-nu-latn")}</div>
               </div>
             ))}
           </div>

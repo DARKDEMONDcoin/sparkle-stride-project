@@ -25,7 +25,7 @@ export const Route = createFileRoute("/app/reports")({
   component: ReportsPage,
 });
 
-const num = (n: number) => n.toLocaleString("ar-EG");
+const num = (n: number) => n.toLocaleString("ar-EG-u-nu-latn");
 
 function Table({
   caption,
@@ -247,7 +247,7 @@ function ReportsPage() {
                 <li key={`${t.title}-${t.created_at}`} className="flex justify-between gap-3">
                   <span className="truncate">{t.title}</span>
                   <span className="shrink-0 text-muted-foreground">
-                    {new Date(t.created_at).toLocaleDateString("ar-EG")}
+                    {new Date(t.created_at).toLocaleDateString("ar-EG-u-nu-latn")}
                   </span>
                 </li>
               ))}

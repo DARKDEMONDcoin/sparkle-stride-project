@@ -151,7 +151,7 @@ function Avatar({ name, size = 36, ring }: { name: string; size?: number; ring?:
 
 function timeAgo(iso?: string) {
   if (!iso) return "الآن";
-  return new Date(iso).toLocaleString("ar-EG", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+  return new Date(iso).toLocaleString("ar-EG-u-nu-latn", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
 }
 
 function Instagram({ post, name, handle }: Mock) {
@@ -421,7 +421,7 @@ export function PlatformPreviewDialog({
           </div>
           <div className="mt-3 flex items-center justify-between gap-2 text-xs">
             <span className={cn("font-bold", over ? "text-destructive" : "text-muted-foreground")}>
-              {len.toLocaleString("ar-EG")} / {limit.toLocaleString("ar-EG")} حرف
+              {len.toLocaleString("ar-EG-u-nu-latn")} / {limit.toLocaleString("ar-EG-u-nu-latn")} حرف
               {over ? " — أطول من حد المنصة، سيُقص الجزء المظلل" : ""}
             </span>
             <div className="inline-flex rounded-full border border-border p-0.5">

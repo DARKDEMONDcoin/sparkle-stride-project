@@ -82,7 +82,7 @@ const STATUS_LABEL: Record<string, string> = {
 function fmtDate(iso: string | null | undefined) {
   if (!iso) return "";
   try {
-    return new Intl.DateTimeFormat("ar-EG", { dateStyle: "medium", timeStyle: "short" }).format(new Date(iso));
+    return new Intl.DateTimeFormat("ar-EG-u-nu-latn", { dateStyle: "medium", timeStyle: "short" }).format(new Date(iso));
   } catch {
     return iso.slice(0, 16).replace("T", " ");
   }

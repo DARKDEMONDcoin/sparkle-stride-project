@@ -56,7 +56,7 @@ export function WorkspaceMine({ tasks, projects, meId, onOpenProject, onChanged 
           <Button type="button" size="icon" variant="outline" disabled={busy === t.id} aria-label={done ? `إعادة فتح «${t.title}»` : `إنجاز «${t.title}»`} onClick={() => void toggle(t)} className={cn("size-8 shrink-0 rounded-full", done && "border-primary bg-primary text-primary-foreground")}>{done && <Check className="size-4" />}</Button>
           <Button variant="ghost" type="button" onClick={() => onOpenProject(t.project_id)} className="h-auto min-w-0 flex-1 justify-start gap-3 whitespace-normal px-1 py-3.5 text-start hover:text-primary">
             <span className="min-w-0 flex-1"><span className={cn("block break-words text-sm font-bold", done && "text-muted-foreground line-through")}>{t.title}</span><span className="text-xs text-muted-foreground">{project?.name}{t.status === "in_progress" ? " · قيد التنفيذ" : ""}</span></span>
-            {t.due_date && <span className={cn("inline-flex shrink-0 items-center gap-1 text-xs font-bold", late ? "text-destructive" : "text-muted-foreground")}><CalendarClock className="size-3.5" />{late ? "متأخرة · " : ""}{new Date(`${t.due_date}T00:00:00`).toLocaleDateString("ar", { day: "numeric", month: "short" })}</span>}
+            {t.due_date && <span className={cn("inline-flex shrink-0 items-center gap-1 text-xs font-bold", late ? "text-destructive" : "text-muted-foreground")}><CalendarClock className="size-3.5" />{late ? "متأخرة · " : ""}{new Date(`${t.due_date}T00:00:00`).toLocaleDateString("ar-u-nu-latn", { day: "numeric", month: "short" })}</span>}
           </Button>
         </li>;
       })}

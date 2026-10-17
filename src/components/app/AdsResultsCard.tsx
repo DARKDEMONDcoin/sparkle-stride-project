@@ -7,7 +7,7 @@ import { Link } from "@tanstack/react-router";
 import { adsOverview } from "@/lib/ads-overview.functions";
 import type { Integration } from "@/lib/data";
 
-const fmt = (n: number, digits = 0) => n.toLocaleString("ar-EG", { maximumFractionDigits: digits });
+const fmt = (n: number, digits = 0) => n.toLocaleString("ar-EG-u-nu-latn", { maximumFractionDigits: digits });
 
 /**
  * نتائج الإعلانات الحقيقية لآخر ٣٠ يوماً (حساب ميتا المرتبط).

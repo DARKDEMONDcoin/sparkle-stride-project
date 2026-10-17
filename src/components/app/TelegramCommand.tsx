@@ -352,7 +352,7 @@ export function TelegramCommand({ workspaceId }: { workspaceId: string }) {
                 <span dir="ltr">{l.external_id}</span>
                 {l.label ? ` · ${l.label}` : ""}
                 {l.last_seen_at
-                  ? ` · آخر نشاط ${new Date(l.last_seen_at).toLocaleDateString("ar-EG")}`
+                  ? ` · آخر نشاط ${new Date(l.last_seen_at).toLocaleDateString("ar-EG-u-nu-latn")}`
                   : ""}
               </span>
               <button

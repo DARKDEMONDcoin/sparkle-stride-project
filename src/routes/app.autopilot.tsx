@@ -210,7 +210,7 @@ function AutopilotPage() {
                 {row?.active && row.next_run_at ? (
                   <p className="mt-0.5 text-xs text-muted-foreground">
                     المنشور القادم:{" "}
-                    {new Date(row.next_run_at).toLocaleString("ar", {
+                    {new Date(row.next_run_at).toLocaleString("ar-u-nu-latn", {
                       weekday: "long",
                       hour: "2-digit",
                       minute: "2-digit",

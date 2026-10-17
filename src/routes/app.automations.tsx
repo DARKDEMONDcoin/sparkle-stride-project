@@ -314,8 +314,8 @@ function AutomationsPage() {
                 </span>
                 <span className="mt-1 block truncate text-xs text-ink-soft">
                   {a.last_run_at
-                    ? `آخر تشغيل: ${new Date(a.last_run_at).toLocaleString("ar-EG")} — ${a.last_status ?? ""}`
-                    : `التشغيل القادم: ${new Date(a.next_run_at).toLocaleString("ar-EG")}`}
+                    ? `آخر تشغيل: ${new Date(a.last_run_at).toLocaleString("ar-EG-u-nu-latn")} — ${a.last_status ?? ""}`
+                    : `التشغيل القادم: ${new Date(a.next_run_at).toLocaleString("ar-EG-u-nu-latn")}`}
                 </span>
               </span>
 

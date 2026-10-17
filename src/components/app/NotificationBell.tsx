@@ -10,7 +10,7 @@ import { listMyInbox, markNotificationsRead, respondToInvite } from "@/lib/invit
 import { PersonAvatar } from "@/components/app/PersonAvatar";
 import { cn } from "@/lib/utils";
 
-const when = (iso: string) => new Date(iso).toLocaleString("ar", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
+const when = (iso: string) => new Date(iso).toLocaleString("ar-u-nu-latn", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
 const KIND_ICON: Record<string, LucideIcon> = { invite_declined: UserX, invite_accepted: UserCheck, task_assigned: ClipboardList, comment: MessageSquare, mention: AtSign, ai_done: Sparkles, task_done: CheckCircle2, role_changed: Shield, task_due: CalendarClock };
 
 /** جرس الإشعارات: دعوات مساحات العمل (قبول/رفض) وردود المدعوين. */

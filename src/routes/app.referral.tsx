@@ -47,7 +47,7 @@ const referralStatuses: Record<string, { label: string; className: string }> = {
 };
 
 function money(cents: number) {
-  return new Intl.NumberFormat("ar", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(cents / 100);
+  return new Intl.NumberFormat("ar-u-nu-latn", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(cents / 100);
 }
 
 function PartnerCard({ rate, level }: { rate: number; level: string }) {
@@ -72,7 +72,7 @@ function PartnerCard({ rate, level }: { rate: number; level: string }) {
   return <div className="ziad-card-scene">
     <div ref={ref} onPointerMove={move} onPointerLeave={leave} className="ziad-partner-card" role="img" aria-label={`بطاقة شريك زياد، مستوى ${level}، عمولة ${rate}%`}>
       <div className="ziad-card-top"><div className="ziad-card-brand"><LogoMark size={52} /><div><strong>زياد</strong><span dir="ltr">ZIAD PARTNERS</span></div></div><Crown className="size-6" aria-hidden="true" /></div>
-      <div className="ziad-card-middle"><div><span className="ziad-card-caption">عمولتك المتكررة</span><strong className="ziad-card-rate">{rate.toLocaleString("ar")}<small>%</small></strong></div><div className="ref-chip" aria-hidden="true" /></div>
+      <div className="ziad-card-middle"><div><span className="ziad-card-caption">عمولتك المتكررة</span><strong className="ziad-card-rate">{rate.toLocaleString("ar-u-nu-latn")}<small>%</small></strong></div><div className="ref-chip" aria-hidden="true" /></div>
       <div className="ziad-card-bottom"><span>عضوية الشركاء <b>· {level}</b></span><span dir="ltr">ZIAD / {String(rate).padStart(2, "0")}</span></div>
     </div>
     <p className="ziad-card-note"><span /> شريك زياد · مستوى {level}</p>
@@ -114,10 +114,10 @@ function ReferralPage() {
     onError: (error) => toast.error(error instanceof Error ? error.message : "تعذّر إرسال الطلب"),
   });
   const stats = useMemo(() => dashboard ? [
-    { label: "زيارات الرابط", value: dashboard.clicks.toLocaleString("ar"), icon: MousePointerClick },
-    { label: "حسابات جديدة", value: dashboard.signups.toLocaleString("ar"), icon: Users },
-    { label: "عملاء نشطون", value: dashboard.active.toLocaleString("ar"), icon: UserCheck },
-    { label: "معدل التحويل", value: `${conversionRate.toLocaleString("ar")}%`, icon: TrendingUp },
+    { label: "زيارات الرابط", value: dashboard.clicks.toLocaleString("ar-u-nu-latn"), icon: MousePointerClick },
+    { label: "حسابات جديدة", value: dashboard.signups.toLocaleString("ar-u-nu-latn"), icon: Users },
+    { label: "عملاء نشطون", value: dashboard.active.toLocaleString("ar-u-nu-latn"), icon: UserCheck },
+    { label: "معدل التحويل", value: `${conversionRate.toLocaleString("ar-u-nu-latn")}%`, icon: TrendingUp },
   ] : [], [dashboard, conversionRate]);
 
   async function copyLink() {
@@ -163,7 +163,7 @@ function ReferralPage() {
         <div className="ziad-referral-balance"><div className="ziad-balance-heading"><span><WalletCards className="size-4" /> رصيد شراكتك</span><Button variant="ghost" size="sm" onClick={() => setTab("earnings")}>التفاصيل <ArrowLeft /></Button></div><strong className="ziad-balance-total" dir="ltr">{money(dashboard.totals.available)}</strong><p>متاح للسحب</p><dl><div><dt>قيد الانتظار</dt><dd dir="ltr">{money(dashboard.totals.pending)}</dd></div><div><dt>تم دفعه</dt><dd dir="ltr">{money(dashboard.totals.paid)}</dd></div></dl></div>
       </section>
 
-      <section className="ziad-referral-next" aria-label="المستوى التالي"><div className="ziad-next-icon"><Crown /></div><div className="min-w-0 flex-1"><h3>{nextLevel ? `خطوتك التالية: مستوى ${nextLevel.name}` : "وصلت إلى مستوى النخبة"}</h3><p>{nextLevel ? `باقي ${(nextLevel.count - dashboard.active).toLocaleString("ar")} عملاء نشطين للوصول إلى عمولة ${nextLevel.rate.toLocaleString("ar")}%` : "عمولتك الحالية 50% من المدفوعات المؤكدة"}</p><Progress aria-label="التقدم نحو المستوى التالي" value={Math.max(0, Math.min(100, progress))} className="mt-3 h-1.5" /></div><Button variant="ghost" size="icon" aria-label="عرض مستويات الشراكة" onClick={() => setTab("levels")}><ArrowLeft /></Button></section>
+      <section className="ziad-referral-next" aria-label="المستوى التالي"><div className="ziad-next-icon"><Crown /></div><div className="min-w-0 flex-1"><h3>{nextLevel ? `خطوتك التالية: مستوى ${nextLevel.name}` : "وصلت إلى مستوى النخبة"}</h3><p>{nextLevel ? `باقي ${(nextLevel.count - dashboard.active).toLocaleString("ar-u-nu-latn")} عملاء نشطين للوصول إلى عمولة ${nextLevel.rate.toLocaleString("ar-u-nu-latn")}%` : "عمولتك الحالية 50% من المدفوعات المؤكدة"}</p><Progress aria-label="التقدم نحو المستوى التالي" value={Math.max(0, Math.min(100, progress))} className="mt-3 h-1.5" /></div><Button variant="ghost" size="icon" aria-label="عرض مستويات الشراكة" onClick={() => setTab("levels")}><ArrowLeft /></Button></section>
 
       <Tabs value={tab} onValueChange={setTab} dir="rtl" className="ziad-referral-tabs">
         <TabsList className="h-auto w-full justify-start gap-1 overflow-x-auto rounded-none border-b border-border bg-transparent p-0">
@@ -187,21 +187,21 @@ function ReferralPage() {
 
         <TabsContent value="earnings" className="mt-5">
           <div className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-3">
-            <div className="bg-card p-5"><p className="text-xs font-black text-muted-foreground">عمولتك الآن</p><p className="mt-2 font-display text-4xl font-black text-primary">{dashboard.rate.toLocaleString("ar")}%</p><p className="mt-1 text-xs text-muted-foreground">مستوى {currentLevel.name}</p></div>
+            <div className="bg-card p-5"><p className="text-xs font-black text-muted-foreground">عمولتك الآن</p><p className="mt-2 font-display text-4xl font-black text-primary">{dashboard.rate.toLocaleString("ar-u-nu-latn")}%</p><p className="mt-1 text-xs text-muted-foreground">مستوى {currentLevel.name}</p></div>
             <div className="bg-card p-5"><p className="text-xs font-black text-muted-foreground">إجمالي ما كسبته</p><p className="mt-2 font-display text-4xl font-black">{money(dashboard.totals.earned)}</p><p className="mt-1 text-xs text-muted-foreground">من مدفوعات مؤكدة فقط</p></div>
             <div className="bg-gold-soft p-5"><p className="text-xs font-black text-gold-deep">الجاهز للسحب</p><p className="mt-2 font-display text-4xl font-black text-gold-deep">{money(dashboard.totals.available)}</p><Button size="sm" className="mt-3 font-black" disabled={dashboard.totals.available < 5000 || dashboard.totals.reserved > 0} onClick={() => setWithdrawOpen(true)}>طلب سحب <ArrowLeft /></Button></div>
           </div>
         </TabsContent>
 
         <TabsContent value="referrals" className="mt-5">
-          {dashboard.referrals.length ? <Table><TableHeader><TableRow><TableHead className="text-right">الإحالة</TableHead><TableHead className="text-right">الحالة</TableHead><TableHead className="text-right">تاريخ التسجيل</TableHead><TableHead className="text-right">أول دفعة</TableHead></TableRow></TableHeader><TableBody>{dashboard.referrals.slice(0, 20).map((referral) => { const status = referralStatuses[referral.status] ?? { label: "سجّل", className: "bg-secondary text-secondary-foreground" }; return <TableRow key={referral.id}><TableCell className="font-bold">{referral.label}</TableCell><TableCell><span className={`inline-flex rounded-full px-2 py-1 text-[0.68rem] font-black ${status.className}`}>{status.label}</span></TableCell><TableCell className="text-muted-foreground">{new Date(referral.attributedAt).toLocaleDateString("ar")}</TableCell><TableCell className="text-muted-foreground">{referral.firstPaidAt ? new Date(referral.firstPaidAt).toLocaleDateString("ar") : "—"}</TableCell></TableRow>; })}</TableBody></Table> : <div className="grid min-h-40 place-items-center rounded-lg border border-dashed border-border bg-muted/30 px-6 text-center"><div><Users className="mx-auto size-6 text-muted-foreground" /><p className="mt-3 text-sm font-black">أول إحالة تبدأ من مشاركة واحدة</p><p className="mt-1 text-xs text-muted-foreground">لا نعرض بيانات شخصية لعملائك.</p></div></div>}
+          {dashboard.referrals.length ? <Table><TableHeader><TableRow><TableHead className="text-right">الإحالة</TableHead><TableHead className="text-right">الحالة</TableHead><TableHead className="text-right">تاريخ التسجيل</TableHead><TableHead className="text-right">أول دفعة</TableHead></TableRow></TableHeader><TableBody>{dashboard.referrals.slice(0, 20).map((referral) => { const status = referralStatuses[referral.status] ?? { label: "سجّل", className: "bg-secondary text-secondary-foreground" }; return <TableRow key={referral.id}><TableCell className="font-bold">{referral.label}</TableCell><TableCell><span className={`inline-flex rounded-full px-2 py-1 text-[0.68rem] font-black ${status.className}`}>{status.label}</span></TableCell><TableCell className="text-muted-foreground">{new Date(referral.attributedAt).toLocaleDateString("ar-u-nu-latn")}</TableCell><TableCell className="text-muted-foreground">{referral.firstPaidAt ? new Date(referral.firstPaidAt).toLocaleDateString("ar-u-nu-latn") : "—"}</TableCell></TableRow>; })}</TableBody></Table> : <div className="grid min-h-40 place-items-center rounded-lg border border-dashed border-border bg-muted/30 px-6 text-center"><div><Users className="mx-auto size-6 text-muted-foreground" /><p className="mt-3 text-sm font-black">أول إحالة تبدأ من مشاركة واحدة</p><p className="mt-1 text-xs text-muted-foreground">لا نعرض بيانات شخصية لعملائك.</p></div></div>}
         </TabsContent>
 
         <TabsContent value="levels" className="mt-5">
           <div className="rounded-lg border border-border bg-card p-5">
-            <div className="flex items-start justify-between gap-4"><div><h3 className="font-display text-lg font-black">طريقك إلى 50%</h3><p className="mt-1 text-sm text-muted-foreground">المستوى يعتمد على عدد العملاء النشطين.</p></div>{nextLevel ? <span className="shrink-0 text-xs font-black text-primary">باقي {(nextLevel.count - dashboard.active).toLocaleString("ar")}</span> : <span className="shrink-0 text-xs font-black text-jade">أعلى مستوى</span>}</div>
+            <div className="flex items-start justify-between gap-4"><div><h3 className="font-display text-lg font-black">طريقك إلى 50%</h3><p className="mt-1 text-sm text-muted-foreground">المستوى يعتمد على عدد العملاء النشطين.</p></div>{nextLevel ? <span className="shrink-0 text-xs font-black text-primary">باقي {(nextLevel.count - dashboard.active).toLocaleString("ar-u-nu-latn")}</span> : <span className="shrink-0 text-xs font-black text-jade">أعلى مستوى</span>}</div>
             <Progress aria-label="التقدم نحو المستوى التالي" value={Math.max(0, Math.min(100, progress))} className="mt-6 h-2" />
-            <div className="mt-5 grid grid-cols-4 gap-2">{levels.map((level) => { const reached = dashboard.active >= level.count; return <div key={level.rate} className="text-center"><span className={`mx-auto grid size-8 place-items-center rounded-full border text-xs font-black ${reached ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-muted-foreground"}`}>{reached ? <Check className="size-4" /> : level.count.toLocaleString("ar")}</span><p className="mt-2 text-sm font-black">{level.rate.toLocaleString("ar")}%</p><p className="text-[0.65rem] text-muted-foreground">{level.name}</p></div>; })}</div>
+            <div className="mt-5 grid grid-cols-4 gap-2">{levels.map((level) => { const reached = dashboard.active >= level.count; return <div key={level.rate} className="text-center"><span className={`mx-auto grid size-8 place-items-center rounded-full border text-xs font-black ${reached ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-muted-foreground"}`}>{reached ? <Check className="size-4" /> : level.count.toLocaleString("ar-u-nu-latn")}</span><p className="mt-2 text-sm font-black">{level.rate.toLocaleString("ar-u-nu-latn")}%</p><p className="text-[0.65rem] text-muted-foreground">{level.name}</p></div>; })}</div>
           </div>
         </TabsContent>
 
