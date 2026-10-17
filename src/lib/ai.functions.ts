@@ -1497,6 +1497,20 @@ export async function runEmployeeTurn(
       }
     }
 
+    // طلب قراءة البريد الصريح («آخر رسائل بريدي») لا يُترك لتخمين النموذج: نشغّل بحث جيميل فعليًا.
+    const gmailSearch = allowedActions.find((a) => a.id === "eva-gmail-search");
+    if (
+      gmailSearch &&
+      !pendingAction &&
+      /(بريد|ايميل|إيميل|جيميل|gmail|inbox|صندوق الوارد)/iu.test(data.message ?? "") &&
+      /(آخر|اخر|أحدث|احدث|اقرأ|اقرا|اعرض|عناوين|رسائل|رسالة|وصل|غير مقروء|latest|unread)/iu.test(data.message ?? "") &&
+      !/(ابعت|أرسل|ارسل|رد على|send)/iu.test(data.message ?? "")
+    ) {
+      const n = (data.message ?? "").match(/\d+/)?.[0] ?? (/رسالتين/.test(data.message ?? "") ? "2" : "5");
+      const unread = /غير مقروء|unread/iu.test(data.message ?? "");
+      pendingAction = { ...gmailSearch, values: { query: unread ? "in:inbox is:unread" : "in:inbox", max: n } };
+    }
+
     // قراءة بيانات المالك المربوطة (بحث بريد، تقرير) تُنفَّذ فورًا داخل الدور بدون بطاقة موافقة،
     // ويُعاد كتابة الرد من النتائج الحقيقية فقط بدل عناوين يخمّنها النموذج.
     if (pendingAction && (await import("./read-only-actions")).isReadOnlyAction(pendingAction.id)) {
