@@ -1547,6 +1547,13 @@ export async function runEmployeeTurn(
       }
     }
 
+    // Brand rule: Western digits (0-9) everywhere, including model-written replies and deliverables.
+    {
+      const { toWesternDigits } = await import("./western-digits");
+      reply = toWesternDigits(reply);
+      deliverables = deliverables.map((d) => ({ ...d, title: toWesternDigits(d.title), body: d.body ? toWesternDigits(d.body) : d.body }));
+    }
+
     // في المحادثة الحرة (سؤال/دردشة) لا مخرجات ولا طلبات ربط — إجابة فقط.
     if (intent !== "work") {
       // المصنّف قد يخطئ فيعدّ طلب عمل («اعمل بريف…») دردشة؛ حينها لا نُسقط المتن الذي
