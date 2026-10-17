@@ -1551,7 +1551,7 @@ export async function runEmployeeTurn(
     {
       const { toWesternDigits } = await import("./western-digits");
       reply = toWesternDigits(reply);
-      deliverables = deliverables.map((d) => ({ ...d, title: toWesternDigits(d.title), body: toWesternDigits(d.body ?? "") }));
+      deliverables = deliverables.map((d) => ({ ...d, title: toWesternDigits(d.title ?? ""), body: toWesternDigits(d.body ?? "") }));
     }
 
     // في المحادثة الحرة (سؤال/دردشة) لا مخرجات ولا طلبات ربط — إجابة فقط.
