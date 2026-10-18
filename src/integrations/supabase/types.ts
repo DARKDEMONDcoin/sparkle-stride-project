@@ -1595,6 +1595,21 @@ export type Database = {
           },
         ]
       }
+      n8n: {
+        Row: {
+          created_at: string
+          id: number
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+        }
+        Update: {
+          created_at?: string
+          id?: number
+        }
+        Relationships: []
+      }
       notification_preferences: {
         Row: {
           approval_ready: boolean
