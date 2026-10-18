@@ -48625,3 +48625,4 @@ html body .sahl-trust > .sahl-shell { display: flex !important; flex-direction: 
 html body .sahl-trust > .sahl-shell > strong { align-self: center; }
 html body .sahl-trust .sahl-trust-row > span { flex: initial !important; max-width: none !important; }
 .sahl-stat-grid .sahl-stat strong { font-size: clamp(2.6rem, 5.4vw, 6rem) !important; }
+@media (max-width: 720px) { .sahl-stat-grid .sahl-stat strong { font-size: 4.2rem !important; } }
