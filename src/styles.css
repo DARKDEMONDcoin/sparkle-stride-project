@@ -48621,3 +48621,7 @@ html body .sahl-trust .sahl-trust-row > span b { white-space: normal !important;
 @media (max-width: 720px) { html body .sahl-trust .sahl-trust-row { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } html body .sahl-trust .sahl-trust-row > span b { font-size: .85rem; } }
 /* big verbs never clip */
 .sahl-stat-grid .sahl-stat strong { font-size: clamp(3.4rem, 6.6vw, 7rem); padding-inline: .06em; overflow: visible; }
+html body .sahl-trust > .sahl-shell { display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 18px !important; }
+html body .sahl-trust > .sahl-shell > strong { align-self: center; }
+html body .sahl-trust .sahl-trust-row > span { flex: initial !important; max-width: none !important; }
+.sahl-stat-grid .sahl-stat strong { font-size: clamp(2.6rem, 5.4vw, 6rem) !important; }
