@@ -48626,3 +48626,8 @@ html body .sahl-trust > .sahl-shell > strong { align-self: center; }
 html body .sahl-trust .sahl-trust-row > span { flex: initial !important; max-width: none !important; }
 .sahl-stat-grid .sahl-stat strong { font-size: clamp(2.6rem, 5.4vw, 6rem) !important; }
 @media (max-width: 720px) { .sahl-stat-grid .sahl-stat strong { font-size: 4.2rem !important; } }
+@media (min-width: 721px) and (max-width: 1023px) {
+  html body .sahl-plan-grid { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; overflow: visible !important; gap: 18px !important; }
+  html body .sahl-plan-grid > * { min-width: 0 !important; width: auto !important; }
+  html body .sahl-plan-grid > *:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
