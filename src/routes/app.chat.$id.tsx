@@ -60,6 +60,9 @@ import { Thinking, LiveStatus } from "@/components/app/Thinking";
 import { VoiceInput } from "@/components/app/VoiceInput";
 import { Markdown } from "@/components/app/Markdown";
 import { ChatAttachments, splitMessageMedia, splitUserBody } from "@/components/app/ChatAttachments";
+import { DeliverableDownloads, MessageDocCards, PendingDocChips, useChatDocuments, useConversationDocs } from "@/components/app/ChatDocuments";
+import { CHAT_FILE_ACCEPT, chatFileKind } from "@/lib/chat-files";
+import { Paperclip } from "lucide-react";
 import { PostCards } from "@/components/app/PostCards";
 import { extractMessages, QuickSend, wantsQuickSend } from "@/components/app/QuickSend";
 
@@ -764,6 +767,38 @@ function ChatView({
 
   // حرية الوسائط: مرفقات المستخدم + قراره في الصورة التلقائية + نسبة الأبعاد.
   const [attachments, setAttachments] = useState<Attachment[]>([]);
+  const chatDocs = useChatDocuments({ workspaceId: workspace?.id, conversationId, employeeId: id });
+  const { data: sentDocs } = useConversationDocs(conversationId);
+  const docInputRef = useRef<HTMLInputElement>(null);
+  const [dragging, setDragging] = useState(false);
+  const addDocs = chatDocs.add;
+  useEffect(() => {
+    const hasFiles = (e: DragEvent) => Array.from(e.dataTransfer?.types ?? []).includes("Files");
+    let depth = 0;
+    const enter = (e: DragEvent) => { if (hasFiles(e)) { depth++; setDragging(true); } };
+    const leave = (e: DragEvent) => { if (hasFiles(e) && --depth <= 0) { depth = 0; setDragging(false); } };
+    const over = (e: DragEvent) => { if (hasFiles(e)) e.preventDefault(); };
+    const drop = (e: DragEvent) => {
+      if (!hasFiles(e)) return;
+      e.preventDefault();
+      depth = 0;
+      setDragging(false);
+      const files = Array.from(e.dataTransfer?.files ?? []);
+      const docs = files.filter((f) => chatFileKind(f.name));
+      if (docs.length) addDocs(docs);
+      else if (files.length) toast.error("الصيغ المدعومة للملفات: PDF وWord وExcel وCSV.");
+    };
+    window.addEventListener("dragenter", enter);
+    window.addEventListener("dragleave", leave);
+    window.addEventListener("dragover", over);
+    window.addEventListener("drop", drop);
+    return () => {
+      window.removeEventListener("dragenter", enter);
+      window.removeEventListener("dragleave", leave);
+      window.removeEventListener("dragover", over);
+      window.removeEventListener("drop", drop);
+    };
+  }, [addDocs]);
   const [imageMode, setImageMode] = useState<ImageMode>("auto");
   const [imagePrompt, setImagePrompt] = useState("");
   const [aspect, setAspect] = useState<Aspect>("square");
@@ -923,6 +958,7 @@ function ChatView({
         conversationId: activeConversationId,
         message,
         attachments,
+        ...(chatDocs.readyIds.length ? { attachmentIds: chatDocs.readyIds } : {}),
         imageMode,
         imagePrompt: imagePrompt.trim() || undefined,
         imageAspect: aspect,
@@ -1008,6 +1044,8 @@ function ChatView({
 
       // المرفقات ووصف الصورة يخصّان الرسالة المُرسلة فقط.
       setAttachments([]);
+      chatDocs.clear();
+      void qc.invalidateQueries({ queryKey: ["chat-docs", activeConversationId] });
       setImagePrompt("");
 
       setSavedTask(res?.createdTaskId ?? null);
@@ -1199,13 +1237,23 @@ function ChatView({
 
   const submit = (text: string) => {
     const body = text.trim();
-    if (!body || !workspace) return;
+    if (chatDocs.busy) {
+      toast.message("انتظر حتى تنتهي قراءة الملفات.");
+      return;
+    }
+    if (chatDocs.hasFailed) {
+      toast.error("أزل الملف الذي تعذّرت قراءته أو أعد المحاولة قبل الإرسال.");
+      return;
+    }
+    const fileOnly = !body && chatDocs.readyIds.length > 0;
+    if ((!body && !fileOnly) || !workspace) return;
     if (sendBusy) {
+      if (fileOnly) return;
       setQueuedMessage(body);
       setDraft("");
       return;
     }
-    if (handleCommand(body)) {
+    if (!fileOnly && handleCommand(body)) {
       setDraft("");
       setStickToBottom(true);
       return;
@@ -1412,7 +1460,7 @@ function ChatView({
               const sender = isUser && m.sender_id ? humanTeam?.members.find((person) => person.userId === m.sender_id) : null;
               const priorRequest = messageRequests[idx] ?? "";
               return (
-                <div key={m.id} className="space-y-4">
+                <div key={m.id} id={`msg-${m.id}`} className="space-y-4">
                   {newDay ? (
                     <div className="flex items-center gap-3 py-1 text-[0.7rem] font-bold text-muted-foreground">
                       <span className="h-px flex-1 bg-border" />
@@ -1461,6 +1509,7 @@ function ChatView({
                         {parsedUser?.items.length ? (
                           <ChatAttachments items={parsedUser.items} className="mb-2" />
                         ) : null}
+                        {isUser && sentDocs?.get(m.id)?.length ? <MessageDocCards docs={sentDocs.get(m.id)!} /> : null}
                          {parsedAssistant?.items.length ? <ChatAttachments items={parsedAssistant.items} className="chat-assistant-media mb-2" /> : null}
                         <MessageContent
                         className={cn(
@@ -1472,7 +1521,7 @@ function ChatView({
                       >
                         {isUser ? (
                           <>
-                            {parsedUser?.text ? <p dir="auto">{parsedUser.text}</p> : null}
+                            {parsedUser?.text ? <p dir="auto">{parsedUser.text}</p> : sentDocs?.get(m.id)?.length ? <p className="text-xs opacity-80">📎 ملف مرفق</p> : null}
                             {(m as { source?: string }).source === "telegram" ? (
                               <span className="mt-1 block text-[0.65rem] font-bold opacity-75">
                                 ✈️ عبر تيليجرام
@@ -1483,6 +1532,13 @@ function ChatView({
                         ) : (
                           <>
                              <Markdown body={parsedAssistant?.text ?? body} onOpenApp={openAppInChat} />
+                             {(parsedAssistant?.text ?? body).length > 700 && (sentDocs?.size ?? 0) > 0 ? (
+                               <DeliverableDownloads
+                                 markdown={parsedAssistant?.text ?? body}
+                                 title={`${member.name} - ${(priorRequest || "مخرج").slice(0, 40)}`}
+                                 getHtml={() => document.getElementById(`msg-${m.id}`)?.querySelector(".chat-message-content")?.innerHTML ?? ""}
+                               />
+                             ) : null}
                           </>
                         )}
                         {!isUser &&
@@ -1851,6 +1907,20 @@ function ChatView({
                 />
               </div>
             ) : null}
+            {chatDocs.docs.length ? (
+              <div className="pointer-events-auto mb-2 rounded-2xl border border-border/70 bg-card p-2 shadow-sm">
+                <PendingDocChips docs={chatDocs.docs} onRemove={chatDocs.discard} onRetry={chatDocs.retry} />
+              </div>
+            ) : null}
+            {dragging ? (
+              <div className="pointer-events-none fixed inset-0 z-[150] grid place-items-center bg-background/80 backdrop-blur-sm">
+                <div className="rounded-2xl border-2 border-dashed border-primary bg-card px-8 py-6 text-center shadow-card">
+                  <Paperclip className="mx-auto mb-2 size-6 text-primary" />
+                  <p className="font-bold">أفلت الملف هنا</p>
+                  <p className="text-xs text-muted-foreground">PDF · Word · Excel · CSV — حتى 5 ملفات، 20 م.ب لكل ملف</p>
+                </div>
+              </div>
+            ) : null}
             <PromptInput
               onSubmit={(message) =>
                 submit(
@@ -1865,6 +1935,13 @@ function ChatView({
                 ref={inputRef}
                 value={draft}
                 onChange={(e) => setDraft(e.target.value)}
+                onPaste={(e) => {
+                  const files = Array.from(e.clipboardData.files).filter((f) => chatFileKind(f.name));
+                  if (files.length) {
+                    e.preventDefault();
+                    chatDocs.add(files);
+                  }
+                }}
                 placeholder=""
                 aria-label={`اكتب طلبك لـ${member.name}`}
                 dir="auto"
@@ -1959,6 +2036,26 @@ function ChatView({
               ) : null}
               <PromptInputFooter>
                 <PromptInputTools>
+                  <input
+                    ref={docInputRef}
+                    type="file"
+                    multiple
+                    accept={CHAT_FILE_ACCEPT}
+                    className="hidden"
+                    onChange={(e) => {
+                      chatDocs.add(Array.from(e.target.files ?? []));
+                      e.target.value = "";
+                    }}
+                  />
+                  <PromptInputButton
+                    type="button"
+                    onClick={() => docInputRef.current?.click()}
+                    disabled={busy || !conversationId}
+                    aria-label="إرفاق ملف"
+                    title="إرفاق ملف (PDF · Word · Excel · CSV)"
+                  >
+                    <Paperclip className="size-4" />
+                  </PromptInputButton>
                   <PromptInputButton
                     type="button"
                     onClick={() => {
@@ -1997,7 +2094,7 @@ function ChatView({
                 </PromptInputTools>
                 <PromptInputSubmit
                   {...(busy ? { status: "streaming" as const, onStop: stopSending } : {})}
-                  disabled={!busy && (voiceState !== "idle" || !workspace || (!draft.trim() && !attachments.length))}
+                  disabled={!busy && (voiceState !== "idle" || !workspace || (!draft.trim() && !attachments.length && !chatDocs.readyIds.length) || chatDocs.busy)}
                   aria-label={busy ? "إيقاف" : "إرسال"}
                   title={busy ? "إيقاف الطلب" : "إرسال"}
                   className="size-9 rounded-lg"

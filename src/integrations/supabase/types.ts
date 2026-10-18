@@ -76,6 +76,85 @@ export type Database = {
         }
         Relationships: []
       }
+      attachments: {
+        Row: {
+          conversation_id: string
+          created_at: string
+          employee_id: string
+          error: string | null
+          extracted_text: string | null
+          file_name: string
+          id: string
+          message_id: string | null
+          mime_type: string
+          size: number
+          status: string
+          storage_path: string
+          summary: string | null
+          updated_at: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          conversation_id: string
+          created_at?: string
+          employee_id: string
+          error?: string | null
+          extracted_text?: string | null
+          file_name: string
+          id?: string
+          message_id?: string | null
+          mime_type?: string
+          size: number
+          status?: string
+          storage_path: string
+          summary?: string | null
+          updated_at?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          conversation_id?: string
+          created_at?: string
+          employee_id?: string
+          error?: string | null
+          extracted_text?: string | null
+          file_name?: string
+          id?: string
+          message_id?: string | null
+          mime_type?: string
+          size?: number
+          status?: string
+          storage_path?: string
+          summary?: string | null
+          updated_at?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attachments_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "conversations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "attachments_message_id_fkey"
+            columns: ["message_id"]
+            isOneToOne: false
+            referencedRelation: "messages"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "attachments_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       automations: {
         Row: {
           active: boolean
