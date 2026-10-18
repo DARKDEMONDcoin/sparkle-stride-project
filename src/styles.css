@@ -48612,3 +48612,13 @@ html body .sahl-white-home :is(.sahl-home-plan, .sahl-proof-grid article, .sahl-
   .site-footer-mobile-cols nav { display: grid; gap: 12px; padding: 0 0 20px; }
 }
 .site-footer .site-footer-pill { background: transparent; color: inherit; border-color: color-mix(in oklab, currentColor 22%, transparent); opacity: .85; }
+/* trust strip: readable grid on every screen */
+html body .sahl-trust .sahl-trust-row { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 12px !important; width: 100% !important; max-width: 1100px; margin-inline: auto; overflow: visible !important; }
+html body .sahl-trust .sahl-trust-row::after { display: none !important; }
+html body .sahl-trust .sahl-trust-row > span { display: flex !important; flex-direction: row !important; align-items: center !important; gap: .75rem !important; min-width: 0 !important; width: auto !important; min-height: 60px; padding: .8rem 1rem !important; border-radius: 16px; text-align: start !important; }
+html body .sahl-trust .sahl-trust-row > span b { white-space: normal !important; writing-mode: horizontal-tb !important; font-size: .95rem; line-height: 1.45; min-width: 0; }
+@media (min-width: 1180px) { html body .sahl-trust .sahl-trust-row { grid-template-columns: repeat(6, minmax(0, 1fr)) !important; max-width: none; } html body .sahl-trust .sahl-trust-row > span { flex-direction: column !important; text-align: center !important; justify-content: center; } }
+@media (max-width: 720px) { html body .sahl-trust .sahl-trust-row { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } html body .sahl-trust .sahl-trust-row > span b { font-size: .85rem; } }
+/* big verbs never clip */
+.sahl-stat-grid .sahl-stat strong { font-size: clamp(3.4rem, 6.6vw, 7rem); padding-inline: .06em; overflow: visible; }
+.site-footer .site-footer-link.text-primary { color: var(--saffron, #E0A526); }
