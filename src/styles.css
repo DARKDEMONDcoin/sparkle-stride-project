@@ -48595,3 +48595,20 @@ html body .sahl-white-home :is(.sahl-home-plan, .sahl-proof-grid article, .sahl-
     min-height: 0;
   }
 }
+
+/* ===== Homepage polish fixes (mobile + desktop) ===== */
+.sahl-sample-note { display: block; }
+.sahl-sample-note svg { display: inline-block; vertical-align: -3px; margin: 0 0 0 6px; }
+.sahl-ads-metrics strong { overflow-wrap: anywhere; }
+@media (max-width: 720px) {
+  .sahl-ads-metrics strong { font-size: 1.3rem; }
+  .site-footer-desktop-col { display: none !important; }
+  .site-footer-mobile-cols { display: block !important; margin-top: 32px; border-top: 1px solid color-mix(in oklab, currentColor 16%, transparent); }
+  .site-footer-mobile-cols details { border-bottom: 1px solid color-mix(in oklab, currentColor 16%, transparent); }
+  .site-footer-mobile-cols summary { min-height: 56px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; font-weight: 800; }
+  .site-footer-mobile-cols summary::-webkit-details-marker { display: none; }
+  .site-footer-mobile-cols summary svg { width: 17px; transition: transform .2s ease; }
+  .site-footer-mobile-cols details[open] summary svg { transform: rotate(180deg); }
+  .site-footer-mobile-cols nav { display: grid; gap: 12px; padding: 0 0 20px; }
+}
+.site-footer .site-footer-pill { background: transparent; color: inherit; border-color: color-mix(in oklab, currentColor 22%, transparent); opacity: .85; }
