@@ -205,8 +205,10 @@ function emailActionValues(request: string, reply: string): Record<string, strin
 export const askEmployeeInput = z.object({
   workspaceId: z.string().uuid(),
   employeeId: z.string().min(1),
-  message: z.string().min(1).max(4000),
+  message: z.string().max(4000),
   conversationId: z.string().uuid(),
+  /** مستندات المحادثة (PDF/Word/Excel) المرفوعة إلى التخزين الخاص والمقروءة مسبقاً. */
+  attachmentIds: z.array(z.string().uuid()).max(5).optional(),
   /** وسائط وملفات أرفقها المستخدم — تُحفظ داخل رسالته وتُعرض في المحادثة. */
   attachments: z
     .array(
@@ -237,6 +239,9 @@ export const askEmployeeInput = z.object({
   imageAspect: z.enum(["square", "portrait", "landscape", "story"]).optional(),
   /** طول المنشور المطلوب (اختياري) — «تلقائي» يترك القرار للموظف حسب المنصة. */
   postLength: z.enum(["auto", "short", "medium", "long"]).optional(),
+}).superRefine((value, ctx) => {
+  if (!value.message.trim() && !value.attachmentIds?.length && !value.attachments?.length)
+    ctx.addIssue({ code: "custom", path: ["message"], message: "اكتب رسالة أو أرفق ملفاً." });
 });
 
 /** الموظفون الذين تُولَّد لهم صورة فعلية عند وجود وصف بصري في الرد. */
@@ -446,7 +451,7 @@ export async function runEmployeeTurn(
         workspace_id: data.workspaceId,
         employee_id: data.employeeId,
         role: "user",
-        body: `${data.message}${attachmentsMarkdown}`,
+        body: `${data.message.trim()}${attachmentsMarkdown}`.trim(),
         conversation_id: data.conversationId,
         sender_id: context.senderId ?? null,
         sender_name: context.senderName ?? null,
@@ -455,6 +460,40 @@ export async function runEmployeeTurn(
       .single();
 
     if (insertUserError) throw new Error(insertUserError.message);
+
+    // مستندات هذه الرسالة: تُربط بها، ثم يُبنى سياق كل مستندات المحادثة للمتابعة.
+    const documentIds = data.attachmentIds ?? [];
+    const ownerId = context.senderId ?? (context as { userId?: string }).userId;
+    if (documentIds.length && ownerId) {
+      await supabase
+        .from("attachments")
+        .update({ message_id: userRow.id, employee_id: data.employeeId })
+        .in("id", documentIds)
+        .eq("conversation_id", data.conversationId)
+        .eq("user_id", ownerId)
+        .is("message_id", null);
+    }
+    const typedMessage = data.message.trim();
+    if (!typedMessage && documentIds.length)
+      data = { ...data, message: "أرسلت لك ملفاً بدون رسالة: لخّصه واقترح 3 خطوات تالية مناسبة لدورك." };
+    let documentContext = "";
+    {
+      const { data: docs } = await supabase
+        .from("attachments")
+        .select("id, file_name, summary, extracted_text, status, error, message_id")
+        .eq("conversation_id", data.conversationId)
+        .not("message_id", "is", null)
+        .order("created_at", { ascending: true })
+        .limit(30);
+      if (docs?.length) {
+        const { buildDocumentContext, DOCUMENT_RULES } = await import("./chat-files.server");
+        const block = buildDocumentContext(docs, documentIds, data.message);
+        if (block) {
+          documentContext = `${DOCUMENT_RULES}\n\n${block}`;
+          if (documentIds.length) emit({ type: "step", label: `قرأت ${documentIds.length === 1 ? "الملف المرفق" : `${documentIds.length} ملفات مرفقة`}` });
+        }
+      }
+    }
 
     const { coworkerVoiceBlock, shortTopic } = await import("./coworker-voice");
     const turnTopic = shortTopic(data.message);
@@ -1135,6 +1174,7 @@ export async function runEmployeeTurn(
 
     // نُعلم الموظف بوسائط المستخدم وبقراره حول الصورة حتى يبني عليها بدل تجاهلها.
     const mediaNote = [
+      documentContext ? `(مستندات المستخدم — مقروءة من الملفات نفسها:\n${documentContext})` : "",
       attachments.length
         ? `(المستخدم أرفق ${attachments.filter((a) => a.type === "image").length} صورة و${attachments.filter((a) => a.type === "video").length} فيديو و${attachments.filter((a) => a.type === "file").length} ملف مع الطلب — افهم محتواها المقروء أدناه ونفّذ المطلوب، ولا تدّعِ معرفة جزء تعذّر تحليله.)`
         : "",

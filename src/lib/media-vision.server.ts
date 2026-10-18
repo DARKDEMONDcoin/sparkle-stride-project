@@ -82,6 +82,27 @@ async function inlineMedia(url: string, expected: "image" | "video"): Promise<st
   }
 }
 
+/** قراءة PDF ممسوح ضوئياً (بلا نص قابل للاستخراج) عبر نموذج بصري. */
+export async function readScannedPdf(bytes: Uint8Array, name: string): Promise<string> {
+  const { providerKeys } = await import("./provider-keys.server");
+  const keys = await providerKeys();
+  const parts: Part[] = [
+    {
+      type: "text",
+      text: `هذا ملف PDF ممسوح ضوئياً «${name}». انسخ نصه حرفياً صفحة صفحة بلغته الأصلية، مع العناوين والجداول والأرقام كما هي. اكتب "--- صفحة N ---" قبل كل صفحة.`,
+    },
+    {
+      type: "file",
+      file: { filename: name, file_data: `data:application/pdf;base64,${Buffer.from(bytes).toString("base64")}` },
+    },
+  ];
+  let read = "";
+  if (keys.lovable) read = await callVision(LOVABLE, keys.lovable, MEDIA_MODEL, parts).catch(() => "");
+  if (!read && keys.gemini)
+    read = await callVision(GEMINI, keys.gemini, "gemini-2.5-flash-lite", parts).catch(() => "");
+  return read;
+}
+
 const MAX_FILE_BYTES = 25 * 1024 * 1024;
 const TEXTUAL_MIME =
   /^(text\/|application\/(json|xml|x-?yaml|yaml|csv|javascript|x-javascript|sql|x-sh|x-httpd-php|rtf))/i;
