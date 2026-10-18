@@ -45,3 +45,4 @@
 - Publish via `bun run scripts/deploy-vercel.ts` (uploads every file, then creates the production deployment and waits for READY). Why: GitHub→Vercel sync is broken and the CLI rejects the team-scoped token ("User not found").
 - Read-only employee actions (`src/lib/read-only-actions.ts`) run inside the turn without approval and the reply is rewritten from their real result. Why: reads need no consent and the model invented inbox content.
 - Employee email (`employee-email.server.ts`, route `api/public/resend.webhook.ts`): Svix signature, DKIM/DMARC sender check, one idempotent row per message in `inbound_emails`; replies go out via Resend as the employee so threads stay unbroken.
+- Chat documents: private `chat-attachments` bucket + `attachments` table; extraction in `chat-files.server.ts`, injected into every later turn of the conversation via `buildDocumentContext` (relevant chunks for long files). Why: follow-ups without re-upload.
