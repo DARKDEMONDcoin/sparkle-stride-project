@@ -2071,8 +2071,10 @@ function ChatView({
                   >
                     <SlidersHorizontal className="size-4.5" />
                   </PromptInputButton>
+                </PromptInputTools>
+                {!busy && (voiceState !== "idle" || (!draft.trim() && !attachments.length && !chatDocs.readyIds.length)) ? (
                   <VoiceInput
-                    disabled={busy}
+                    disabled={!workspace}
                     onState={(st) => {
                       if (st === "recording") voiceBase.current = draft.trim();
                       setVoiceState(st);
@@ -2091,14 +2093,16 @@ function ChatView({
                       }
                     }}
                   />
-                </PromptInputTools>
-                <PromptInputSubmit
-                  {...(busy ? { status: "streaming" as const, onStop: stopSending } : {})}
-                  disabled={!busy && (voiceState !== "idle" || !workspace || (!draft.trim() && !attachments.length && !chatDocs.readyIds.length) || chatDocs.busy)}
-                  aria-label={busy ? "إيقاف" : "إرسال"}
-                  title={busy ? "إيقاف الطلب" : "إرسال"}
-                  className="size-9 rounded-lg"
-                />
+                ) : (
+                  <PromptInputSubmit
+                    {...(busy ? { status: "streaming" as const, onStop: stopSending } : {})}
+                    disabled={!busy && (!workspace || chatDocs.busy)}
+                    aria-label={busy ? "إيقاف" : "إرسال"}
+                    title={busy ? "إيقاف الطلب" : "إرسال"}
+                    className="size-9 rounded-full animate-pop-in"
+                  />
+                )}
+
               </PromptInputFooter>
             </PromptInput>
           </div>
