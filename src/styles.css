@@ -48631,3 +48631,8 @@ html body .sahl-trust .sahl-trust-row > span { flex: initial !important; max-wid
   html body .sahl-plan-grid > * { min-width: 0 !important; width: auto !important; }
   html body .sahl-plan-grid > *:last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
+
+/* Mobile: keep ad-metric formulas whole (no mid-word breaks) */
+@media (max-width: 720px) {
+  html body .sahl-ads-metrics > span strong { word-break: keep-all; overflow-wrap: normal; hyphens: none; font-size: clamp(1.15rem, 5.2vw, 1.6rem); line-height: 1.25; }
+}
