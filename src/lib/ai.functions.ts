@@ -1028,9 +1028,6 @@ export async function runEmployeeTurn(
             return rules.length ? `## تعليمات المالك الخاصة بك\nطبّقها على كل طلب مناسب ما لم يعارضها طلبه الحالي أو قاعدة أمان:\n${rules.map((item) => `- ${item.body ?? item.title}`).join("\n")}` : "";
           })()
         : "",
-      routed
-        ? `## الطلب حُوِّل إليك تلقائياً\nأنت المختص بهذا الطلب وقد حوّله النظام إليك داخل محادثة ${homePersona.name}. نفّذه أنت بالكامل الآن، ولا تحوّله لأي زميل ولا تطلب من المستخدم الضغط على زر توجيه.`
-        : "",
       // كتل التميّز تُحقن للعمل وللأسئلة الاستشارية معاً (كما في مسار المهام التلقائية)،
       // وتُستثنى الدردشة وحدها. قبلها كان السؤال الاستشاري يخسر عمقاً تحصل عليه الأتمتة.
       intent !== "smalltalk" ? employeeEdgeBlock(agentId) : "",
@@ -1046,11 +1043,7 @@ export async function runEmployeeTurn(
       scopeBoundaryBlock(
         agentId,
         data.message,
-        intent === "smalltalk"
-          ? undefined
-          : routed || intent === "work"
-            ? null
-            : await (await import("./smart-route.server")).smartHandoff(data.message, agentId),
+        intent === "smalltalk" ? undefined : routed,
       ),
       sirajMemory,
       nourMemory,
