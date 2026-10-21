@@ -642,7 +642,7 @@ export async function runEmployeeTurn(
       : Promise.resolve([] as Awaited<ReturnType<typeof webImageMod.webImageSearch>>);
 
     // الوضع يُحسم من الخطة الفعلية: لا مراحل ولا لوحة عمل لدردشة أو سؤال لا يحتاج تنفيذاً.
-    const quickTurn = intent !== "work" && !wantsResearch.wanted && !turnPlan.useTools && !wantsWeb && !routed;
+    const quickTurn = !!routed || (intent !== "work" && !wantsResearch.wanted && !turnPlan.useTools && !wantsWeb);
     emit({ type: "mode", mode: quickTurn ? "quick" : "work" });
     if (wantsResearch.wanted) emit({ type: "step", label: `أبحث في مصادر حقيقية عن «${wantsResearch.topic || turnTopic}»` });
     // بحث بمتصفح حقيقي مرئي للمستخدم لحظة بلحظة عند طلب بحث صريح.
