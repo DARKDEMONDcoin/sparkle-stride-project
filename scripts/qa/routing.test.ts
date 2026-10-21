@@ -18,7 +18,7 @@ test("طلب سيو عند سِراج: لمحة سريعة ثم توجيه صر�
   expect(handoff?.id).toBe("nour");
   const block = scopeBoundaryBlock("sonny", "اكتب لي مقال سيو عن القهوة المختصة", handoff);
   expect(block).toContain("إحالة هذا الطلب");
-  expect(block).toContain(`التحدث مع ${handoff!.name}`);
+  expect(block).toContain(`للتحدث مع ${handoff!.name}`);
   expect(block).toContain("لا تنفّذ العمل كاملاً");
 });
 
