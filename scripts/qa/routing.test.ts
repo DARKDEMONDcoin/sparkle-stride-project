@@ -14,9 +14,9 @@ test("طلب تصميم صريح لدانة لا يُحوَّل رغم ذكر ا
 });
 
 test("طلب سيو عند سِراج: لمحة سريعة ثم توجيه صريح لنور بالاسم", () => {
-  const handoff = detectHandoff("اعمل لي فحص سيو كامل للموقع", "sonny");
+  const handoff = detectHandoff("اكتب لي مقال سيو عن القهوة المختصة", "sonny");
   expect(handoff?.id).toBe("nour");
-  const block = scopeBoundaryBlock("sonny", "اعمل لي فحص سيو كامل للموقع", handoff);
+  const block = scopeBoundaryBlock("sonny", "اكتب لي مقال سيو عن القهوة المختصة", handoff);
   expect(block).toContain("إحالة هذا الطلب");
   expect(block).toContain(`التحدث مع ${handoff!.name}`);
   expect(block).toContain("لا تنفّذ العمل كاملاً");
