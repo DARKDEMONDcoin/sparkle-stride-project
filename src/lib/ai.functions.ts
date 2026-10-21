@@ -601,15 +601,14 @@ export async function runEmployeeTurn(
     const basePlan = planTurn(planText, longForm);
     const turnPlan = isContinuation ? { ...basePlan, intent: "work" as const, verifyOutput: true } : basePlan;
     const intent = turnPlan.intent;
-    // توجيه ذكي تلقائي: طلب عمل خارج اختصاص موظف المحادثة يتولاه الزميل المختص
-    // خلف الكواليس (تعليماته وأدواته وإجراءاته)، وتعود النتيجة في نفس المحادثة.
+    // إحالة صريحة: طلب خارج اختصاص موظف المحادثة لا يُنفَّذ خفيةً؛ يبقى الموظف نفسه
+    // ويعطي لمحة سريعة ثم يوجّه المستخدم بوضوح للزميل المختص (مع بطاقة الانتقال).
     const routed =
       intent !== "smalltalk"
         ? await (await import("./smart-route.server")).smartHandoff(data.message, data.employeeId)
         : null;
-    const agentId: string = routed?.id ?? data.employeeId;
+    const agentId: string = data.employeeId;
     const persona = personas[agentId] ?? homePersona;
-    if (routed) emit({ type: "step", label: `أستعين بخبرة ${routed.name} في: ${routed.topic}` });
     /** رفض صريح للصورة: «بدون صورة» يمنع أي توليد مهما كان الموظف أو المخرج. */
     const imageRefused = refusesImageRequest(data.message);
     /** طلب صورة صريح من المستخدم: تُولَّد صورة فعلية أياً كان الموظف. */
