@@ -9,9 +9,17 @@ import { answerPolicyBlock } from "../../src/lib/answer-policy";
 test("طلب تصميم صريح لدانة لا يُحوَّل رغم ذكر اسم منصة", () => {
   const request = "صممي ستوري إنستجرام لعرض القهوة الباردة";
   expect(isDecisivelyMine(request, "dana")).toBe(true);
-  const block = scopeBoundaryBlock("dana", request);
-  expect(block).toContain("ممنوع منعاً باتاً");
-  expect(block).toContain("تنفّذه أنت كاملاً");
+  const block = scopeBoundaryBlock("dana", request, null);
+  expect(block).not.toContain("إحالة هذا الطلب");
+});
+
+test("طلب سيو عند سِراج: لمحة سريعة ثم توجيه صريح لنور بالاسم", () => {
+  const handoff = detectHandoff("اكتب لي مقال سيو عن القهوة المختصة", "sonny");
+  expect(handoff?.id).toBe("nour");
+  const block = scopeBoundaryBlock("sonny", "اكتب لي مقال سيو عن القهوة المختصة", handoff);
+  expect(block).toContain("إحالة هذا الطلب");
+  expect(block).toContain(`للتحدث مع ${handoff!.name}`);
+  expect(block).toContain("لا تنفّذ العمل كاملاً");
 });
 
 test("طلب نشر على إنستجرام من دانة يُحوَّل إلى سِراج بالاسم", () => {

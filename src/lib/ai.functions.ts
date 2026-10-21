@@ -601,15 +601,14 @@ export async function runEmployeeTurn(
     const basePlan = planTurn(planText, longForm);
     const turnPlan = isContinuation ? { ...basePlan, intent: "work" as const, verifyOutput: true } : basePlan;
     const intent = turnPlan.intent;
-    // توجيه ذكي تلقائي: طلب عمل خارج اختصاص موظف المحادثة يتولاه الزميل المختص
-    // خلف الكواليس (تعليماته وأدواته وإجراءاته)، وتعود النتيجة في نفس المحادثة.
+    // إحالة صريحة: طلب خارج اختصاص موظف المحادثة لا يُنفَّذ خفيةً؛ يبقى الموظف نفسه
+    // ويعطي لمحة سريعة ثم يوجّه المستخدم بوضوح للزميل المختص (مع بطاقة الانتقال).
     const routed =
       intent !== "smalltalk"
         ? await (await import("./smart-route.server")).smartHandoff(data.message, data.employeeId)
         : null;
-    const agentId: string = routed?.id ?? data.employeeId;
+    const agentId: string = data.employeeId;
     const persona = personas[agentId] ?? homePersona;
-    if (routed) emit({ type: "step", label: `أستعين بخبرة ${routed.name} في: ${routed.topic}` });
     /** رفض صريح للصورة: «بدون صورة» يمنع أي توليد مهما كان الموظف أو المخرج. */
     const imageRefused = refusesImageRequest(data.message);
     /** طلب صورة صريح من المستخدم: تُولَّد صورة فعلية أياً كان الموظف. */
@@ -643,7 +642,7 @@ export async function runEmployeeTurn(
       : Promise.resolve([] as Awaited<ReturnType<typeof webImageMod.webImageSearch>>);
 
     // الوضع يُحسم من الخطة الفعلية: لا مراحل ولا لوحة عمل لدردشة أو سؤال لا يحتاج تنفيذاً.
-    const quickTurn = intent !== "work" && !wantsResearch.wanted && !turnPlan.useTools && !wantsWeb && !routed;
+    const quickTurn = !!routed || (intent !== "work" && !wantsResearch.wanted && !turnPlan.useTools && !wantsWeb);
     emit({ type: "mode", mode: quickTurn ? "quick" : "work" });
     if (wantsResearch.wanted) emit({ type: "step", label: `أبحث في مصادر حقيقية عن «${wantsResearch.topic || turnTopic}»` });
     // بحث بمتصفح حقيقي مرئي للمستخدم لحظة بلحظة عند طلب بحث صريح.
@@ -1029,9 +1028,6 @@ export async function runEmployeeTurn(
             return rules.length ? `## تعليمات المالك الخاصة بك\nطبّقها على كل طلب مناسب ما لم يعارضها طلبه الحالي أو قاعدة أمان:\n${rules.map((item) => `- ${item.body ?? item.title}`).join("\n")}` : "";
           })()
         : "",
-      routed
-        ? `## الطلب حُوِّل إليك تلقائياً\nأنت المختص بهذا الطلب وقد حوّله النظام إليك داخل محادثة ${homePersona.name}. نفّذه أنت بالكامل الآن، ولا تحوّله لأي زميل ولا تطلب من المستخدم الضغط على زر توجيه.`
-        : "",
       // كتل التميّز تُحقن للعمل وللأسئلة الاستشارية معاً (كما في مسار المهام التلقائية)،
       // وتُستثنى الدردشة وحدها. قبلها كان السؤال الاستشاري يخسر عمقاً تحصل عليه الأتمتة.
       intent !== "smalltalk" ? employeeEdgeBlock(agentId) : "",
@@ -1047,11 +1043,7 @@ export async function runEmployeeTurn(
       scopeBoundaryBlock(
         agentId,
         data.message,
-        intent === "smalltalk"
-          ? undefined
-          : routed || intent === "work"
-            ? null
-            : await (await import("./smart-route.server")).smartHandoff(data.message, agentId),
+        intent === "smalltalk" ? undefined : routed,
       ),
       sirajMemory,
       nourMemory,
