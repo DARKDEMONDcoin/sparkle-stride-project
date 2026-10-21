@@ -788,13 +788,6 @@ export function EditorialHomepage() {
               <ChevronDown aria-hidden="true" />
             </Button>
           </Reveal>
-          <Reveal>
-            <p className="sahl-sample-note">
-              <CheckCircle2 aria-hidden="true" />
-              <b>مثال توضيحي</b> — الأرقام والعروض في الأمثلة من طلب المستخدم نفسه؛ الفريق لا يخترع
-              سعرًا ولا وعدًا من عنده.
-            </p>
-          </Reveal>
         </div>
       </section>
 
