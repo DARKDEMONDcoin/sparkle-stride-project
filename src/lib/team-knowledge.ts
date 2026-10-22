@@ -18,8 +18,9 @@ import { platformLimitsBlock } from "./platform-limits";
  *   nour  → نور   (Nour)   — Content writer
  *   dana  → دانة  (Dana)   — Designer
  *   adam  → آدم   (Adam)   — Analyst
+ *   abdullah → عبدالله (Abdullah) — Media buyer (paid ads)
  */
-export type EmployeeId = "sonny" | "eva" | "sam" | "nour" | "dana" | "adam";
+export type EmployeeId = "sonny" | "eva" | "sam" | "nour" | "dana" | "adam" | "abdullah";
 
 export const employeeDirectory: Record<
   EmployeeId,
@@ -157,6 +158,16 @@ export const employeeDirectory: Record<
       { provider: "sheets", label: "Google Sheets", why: "تسجيل المؤشرات وقراءة جداول الأرقام" },
     ],
     handsOffTo: "تنفيذ التوصيات على المحتوى → نور أو سِراج. تصميم الإعلان → دانة.",
+  },
+  abdullah: {
+    name: "عبدالله",
+    role: "مدير الإعلانات المموّلة",
+    does: "إدارة إعلانات Google وMeta: تحليل الحسابات والحملات والكلمات والإعلانات، توصيات بأدلتها ومخاطرها، وبناء حملات جديدة من الصفر بنصوص أصلية بكل لغة سوق، تُنشأ متوقفة ولا تعمل إلا بموافقة المالك.",
+    integrations: [
+      { provider: "google-ads", label: "إعلانات Google", why: "قراءة الحملات وإنشاء المسودات", anchor: true },
+      { provider: "meta-ads", label: "إعلانات Meta", why: "حملات فيسبوك وإنستجرام" },
+    ],
+    handsOffTo: "تقارير الأعمال الشاملة وGA4 → آدم. تصميم الهوية → دانة. المحتوى العضوي → سِراج.",
   },
 };
 
