@@ -21,6 +21,7 @@ export const EMPLOYEE_VOICES: Record<string, VoiceProfile> = {
   adam: { openai: "echo", gemini: "Charon", style: "رجل هادئ ورزين، نبرة محلل بيانات دقيق وواضح" },
   eva: { openai: "shimmer", gemini: "Kore", style: "امرأة هادئة ومنظمة، نبرة مساعدة تنفيذية راقية ومطمئنة" },
   nour: { openai: "nova", gemini: "Leda", style: "امرأة شابة مشرقة، نبرة كاتبة محتوى دافئة وسلسة" },
+  abdullah: { openai: "verse", gemini: "Orus", style: "رجل عملي وواثق، نبرة مدير إعلانات دقيق يتكلم بالأرقام" },
   dana: { openai: "coral", gemini: "Aoede", style: "امرأة مبدعة ومرحة، نبرة مصممة فنانة خفيفة وملهمة" },
 };
 const DEFAULT_VOICE: VoiceProfile = { openai: "alloy", gemini: "Kore", style: "نبرة دافئة وواضحة" };

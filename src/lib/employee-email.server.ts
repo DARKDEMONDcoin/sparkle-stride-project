@@ -22,6 +22,7 @@ const ADDRESS_TO_EMPLOYEE: Record<string, string> = {
   nour: "nour",
   dana: "dana",
   adam: "adam",
+  abdullah: "abdullah",
 };
 
 const EMPLOYEE_IDENTITY: Record<string, { name: string; local: string; role: string }> = {
@@ -30,7 +31,8 @@ const EMPLOYEE_IDENTITY: Record<string, { name: string; local: string; role: str
   sam: { name: "سالم", local: "salem", role: "مدير المبيعات" },
   nour: { name: "نور", local: "nour", role: "كاتبة المحتوى وخبيرة الظهور" },
   dana: { name: "دانة", local: "dana", role: "المصممة" },
-  adam: { name: "آدم", local: "adam", role: "محلل الإعلانات" },
+  adam: { name: "آدم", local: "adam", role: "محلل البيانات" },
+  abdullah: { name: "عبدالله", local: "abdullah", role: "مدير الإعلانات المموّلة" },
 };
 
 export const EMAIL_RATE_LIMIT_PER_HOUR = 20;

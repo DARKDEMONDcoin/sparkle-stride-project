@@ -1,5 +1,5 @@
 /** اسم الصفحة التي يدخلها المستخدم — لتقول شاشة التحميل بالضبط إلى أين نذهب. */
-const EMPLOYEES: Record<string, string> = { sonny: "سراج", nour: "نور", dana: "دانة", eva: "أمل", sam: "سالم", adam: "آدم" };
+const EMPLOYEES: Record<string, string> = { sonny: "سراج", nour: "نور", dana: "دانة", eva: "أمل", sam: "سالم", adam: "آدم", abdullah: "عبدالله" };
 const PAGES: [RegExp, string][] = [
   [/^\/app\/?$/, "لوحة القيادة"], [/^\/app\/chat\/?$/, "المحادثات"], [/^\/app\/approvals/, "الموافقات"],
   [/^\/app\/automations/, "الأتمتة"], [/^\/app\/autopilot/, "الطيار الآلي"], [/^\/app\/brain/, "العقل"],
