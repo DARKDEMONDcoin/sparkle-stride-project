@@ -11,6 +11,7 @@ import samEg from "@/assets/team/sam-eg.jpg";
 import nourEg from "@/assets/team/nour-eg.jpg";
 import danaEg from "@/assets/team/dana-eg.jpg";
 import adamEg from "@/assets/team/adam-eg.jpg";
+import abdullahEg from "@/assets/team/abdullah-eg.jpg";
 
 import sonnySham from "@/assets/team/siraj-sham.jpg";
 import evaSham from "@/assets/team/eva-sham.jpg";
@@ -166,7 +167,7 @@ const portraits: Record<Region, Record<string, string>> = {
     dana: danaGulf,
     adam: adamGulf,
   },
-  eg: { sonny: sonnyEg, eva: evaEg, sam: samEg, nour: nourEg, dana: danaEg, adam: adamEg },
+  eg: { sonny: sonnyEg, eva: evaEg, sam: samEg, nour: nourEg, dana: danaEg, adam: adamEg, abdullah: abdullahEg },
   sham: {
     sonny: sonnySham,
     eva: evaSham,
